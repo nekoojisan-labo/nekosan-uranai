@@ -1,0 +1,1751 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お客様の声 | ねこさん占い - 月と星が導くあなたの物語</title>
+  <meta name="description" content="ねこさん占いをご利用いただいたお客様の声をご紹介。タロット・オラクルカードリーディングで心に響く鑑定をお届けします。">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Sans+JP:wght@300;400;500;600&family=Noto+Serif+JP:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ===== CSS Variables ===== */
+    :root {
+      /* Colors - Mystical Night Sky */
+      --color-bg-deep: #0d0d1a;
+      --color-bg-primary: #1a1a2e;
+      --color-bg-secondary: #16213e;
+      --color-purple-dark: #2d1b4e;
+      --color-purple-medium: #4a3270;
+      --color-purple-light: #7b5ea7;
+      --color-gold: #d4af37;
+      --color-gold-muted: #b8956e;
+      --color-gold-light: #e8d5a3;
+      --color-text-primary: #f5f5f5;
+      --color-text-secondary: #c9c9d4;
+      --color-text-muted: #8b8b9e;
+      --color-accent-pink: #e8b4c8;
+      --color-accent-blue: #7ec8e3;
+      
+      /* Glassmorphism */
+      --glass-bg: rgba(255, 255, 255, 0.05);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      
+      /* Typography */
+      --font-display: 'Cormorant Garamond', 'Noto Serif JP', serif;
+      --font-heading: 'Cinzel', 'Noto Serif JP', serif;
+      --font-body: 'Noto Sans JP', sans-serif;
+      --font-serif-jp: 'Noto Serif JP', serif;
+      
+      /* Spacing */
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 1.5rem;
+      --space-lg: 2rem;
+      --space-xl: 3rem;
+      --space-2xl: 5rem;
+      --space-3xl: 8rem;
+      
+      /* Transitions */
+      --transition-fast: 0.2s ease;
+      --transition-normal: 0.3s ease;
+      --transition-slow: 0.5s ease;
+      
+      /* Border Radius */
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+    }
+
+    /* ===== Reset & Base ===== */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-weight: 400;
+      line-height: 1.8;
+      color: var(--color-text-primary);
+      background: linear-gradient(135deg, var(--color-bg-deep) 0%, var(--color-bg-primary) 30%, var(--color-purple-dark) 70%, var(--color-bg-secondary) 100%);
+      background-attachment: fixed;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Paper texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ===== Utility Classes ===== */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+      position: relative;
+      z-index: 2;
+    }
+
+    .container--narrow {
+      max-width: 900px;
+    }
+
+    /* ===== Star Canvas ===== */
+    #starCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ===== Header ===== */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: var(--space-md) 0;
+      background: rgba(13, 13, 26, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--glass-border);
+      transition: var(--transition-normal);
+    }
+
+    .header.scrolled {
+      padding: var(--space-sm) 0;
+      background: rgba(13, 13, 26, 0.95);
+    }
+
+    .header__inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header__logo {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .header__logo-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-muted) 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    .header__logo-text {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--color-gold-light);
+      letter-spacing: 0.05em;
+    }
+
+    .header__nav {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xl);
+    }
+
+    .header__menu {
+      display: flex;
+      gap: var(--space-lg);
+      list-style: none;
+    }
+
+    .header__menu a {
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      color: var(--color-text-secondary);
+      transition: var(--transition-normal);
+      position: relative;
+    }
+
+    .header__menu a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--color-gold);
+      transition: var(--transition-normal);
+    }
+
+    .header__menu a:hover,
+    .header__menu a.active {
+      color: var(--color-gold-light);
+    }
+
+    .header__menu a:hover::after,
+    .header__menu a.active::after {
+      width: 100%;
+    }
+
+    .header__cta {
+      padding: var(--space-xs) var(--space-md);
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--color-bg-deep);
+      background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-muted) 100%);
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: var(--transition-normal);
+    }
+
+    .header__cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+    }
+
+    /* Mobile menu button */
+    .header__hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 5px;
+    }
+
+    .header__hamburger span {
+      width: 24px;
+      height: 2px;
+      background: var(--color-gold-light);
+      transition: var(--transition-normal);
+    }
+
+    /* ===== Page Header Section ===== */
+    .page-header {
+      padding: calc(100px + var(--space-3xl)) 0 var(--space-3xl);
+      text-align: center;
+      position: relative;
+    }
+
+    .page-header__subtitle {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--color-gold);
+      letter-spacing: 0.2em;
+      margin-bottom: var(--space-sm);
+    }
+
+    .page-header__title {
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 400;
+      color: var(--color-text-primary);
+      letter-spacing: 0.15em;
+      margin-bottom: var(--space-md);
+    }
+
+    .page-header__line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-lg);
+    }
+
+    .page-header__line span {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+    }
+
+    .page-header__line-icon {
+      color: var(--color-gold);
+      font-size: 1.2rem;
+    }
+
+    .page-header__description {
+      font-family: var(--font-serif-jp);
+      font-size: 1rem;
+      color: var(--color-text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 2;
+    }
+
+    /* ===== Stats Section ===== */
+    .stats {
+      padding: var(--space-xl) 0 var(--space-3xl);
+    }
+
+    .stats__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-lg);
+    }
+
+    .stats__item {
+      text-align: center;
+      padding: var(--space-lg);
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+    }
+
+    .stats__number {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 500;
+      color: var(--color-gold);
+      line-height: 1.2;
+      margin-bottom: var(--space-xs);
+    }
+
+    .stats__number span {
+      font-size: 1.5rem;
+    }
+
+    .stats__label {
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+      letter-spacing: 0.05em;
+    }
+
+    /* ===== Voices Section ===== */
+    .voices {
+      padding: var(--space-2xl) 0 var(--space-3xl);
+    }
+
+    .voices__grid {
+      display: grid;
+      gap: var(--space-xl);
+    }
+
+    /* Voice Card */
+    .voice-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-xl);
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition-normal);
+    }
+
+    .voice-card::before {
+      content: '"';
+      position: absolute;
+      top: 20px;
+      left: 30px;
+      font-family: var(--font-display);
+      font-size: 8rem;
+      color: var(--color-gold);
+      opacity: 0.1;
+      line-height: 1;
+    }
+
+    .voice-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(212, 175, 55, 0.3);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    .voice-card__header {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-lg);
+      margin-bottom: var(--space-lg);
+    }
+
+    .voice-card__avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid var(--color-gold-muted);
+      flex-shrink: 0;
+    }
+
+    .voice-card__avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: sepia(20%) saturate(80%);
+    }
+
+    .voice-card__info {
+      flex: 1;
+    }
+
+    .voice-card__meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-xs);
+    }
+
+    .voice-card__tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 12px;
+      font-size: 0.75rem;
+      color: var(--color-gold-light);
+      background: rgba(212, 175, 55, 0.15);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 20px;
+    }
+
+    .voice-card__name {
+      font-family: var(--font-serif-jp);
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--color-text-primary);
+      margin-bottom: 4px;
+    }
+
+    .voice-card__detail {
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+    }
+
+    .voice-card__rating {
+      display: flex;
+      gap: 4px;
+      margin-top: var(--space-xs);
+    }
+
+    .voice-card__rating span {
+      color: var(--color-gold);
+      font-size: 0.875rem;
+    }
+
+    .voice-card__menu {
+      display: inline-block;
+      padding: 6px 16px;
+      font-size: 0.75rem;
+      color: var(--color-accent-pink);
+      background: rgba(232, 180, 200, 0.1);
+      border: 1px solid rgba(232, 180, 200, 0.3);
+      border-radius: var(--radius-sm);
+      margin-bottom: var(--space-md);
+    }
+
+    .voice-card__content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .voice-card__title {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--color-gold-light);
+      margin-bottom: var(--space-md);
+      line-height: 1.5;
+    }
+
+    .voice-card__text {
+      font-family: var(--font-serif-jp);
+      font-size: 0.95rem;
+      color: var(--color-text-secondary);
+      line-height: 2;
+      margin-bottom: var(--space-md);
+    }
+
+    .voice-card__highlight {
+      display: inline;
+      background: linear-gradient(transparent 60%, rgba(212, 175, 55, 0.2) 60%);
+      padding: 0 2px;
+    }
+
+    .voice-card__date {
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+      text-align: right;
+    }
+
+    /* Featured Voice Card */
+    .voice-card--featured {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(75, 50, 112, 0.2) 100%);
+      border-color: rgba(212, 175, 55, 0.2);
+    }
+
+    .voice-card--featured .voice-card__avatar {
+      border-color: var(--color-gold);
+    }
+
+    /* ===== Categories Filter ===== */
+    .categories {
+      padding: var(--space-xl) 0;
+    }
+
+    .categories__list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--space-sm);
+    }
+
+    .categories__btn {
+      padding: var(--space-xs) var(--space-md);
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 30px;
+      cursor: pointer;
+      transition: var(--transition-normal);
+    }
+
+    .categories__btn:hover,
+    .categories__btn.active {
+      color: var(--color-gold-light);
+      background: rgba(212, 175, 55, 0.1);
+      border-color: rgba(212, 175, 55, 0.3);
+    }
+
+    /* ===== Satisfaction Section ===== */
+    .satisfaction {
+      padding: var(--space-3xl) 0;
+    }
+
+    .satisfaction__card {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(75, 50, 112, 0.2) 100%);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: var(--radius-xl);
+      padding: var(--space-2xl);
+      text-align: center;
+    }
+
+    .satisfaction__icon {
+      font-size: 3rem;
+      margin-bottom: var(--space-md);
+    }
+
+    .satisfaction__title {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 500;
+      color: var(--color-gold-light);
+      margin-bottom: var(--space-md);
+    }
+
+    .satisfaction__score {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+
+    .satisfaction__number {
+      font-family: var(--font-display);
+      font-size: 5rem;
+      font-weight: 600;
+      color: var(--color-gold);
+      line-height: 1;
+    }
+
+    .satisfaction__unit {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      color: var(--color-gold-muted);
+    }
+
+    .satisfaction__stars {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: var(--space-lg);
+    }
+
+    .satisfaction__stars span {
+      font-size: 1.5rem;
+      color: var(--color-gold);
+    }
+
+    .satisfaction__note {
+      font-size: 0.875rem;
+      color: var(--color-text-muted);
+    }
+
+    /* ===== Before After Section ===== */
+    .before-after {
+      padding: var(--space-3xl) 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: var(--space-2xl);
+    }
+
+    .section-title__en {
+      font-family: var(--font-heading);
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: 400;
+      color: var(--color-text-primary);
+      letter-spacing: 0.15em;
+      margin-bottom: var(--space-sm);
+    }
+
+    .section-title__line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-sm);
+    }
+
+    .section-title__line span {
+      width: 40px;
+      height: 1px;
+      background: var(--color-gold);
+    }
+
+    .section-title__icon {
+      color: var(--color-gold);
+    }
+
+    .section-title__jp {
+      font-family: var(--font-serif-jp);
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      letter-spacing: 0.1em;
+    }
+
+    .before-after__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-xl);
+    }
+
+    .ba-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-xl);
+    }
+
+    .ba-card__label {
+      display: inline-block;
+      padding: 6px 20px;
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      border-radius: 20px;
+      margin-bottom: var(--space-md);
+    }
+
+    .ba-card--before .ba-card__label {
+      color: var(--color-text-muted);
+      background: rgba(139, 139, 158, 0.2);
+      border: 1px solid rgba(139, 139, 158, 0.3);
+    }
+
+    .ba-card--after .ba-card__label {
+      color: var(--color-gold-light);
+      background: rgba(212, 175, 55, 0.2);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+    }
+
+    .ba-card__title {
+      font-family: var(--font-serif-jp);
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-md);
+    }
+
+    .ba-card__list {
+      list-style: none;
+    }
+
+    .ba-card__list li {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-sm);
+      font-size: 0.9rem;
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-sm);
+      line-height: 1.6;
+    }
+
+    .ba-card__list li::before {
+      content: '•';
+      color: var(--color-text-muted);
+      flex-shrink: 0;
+    }
+
+    .ba-card--after .ba-card__list li::before {
+      content: '✓';
+      color: var(--color-gold);
+    }
+
+    /* ===== CTA Section ===== */
+    .cta {
+      padding: var(--space-3xl) 0;
+    }
+
+    .cta__card {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(75, 50, 112, 0.3) 100%);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: var(--radius-xl);
+      padding: var(--space-2xl) var(--space-xl);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta__card::before {
+      content: '✦';
+      position: absolute;
+      top: 20px;
+      left: 40px;
+      font-size: 2rem;
+      color: var(--color-gold);
+      opacity: 0.2;
+    }
+
+    .cta__card::after {
+      content: '✦';
+      position: absolute;
+      bottom: 20px;
+      right: 40px;
+      font-size: 2rem;
+      color: var(--color-gold);
+      opacity: 0.2;
+    }
+
+    .cta__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 500;
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-sm);
+      line-height: 1.6;
+    }
+
+    .cta__text {
+      font-size: 0.95rem;
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-xl);
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta__buttons {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      padding: var(--space-md) var(--space-xl);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 500;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: var(--transition-normal);
+      text-decoration: none;
+      border: none;
+    }
+
+    .btn--primary {
+      color: var(--color-bg-deep);
+      background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-muted) 100%);
+      box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+    }
+
+    .btn--primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
+    }
+
+    .btn--secondary {
+      color: var(--color-gold-light);
+      background: transparent;
+      border: 1px solid var(--color-gold-muted);
+    }
+
+    .btn--secondary:hover {
+      background: rgba(212, 175, 55, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .btn--line {
+      color: white;
+      background: #06C755;
+    }
+
+    .btn--line:hover {
+      background: #05b04c;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(6, 199, 85, 0.3);
+    }
+
+    /* ===== Footer ===== */
+    .footer {
+      padding: var(--space-3xl) 0 var(--space-lg);
+      background: rgba(13, 13, 26, 0.8);
+      border-top: 1px solid var(--glass-border);
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 2fr repeat(3, 1fr);
+      gap: var(--space-2xl);
+      margin-bottom: var(--space-2xl);
+    }
+
+    .footer__brand {
+      max-width: 280px;
+    }
+
+    .footer__logo {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+
+    .footer__logo-icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-muted) 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+    }
+
+    .footer__logo-text {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--color-gold-light);
+    }
+
+    .footer__description {
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      line-height: 1.8;
+    }
+
+    .footer__heading {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--color-gold-light);
+      letter-spacing: 0.15em;
+      margin-bottom: var(--space-md);
+    }
+
+    .footer__list {
+      list-style: none;
+    }
+
+    .footer__list li {
+      margin-bottom: var(--space-sm);
+    }
+
+    .footer__list a {
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      transition: var(--transition-normal);
+    }
+
+    .footer__list a:hover {
+      color: var(--color-gold-light);
+    }
+
+    .footer__social {
+      display: flex;
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+
+    .footer__social a {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 50%;
+      font-size: 1rem;
+      transition: var(--transition-normal);
+    }
+
+    .footer__social a:hover {
+      background: rgba(212, 175, 55, 0.2);
+      border-color: var(--color-gold-muted);
+      transform: translateY(-3px);
+    }
+
+    .footer__bottom {
+      padding-top: var(--space-lg);
+      border-top: 1px solid var(--glass-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+    }
+
+    .footer__copyright {
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+    }
+
+    .footer__legal {
+      display: flex;
+      gap: var(--space-lg);
+    }
+
+    .footer__legal a {
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+      transition: var(--transition-normal);
+    }
+
+    .footer__legal a:hover {
+      color: var(--color-gold-light);
+    }
+
+    /* ===== Animations ===== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .stagger > * {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .stagger.visible > *:nth-child(1) { transition-delay: 0s; }
+    .stagger.visible > *:nth-child(2) { transition-delay: 0.1s; }
+    .stagger.visible > *:nth-child(3) { transition-delay: 0.2s; }
+    .stagger.visible > *:nth-child(4) { transition-delay: 0.3s; }
+    .stagger.visible > *:nth-child(5) { transition-delay: 0.4s; }
+    .stagger.visible > *:nth-child(6) { transition-delay: 0.5s; }
+    .stagger.visible > *:nth-child(7) { transition-delay: 0.6s; }
+    .stagger.visible > *:nth-child(8) { transition-delay: 0.7s; }
+
+    .stagger.visible > * {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== Scroll to Top Button ===== */
+    .scroll-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-muted) 100%);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition-normal);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-bg-deep);
+      font-size: 1.2rem;
+    }
+
+    .scroll-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .scroll-top:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 1024px) {
+      .stats__grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .before-after__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-xl);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header__nav {
+        display: none;
+      }
+
+      .header__hamburger {
+        display: flex;
+      }
+
+      .stats__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-md);
+      }
+
+      .stats__number {
+        font-size: 2rem;
+      }
+
+      .voice-card {
+        padding: var(--space-lg);
+      }
+
+      .voice-card__header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .voice-card__rating {
+        justify-content: center;
+      }
+
+      .footer__grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .footer__brand {
+        max-width: 100%;
+      }
+
+      .footer__logo {
+        justify-content: center;
+      }
+
+      .footer__social {
+        justify-content: center;
+      }
+
+      .footer__bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .stats__grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .stats__item {
+        padding: var(--space-md);
+      }
+
+      .categories__list {
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: var(--space-sm);
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .categories__btn {
+        flex-shrink: 0;
+      }
+
+      .satisfaction__number {
+        font-size: 4rem;
+      }
+
+      .cta__buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn {
+        width: 100%;
+        max-width: 280px;
+      }
+    }
+
+    /* Mobile Navigation Overlay */
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(13, 13, 26, 0.98);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-lg);
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition-normal);
+    }
+
+    .mobile-nav.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .mobile-nav__close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: var(--color-text-primary);
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    .mobile-nav__list {
+      list-style: none;
+      text-align: center;
+    }
+
+    .mobile-nav__list li {
+      margin-bottom: var(--space-lg);
+    }
+
+    .mobile-nav__list a {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--color-text-secondary);
+      transition: var(--transition-normal);
+    }
+
+    .mobile-nav__list a:hover,
+    .mobile-nav__list a.active {
+      color: var(--color-gold-light);
+    }
+  </style>
+</head>
+<body>
+  <!-- Star Canvas Background -->
+  <canvas id="starCanvas"></canvas>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="header__inner">
+        <a href="index.html" class="header__logo">
+          <div class="header__logo-icon">🌙</div>
+          <span class="header__logo-text">ねこさん占い</span>
+        </a>
+        
+        <nav class="header__nav">
+          <ul class="header__menu">
+            <li><a href="index.html">ホーム</a></li>
+            <li><a href="about.html">ねこさんについて</a></li>
+            <li><a href="menu.html">占いメニュー</a></li>
+            <li><a href="voices.html" class="active">お客様の声</a></li>
+          </ul>
+          <a href="contact.html" class="header__cta">ご予約はこちら</a>
+        </nav>
+
+        <button class="header__hamburger" aria-label="メニュー">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation -->
+  <nav class="mobile-nav">
+    <button class="mobile-nav__close" aria-label="閉じる">×</button>
+    <ul class="mobile-nav__list">
+      <li><a href="index.html">ホーム</a></li>
+      <li><a href="about.html">ねこさんについて</a></li>
+      <li><a href="menu.html">占いメニュー</a></li>
+      <li><a href="voices.html" class="active">お客様の声</a></li>
+      <li><a href="contact.html">ご予約</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <!-- Page Header -->
+    <section class="page-header">
+      <div class="container">
+        <p class="page-header__subtitle fade-in">Customer Voices</p>
+        <h1 class="page-header__title fade-in">VOICES</h1>
+        <div class="page-header__line fade-in">
+          <span></span>
+          <span class="page-header__line-icon">✦</span>
+          <span></span>
+        </div>
+        <p class="page-header__description fade-in">
+          お客様の声<br>
+          鑑定を受けてくださった方々からの<br class="sp-only">温かいメッセージをご紹介します
+        </p>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+      <div class="container">
+        <div class="stats__grid stagger">
+          <div class="stats__item">
+            <p class="stats__number">500<span>+</span></p>
+            <p class="stats__label">累計鑑定数</p>
+          </div>
+          <div class="stats__item">
+            <p class="stats__number">98<span>%</span></p>
+            <p class="stats__label">満足度</p>
+          </div>
+          <div class="stats__item">
+            <p class="stats__number">85<span>%</span></p>
+            <p class="stats__label">リピート率</p>
+          </div>
+          <div class="stats__item">
+            <p class="stats__number">4.9<span>/5</span></p>
+            <p class="stats__label">平均評価</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Categories Filter -->
+    <section class="categories">
+      <div class="container">
+        <div class="categories__list">
+          <button class="categories__btn active">すべて</button>
+          <button class="categories__btn">💜 恋愛相談</button>
+          <button class="categories__btn">✨ 仕事運</button>
+          <button class="categories__btn">🌟 人生の方向性</button>
+          <button class="categories__btn">💫 人間関係</button>
+          <button class="categories__btn">🌙 初めての方</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Voices Section -->
+    <section class="voices">
+      <div class="container container--narrow">
+        <div class="voices__grid">
+          
+          <!-- Voice Card 1 - Featured -->
+          <article class="voice-card voice-card--featured fade-in">
+            <div class="voice-card__header">
+              <div class="voice-card__avatar">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop" alt="M.K様">
+              </div>
+              <div class="voice-card__info">
+                <div class="voice-card__meta">
+                  <span class="voice-card__tag">💜 恋愛相談</span>
+                  <span class="voice-card__tag">🌙 初めて</span>
+                </div>
+                <h3 class="voice-card__name">M.K 様</h3>
+                <p class="voice-card__detail">30代・会社員</p>
+                <div class="voice-card__rating">
+                  <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+              </div>
+            </div>
+            <div class="voice-card__menu">タロット＋オラクルカード フルリーディング</div>
+            <div class="voice-card__content">
+              <h4 class="voice-card__title">「自分の気持ちに気づけました」</h4>
+              <p class="voice-card__text">
+                恋愛で悩んでいた時に、友人の紹介で初めて占いを受けました。ねこさんの鑑定は、<span class="voice-card__highlight">カードを通して自分の深層心理を映し出してくれる</span>ような感覚でした。<br><br>
+                「あなたは本当はこう思っているんじゃない？」と優しく問いかけてくださり、自分でも気づいていなかった本当の気持ちに気づくことができました。アドバイスも押し付けがましくなく、最終的には自分で決められるように導いてくださいます。<br><br>
+                鑑定後は心がスッキリして、前向きに行動できるようになりました。今では定期的にお願いしています。
+              </p>
+              <p class="voice-card__date">2024年11月</p>
+            </div>
+          </article>
+
+          <!-- Voice Card 2 -->
+          <article class="voice-card fade-in">
+            <div class="voice-card__header">
+              <div class="voice-card__avatar">
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop" alt="Y.S様">
+              </div>
+              <div class="voice-card__info">
+                <div class="voice-card__meta">
+                  <span class="voice-card__tag">✨ 仕事運</span>
+                </div>
+                <h3 class="voice-card__name">Y.S 様</h3>
+                <p class="voice-card__detail">20代・フリーランス</p>
+                <div class="voice-card__rating">
+                  <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+              </div>
+            </div>
+            <div class="voice-card__menu">月星座リーディング＋タロット</div>
+            <div class="voice-card__content">
+              <h4 class="voice-card__title">「転職のタイミングがわかりました」</h4>
+              <p class="voice-card__text">
+                独立するかどうか迷っていた時期に鑑定を受けました。月星座と合わせて見ていただき、<span class="voice-card__highlight">今がまさに動くべき時期</span>だと教えていただきました。<br><br>
+                具体的な時期やどう準備すればいいかまでアドバイスをいただき、勇気を持って一歩を踏み出すことができました。今はフリーランスとして充実した日々を送っています。
+              </p>
+              <p class="voice-card__date">2024年10月</p>
+            </div>
+          </article>
+
+          <!-- Voice Card 3 -->
+          <article class="voice-card fade-in">
+            <div class="voice-card__header">
+              <div class="voice-card__avatar">
+                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=200&fit=crop" alt="A.T様">
+              </div>
+              <div class="voice-card__info">
+                <div class="voice-card__meta">
+                  <span class="voice-card__tag">💫 人間関係</span>
+                  <span class="voice-card__tag">🌟 人生</span>
+                </div>
+                <h3 class="voice-card__name">A.T 様</h3>
+                <p class="voice-card__detail">40代・主婦</p>
+                <div class="voice-card__rating">
+                  <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+              </div>
+            </div>
+            <div class="voice-card__menu">タロット＋オラクルカード フルリーディング</div>
+            <div class="voice-card__content">
+              <h4 class="voice-card__title">「家族との関係が改善しました」</h4>
+              <p class="voice-card__text">
+                子供との関係に悩んでいた時に鑑定を受けました。ねこさんは私の話をじっくり聞いてくださり、カードが示すメッセージを丁寧に伝えてくださいました。<br><br>
+                <span class="voice-card__highlight">「相手を変えようとするのではなく、まず自分の受け止め方を変えてみては」</span>という言葉が心に響きました。実践してみると、少しずつ関係が改善してきています。
+              </p>
+              <p class="voice-card__date">2024年9月</p>
+            </div>
+          </article>
+
+          <!-- Voice Card 4 -->
+          <article class="voice-card fade-in">
+            <div class="voice-card__header">
+              <div class="voice-card__avatar">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&h=200&fit=crop" alt="R.M様">
+              </div>
+              <div class="voice-card__info">
+                <div class="voice-card__meta">
+                  <span class="voice-card__tag">💜 恋愛相談</span>
+                </div>
+                <h3 class="voice-card__name">R.M 様</h3>
+                <p class="voice-card__detail">20代・学生</p>
+                <div class="voice-card__rating">
+                  <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+              </div>
+            </div>
+            <div class="voice-card__menu">恋愛特化リーディング</div>
+            <div class="voice-card__content">
+              <h4 class="voice-card__title">「彼の気持ちがわかって安心しました」</h4>
+              <p class="voice-card__text">
+                付き合っている彼の態度が変わって不安だった時に相談しました。カードを見ながら<span class="voice-card__highlight">「彼は仕事で悩んでいて、あなたに心配をかけたくないんだと思う」</span>と言われ、その通りでした。<br><br>
+                私がどう接すればいいかも具体的に教えていただき、それ以来彼との関係も安定しています。当たりすぎて怖いくらいです（笑）
+              </p>
+              <p class="voice-card__date">2024年8月</p>
+            </div>
+          </article>
+
+          <!-- Voice Card 5 -->
+          <article class="voice-card fade-in">
+            <div class="voice-card__header">
+              <div class="voice-card__avatar">
+                <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=200&h=200&fit=crop" alt="K.N様">
+              </div>
+              <div class="voice-card__info">
+                <div class="voice-card__meta">
+                  <span class="voice-card__tag">🌟 人生の方向性</span>
+                  <span class="voice-card__tag">🌙 初めて</span>
+                </div>
+                <h3 class="voice-card__name">K.N 様</h3>
+                <p class="voice-card__detail">30代・看護師</p>
+                <div class="voice-card__rating">
+                  <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+              </div>
+            </div>
+            <div class="voice-card__menu">ワンオラクル 今日のメッセージ</div>
+            <div class="voice-card__content">
+              <h4 class="voice-card__title">「短時間でも心が軽くなりました」</h4>
+              <p class="voice-card__text">
+                忙しくて長時間の鑑定は難しかったのですが、ワンオラクルで気軽に受けられました。たった15分なのに、<span class="voice-card__highlight">今の自分に必要なメッセージ</span>をピンポイントでいただけて感動しました。<br><br>
+                疲れた時に短時間でリフレッシュできるので、今では月に1回の楽しみになっています。
+              </p>
+              <p class="voice-card__date">2024年7月</p>
+            </div>
+          </article>
+
+          <!-- Voice Card 6 -->
+          <article class="voice-card fade-in">
+            <div class="voice-card__header">
+              <div class="voice-card__avatar">
+                <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=200&h=200&fit=crop" alt="E.O様">
+              </div>
+              <div class="voice-card__info">
+                <div class="voice-card__meta">
+                  <span class="voice-card__tag">✨ 仕事運</span>
+                  <span class="voice-card__tag">💫 人間関係</span>
+                </div>
+                <h3 class="voice-card__name">E.O 様</h3>
+                <p class="voice-card__detail">30代・営業職</p>
+                <div class="voice-card__rating">
+                  <span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>
+                </div>
+              </div>
+            </div>
+            <div class="voice-card__menu">タロット＋オラクルカード フルリーディング</div>
+            <div class="voice-card__content">
+              <h4 class="voice-card__title">「職場の人間関係の悩みが解消」</h4>
+              <p class="voice-card__text">
+                上司との関係で悩んでいた時期に相談しました。カードが示したのは「今は耐える時期」というメッセージでしたが、具体的にいつ頃状況が変わるかも教えていただきました。<br><br>
+                実際にその時期に人事異動があり、環境が一変！<span class="voice-card__highlight">先を見通す力</span>に驚きました。
+              </p>
+              <p class="voice-card__date">2024年6月</p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Satisfaction Section -->
+    <section class="satisfaction">
+      <div class="container container--narrow">
+        <div class="satisfaction__card fade-in">
+          <div class="satisfaction__icon">🌟</div>
+          <h2 class="satisfaction__title">お客様満足度</h2>
+          <div class="satisfaction__score">
+            <span class="satisfaction__number">98</span>
+            <span class="satisfaction__unit">%</span>
+          </div>
+          <div class="satisfaction__stars">
+            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+          </div>
+          <p class="satisfaction__note">※2024年1月〜12月のアンケート結果より</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Before After Section -->
+    <section class="before-after">
+      <div class="container container--narrow">
+        <div class="section-title fade-in">
+          <h2 class="section-title__en">TRANSFORMATION</h2>
+          <div class="section-title__line">
+            <span></span>
+            <span class="section-title__icon">✦</span>
+            <span></span>
+          </div>
+          <p class="section-title__jp">鑑定を受けて変わったこと</p>
+        </div>
+
+        <div class="before-after__grid stagger">
+          <div class="ba-card ba-card--before">
+            <span class="ba-card__label">BEFORE</span>
+            <h3 class="ba-card__title">鑑定を受ける前のお悩み</h3>
+            <ul class="ba-card__list">
+              <li>何をしても不安でモヤモヤする</li>
+              <li>自分で決断できない</li>
+              <li>人の目が気になって行動できない</li>
+              <li>将来のことを考えると憂鬱になる</li>
+              <li>誰にも相談できずに一人で抱えている</li>
+            </ul>
+          </div>
+          <div class="ba-card ba-card--after">
+            <span class="ba-card__label">AFTER</span>
+            <h3 class="ba-card__title">鑑定を受けた後の変化</h3>
+            <ul class="ba-card__list">
+              <li>気持ちが整理されてスッキリした</li>
+              <li>自分の本当の気持ちに気づけた</li>
+              <li>前向きに行動できるようになった</li>
+              <li>将来に希望を持てるようになった</li>
+              <li>定期的に心のメンテナンスができている</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+      <div class="container container--narrow">
+        <div class="cta__card fade-in">
+          <h2 class="cta__title">あなたも星の導きを<br>受けてみませんか？</h2>
+          <p class="cta__text">
+            月と星が織りなすメッセージを、<br>
+            あなたの心に届けます
+          </p>
+          <div class="cta__buttons">
+            <a href="menu.html" class="btn btn--primary">
+              <span>✦</span>
+              メニューを見る
+            </a>
+            <a href="#" class="btn btn--line">
+              <span>💬</span>
+              LINEで相談する
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <div class="footer__logo">
+            <div class="footer__logo-icon">🌙</div>
+            <span class="footer__logo-text">ねこさん占い</span>
+          </div>
+          <p class="footer__description">
+            月と星が導くあなたの物語。<br>
+            タロットとオラクルカードで、<br>
+            心に寄り添う鑑定をお届けします。
+          </p>
+        </div>
+        
+        <div class="footer__nav">
+          <h4 class="footer__heading">MENU</h4>
+          <ul class="footer__list">
+            <li><a href="index.html">ホーム</a></li>
+            <li><a href="about.html">ねこさんについて</a></li>
+            <li><a href="menu.html">占いメニュー</a></li>
+            <li><a href="voices.html">お客様の声</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer__nav">
+          <h4 class="footer__heading">INFO</h4>
+          <ul class="footer__list">
+            <li><a href="contact.html">ご予約・お問い合わせ</a></li>
+            <li><a href="#">よくある質問</a></li>
+            <li><a href="#">特定商取引法に基づく表記</a></li>
+            <li><a href="#">プライバシーポリシー</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer__nav">
+          <h4 class="footer__heading">FOLLOW</h4>
+          <div class="footer__social">
+            <a href="#" aria-label="Instagram">📷</a>
+            <a href="#" aria-label="Twitter">🐦</a>
+            <a href="#" aria-label="LINE">💬</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer__bottom">
+        <p class="footer__copyright">© 2024 ねこさん占い All Rights Reserved.</p>
+        <div class="footer__legal">
+          <a href="#">利用規約</a>
+          <a href="#">プライバシーポリシー</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-top" aria-label="ページトップへ">↑</button>
+
+  <script>
+    // ===== Star Canvas Animation =====
+    const canvas = document.getElementById('starCanvas');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    function createStars() {
+      stars = [];
+      const numStars = 100;
+      for (let i = 0; i < numStars; i++) {
+        stars.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          radius: Math.random() * 1.5 + 0.5,
+          opacity: Math.random() * 0.8 + 0.2,
+          twinkleSpeed: Math.random() * 0.02 + 0.01,
+          twinklePhase: Math.random() * Math.PI * 2
+        });
+      }
+    }
+
+    function drawStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      stars.forEach(star => {
+        star.twinklePhase += star.twinkleSpeed;
+        const opacity = star.opacity * (0.5 + 0.5 * Math.sin(star.twinklePhase));
+        
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+        ctx.fill();
+      });
+      
+      requestAnimationFrame(drawStars);
+    }
+
+    resizeCanvas();
+    createStars();
+    drawStars();
+
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      createStars();
+    });
+
+    // ===== Header Scroll Effect =====
+    const header = document.querySelector('.header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // ===== Mobile Navigation =====
+    const hamburger = document.querySelector('.header__hamburger');
+    const mobileNav = document.querySelector('.mobile-nav');
+    const mobileNavClose = document.querySelector('.mobile-nav__close');
+
+    hamburger.addEventListener('click', () => {
+      mobileNav.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+
+    mobileNavClose.addEventListener('click', () => {
+      mobileNav.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+
+    // ===== Scroll Animations =====
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in, .stagger').forEach(el => {
+      observer.observe(el);
+    });
+
+    // ===== Scroll to Top Button =====
+    const scrollTopBtn = document.querySelector('.scroll-top');
+    
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        scrollTopBtn.classList.add('visible');
+      } else {
+        scrollTopBtn.classList.remove('visible');
+      }
+    });
+
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ===== Category Filter (Visual Only) =====
+    const categoryBtns = document.querySelectorAll('.categories__btn');
+    categoryBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        categoryBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

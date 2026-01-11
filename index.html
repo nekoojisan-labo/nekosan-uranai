@@ -1,0 +1,2122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ねこさん占い | 星と月が導く、あなただけの物語</title>
+  <meta name="description" content="タロットとオラクルカードで、恋愛のお悩みに寄り添います。的中率の高さと温かい鑑定が特徴の占いサービスです。">
+  
+  <!-- OGP -->
+  <meta property="og:title" content="ねこさん占い | 星と月が導く、あなただけの物語">
+  <meta property="og:description" content="タロットとオラクルカードで、恋愛のお悩みに寄り添います。">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="ogp.jpg">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Cinzel:wght@400;500;600&family=Noto+Sans+JP:wght@300;400;500;600&family=Noto+Serif+JP:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ═══════════════════════════════════════════════════════════
+       CSS Variables & Reset
+    ═══════════════════════════════════════════════════════════ */
+    :root {
+      /* Colors */
+      --color-deep-navy: #0a0a1a;
+      --color-navy: #12122a;
+      --color-purple-dark: #1a1a3a;
+      --color-purple: #2d2d5a;
+      --color-purple-light: #4a4a7a;
+      --color-gold: #c9a227;
+      --color-gold-light: #d4b84a;
+      --color-gold-dark: #9a7a1a;
+      --color-gold-muted: rgba(201, 162, 39, 0.6);
+      --color-white: #f8f6f0;
+      --color-white-pure: #ffffff;
+      --color-text: #e8e6e0;
+      --color-text-muted: #a8a6a0;
+      --color-glass: rgba(255, 255, 255, 0.05);
+      --color-glass-border: rgba(255, 255, 255, 0.1);
+      
+      /* Typography */
+      --font-display: 'Cormorant Garamond', 'Noto Serif JP', serif;
+      --font-heading: 'Cinzel', 'Noto Serif JP', serif;
+      --font-body: 'Noto Sans JP', sans-serif;
+      --font-serif-jp: 'Noto Serif JP', serif;
+      
+      /* Spacing */
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 2rem;
+      --space-lg: 4rem;
+      --space-xl: 6rem;
+      --space-2xl: 10rem;
+      
+      /* Transitions */
+      --transition-fast: 0.2s ease;
+      --transition-normal: 0.4s ease;
+      --transition-slow: 0.8s ease;
+      --transition-slower: 1.2s ease;
+      
+      /* Z-index */
+      --z-stars: 1;
+      --z-content: 10;
+      --z-header: 100;
+      --z-modal: 1000;
+    }
+    
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: var(--font-body);
+      font-weight: 400;
+      line-height: 1.8;
+      color: var(--color-text);
+      background: var(--color-deep-navy);
+      overflow-x: hidden;
+      letter-spacing: 0.02em;
+    }
+    
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    
+    ul, ol {
+      list-style: none;
+    }
+    
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+    
+    /* ═══════════════════════════════════════════════════════════
+       Utility Classes
+    ═══════════════════════════════════════════════════════════ */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+    }
+    
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+    
+    /* ═══════════════════════════════════════════════════════════
+       Background & Particles
+    ═══════════════════════════════════════════════════════════ */
+    .page-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      background: 
+        radial-gradient(ellipse at 20% 20%, rgba(75, 0, 130, 0.3) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, rgba(45, 0, 80, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(30, 0, 60, 0.2) 0%, transparent 70%),
+        linear-gradient(180deg, var(--color-deep-navy) 0%, #15152d 50%, #1a1a35 100%);
+    }
+    
+    /* Paper texture overlay */
+    .texture-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+    
+    /* Stars Canvas */
+    #stars-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: var(--z-stars);
+      pointer-events: none;
+    }
+    
+    /* Tarot card background decoration */
+    .tarot-decoration {
+      position: fixed;
+      width: 120px;
+      height: 180px;
+      border: 1px solid rgba(201, 162, 39, 0.1);
+      border-radius: 8px;
+      background: linear-gradient(135deg, rgba(201, 162, 39, 0.02) 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 2;
+    }
+    
+    .tarot-decoration::before {
+      content: '✦';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 2rem;
+      color: rgba(201, 162, 39, 0.1);
+    }
+    
+    .tarot-decoration:nth-child(1) {
+      top: 15%;
+      left: 5%;
+      transform: rotate(-15deg);
+      animation: floatCard 20s ease-in-out infinite;
+    }
+    
+    .tarot-decoration:nth-child(2) {
+      top: 60%;
+      right: 3%;
+      transform: rotate(12deg);
+      animation: floatCard 25s ease-in-out infinite reverse;
+    }
+    
+    .tarot-decoration:nth-child(3) {
+      bottom: 20%;
+      left: 8%;
+      transform: rotate(8deg);
+      animation: floatCard 22s ease-in-out infinite 2s;
+    }
+    
+    @keyframes floatCard {
+      0%, 100% { transform: translateY(0) rotate(-15deg); }
+      50% { transform: translateY(-20px) rotate(-12deg); }
+    }
+    
+    /* ═══════════════════════════════════════════════════════════
+       Header
+    ═══════════════════════════════════════════════════════════ */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: var(--z-header);
+      padding: var(--space-md) 0;
+      transition: background var(--transition-normal), padding var(--transition-normal);
+    }
+    
+    .header.is-scrolled {
+      background: rgba(10, 10, 26, 0.95);
+      backdrop-filter: blur(10px);
+      padding: var(--space-sm) 0;
+      border-bottom: 1px solid var(--color-glass-border);
+    }
+    
+    .header__inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .header__logo {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--color-gold);
+      letter-spacing: 0.1em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .header__logo-icon {
+      font-size: 1.2rem;
+    }
+    
+    .header__nav {
+      display: none;
+    }
+    
+    @media (min-width: 1024px) {
+      .header__nav {
+        display: flex;
+        align-items: center;
+        gap: var(--space-lg);
+      }
+    }
+    
+    .header__nav-list {
+      display: flex;
+      gap: var(--space-md);
+    }
+    
+    .header__nav-link {
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      color: var(--color-text);
+      position: relative;
+      padding: 0.5rem 0;
+      transition: color var(--transition-fast);
+    }
+    
+    .header__nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--color-gold);
+      transition: width var(--transition-normal);
+    }
+    
+    .header__nav-link:hover {
+      color: var(--color-gold);
+    }
+    
+    .header__nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .header__cta {
+      display: none;
+    }
+    
+    @media (min-width: 1024px) {
+      .header__cta {
+        display: block;
+      }
+    }
+    
+    /* Hamburger Menu */
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 10px;
+      z-index: calc(var(--z-header) + 10);
+    }
+    
+    @media (min-width: 1024px) {
+      .hamburger {
+        display: none;
+      }
+    }
+    
+    .hamburger__line {
+      width: 24px;
+      height: 1px;
+      background: var(--color-gold);
+      transition: transform var(--transition-normal), opacity var(--transition-normal);
+    }
+    
+    .hamburger.is-active .hamburger__line:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .hamburger.is-active .hamburger__line:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .hamburger.is-active .hamburger__line:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+    
+    /* Mobile Navigation */
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 100%;
+      max-width: 400px;
+      height: 100vh;
+      background: rgba(10, 10, 26, 0.98);
+      backdrop-filter: blur(20px);
+      z-index: calc(var(--z-header) + 5);
+      transform: translateX(100%);
+      transition: transform var(--transition-normal);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: var(--space-lg);
+      border-left: 1px solid var(--color-glass-border);
+    }
+    
+    .mobile-nav.is-open {
+      transform: translateX(0);
+    }
+    
+    .mobile-nav__list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    
+    .mobile-nav__link {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--color-text);
+      letter-spacing: 0.1em;
+      transition: color var(--transition-fast);
+    }
+    
+    .mobile-nav__link:hover {
+      color: var(--color-gold);
+    }
+    
+    .mobile-nav__cta {
+      margin-top: var(--space-lg);
+    }
+    
+    .mobile-nav-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: calc(var(--z-header) + 1);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity var(--transition-normal), visibility var(--transition-normal);
+    }
+    
+    .mobile-nav-overlay.is-visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    /* ═══════════════════════════════════════════════════════════
+       Buttons
+    ═══════════════════════════════════════════════════════════ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      border-radius: 4px;
+      transition: all var(--transition-normal);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn--primary {
+      background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
+      color: var(--color-deep-navy);
+      border: 1px solid var(--color-gold);
+    }
+    
+    .btn--primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.6s ease;
+    }
+    
+    .btn--primary:hover {
+      box-shadow: 0 0 30px rgba(201, 162, 39, 0.4), 0 0 60px rgba(201, 162, 39, 0.2);
+      transform: translateY(-2px);
+    }
+    
+    .btn--primary:hover::before {
+      left: 100%;
+    }
+    
+    .btn--secondary {
+      background: transparent;
+      color: var(--color-gold);
+      border: 1px solid var(--color-gold);
+    }
+    
+    .btn--secondary:hover {
+      background: rgba(201, 162, 39, 0.1);
+      box-shadow: 0 0 20px rgba(201, 162, 39, 0.2);
+    }
+    
+    .btn--ghost {
+      background: var(--color-glass);
+      color: var(--color-text);
+      border: 1px solid var(--color-glass-border);
+      backdrop-filter: blur(10px);
+    }
+    
+    .btn--ghost:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--color-gold-muted);
+    }
+    
+    /* ═══════════════════════════════════════════════════════════
+       Section Titles
+    ═══════════════════════════════════════════════════════════ */
+    .section-title {
+      text-align: center;
+      margin-bottom: var(--space-lg);
+    }
+    
+    .section-title__en {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 400;
+      color: var(--color-gold);
+      letter-spacing: 0.2em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .section-title__en::before,
+    .section-title__en::after {
+      content: '';
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--color-gold-muted), transparent);
+    }
+    
+    .section-title__star {
+      font-size: 0.8em;
+      color: var(--color-gold);
+    }
+    
+    .section-title__jp {
+      font-family: var(--font-serif-jp);
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--color-text-muted);
+      letter-spacing: 0.15em;
+    }
+    
+    /* ═══════════════════════════════════════════════════════════
+       Hero Section
+    ═══════════════════════════════════════════════════════════ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: var(--space-2xl) var(--space-md);
+      z-index: var(--z-content);
+    }
+    
+    .hero__content {
+      max-width: 800px;
+    }
+    
+    .hero__decoration {
+      position: absolute;
+      font-size: 1rem;
+      color: var(--color-gold-muted);
+      opacity: 0.6;
+    }
+    
+    .hero__decoration--top {
+      top: 20%;
+      left: 10%;
+      animation: twinkle 3s ease-in-out infinite;
+    }
+    
+    .hero__decoration--bottom {
+      bottom: 25%;
+      right: 15%;
+      animation: twinkle 3s ease-in-out infinite 1.5s;
+    }
+    
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.2); }
+    }
+    
+    .hero__subtitle {
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--color-gold-muted);
+      letter-spacing: 0.3em;
+      margin-bottom: var(--space-md);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s ease forwards 0.3s;
+    }
+    
+    .hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 7vw, 4.5rem);
+      font-weight: 400;
+      line-height: 1.3;
+      color: var(--color-white);
+      margin-bottom: var(--space-md);
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1s ease forwards 0.6s;
+    }
+    
+    .hero__title-accent {
+      color: var(--color-gold);
+      font-style: italic;
+    }
+    
+    .hero__description {
+      font-size: 1rem;
+      color: var(--color-text-muted);
+      line-height: 2;
+      margin-bottom: var(--space-lg);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s ease forwards 0.9s;
+    }
+    
+    .hero__cta {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      align-items: center;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s ease forwards 1.2s;
+    }
+    
+    @media (min-width: 640px) {
+      .hero__cta {
+        flex-direction: row;
+        justify-content: center;
+      }
+    }
+    
+    .hero__scroll {
+      position: absolute;
+      bottom: var(--space-lg);
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--color-text-muted);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards 1.5s;
+    }
+    
+    .hero__scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--color-gold), transparent);
+      animation: scrollLine 2s ease-in-out infinite;
+    }
+    
+    @keyframes scrollLine {
+      0%, 100% { transform: scaleY(1); opacity: 1; }
+      50% { transform: scaleY(0.5); opacity: 0.5; }
+    }
+    
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+    
+    /* ═══════════════════════════════════════════════════════════
+       Problems Section
+    ═══════════════════════════════════════════════════════════ */
+    .problems {
+      position: relative;
+      padding: var(--space-2xl) 0;
+      z-index: var(--z-content);
+    }
+    
+    .problems__list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    @media (min-width: 768px) {
+      .problems__list {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    .problems__item {
+      background: var(--color-glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--color-glass-border);
+      border-radius: 8px;
+      padding: var(--space-md);
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-sm);
+      transition: all var(--transition-normal);
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    
+    .problems__item.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .problems__item:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--color-gold-muted);
+      transform: translateY(-5px);
+    }
+    
+    .problems__icon {
+      font-size: 1.5rem;
+      color: var(--color-gold);
+      flex-shrink: 0;
+    }
+    
+    .problems__text {
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+    
+    /* ═══════════════════════════════════════════════════════════
+       Features Section
+    ═══════════════════════════════════════════════════════════ */
+    .features {
+      position: relative;
+      padding: var(--space-2xl) 0;
+      z-index: var(--z-content);
+    }
+    
+    .features__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+    
+    @media (min-width: 768px) {
+      .features__grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    .feature-card {
+      position: relative;
+      background: var(--color-glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--color-glass-border);
+      border-radius: 12px;
+      padding: var(--space-lg);
+      text-align: center;
+      transition: all var(--transition-normal);
+      opacity: 0;
+      transform: translateY(30px);
+      overflow: hidden;
+    }
+    
+    .feature-card.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Antique frame decoration */
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      border: 1px solid var(--color-gold-muted);
+      border-radius: 8px;
+      opacity: 0.3;
+      pointer-events: none;
+      transition: opacity var(--transition-normal);
+    }
+    
+    .feature-card:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--color-gold-muted);
+      transform: translateY(-10px);
+    }
+    
+    .feature-card:hover::before {
+      opacity: 0.6;
+    }
+    
+    .feature-card__icon {
+      font-size: 3rem;
+      margin-bottom: var(--space-md);
+      display: block;
+    }
+    
+    .feature-card__title {
+      font-family: var(--font-serif-jp);
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--color-white);
+      margin-bottom: var(--space-sm);
+    }
+    
+    .feature-card__description {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      line-height: 1.8;
+    }
+    
+    /* ═══════════════════════════════════════════════════════════
+       Menu Section
+    ═══════════════════════════════════════════════════════════ */
+    .menu {
+      position: relative;
+      padding: var(--space-2xl) 0;
+      z-index: var(--z-content);
+    }
+    
+    .menu__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+    }
+    
+    @media (min-width: 768px) {
+      .menu__grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    .menu-card {
+      position: relative;
+      background: var(--color-glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--color-glass-border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all var(--transition-normal);
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    
+    .menu-card:nth-child(even) {
+      transform: translateX(30px);
+    }
+    
+    .menu-card.is-visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    .menu-card:hover {
+      border-color: var(--color-gold-muted);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+    
+    .menu-card__image {
+      position: relative;
+      height: 200px;
+      overflow: hidden;
+    }
+    
+    .menu-card__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: sepia(30%) saturate(80%) hue-rotate(200deg);
+      transition: transform var(--transition-slow), filter var(--transition-normal);
+    }
+    
+    .menu-card:hover .menu-card__image img {
+      transform: scale(1.05);
+      filter: sepia(20%) saturate(100%) hue-rotate(200deg);
+    }
+    
+    .menu-card__image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, var(--color-deep-navy), transparent 50%);
+    }
+    
+    .menu-card__content {
+      padding: var(--space-md);
+    }
+    
+    .menu-card__tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      color: var(--color-gold);
+      letter-spacing: 0.15em;
+      border: 1px solid var(--color-gold-muted);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      margin-bottom: var(--space-sm);
+    }
+    
+    .menu-card__title {
+      font-family: var(--font-serif-jp);
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--color-white);
+      margin-bottom: var(--space-xs);
+    }
+    
+    .menu-card__description {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      line-height: 1.8;
+      margin-bottom: var(--space-sm);
+    }
+    
+    .menu-card__meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: var(--space-sm);
+      border-top: 1px solid var(--color-glass-border);
+    }
+    
+    .menu-card__price {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      color: var(--color-gold);
+    }
+    
+    .menu-card__link {
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color var(--transition-fast);
+    }
+    
+    .menu-card__link:hover {
+      color: var(--color-gold);
+    }
+    
+    /* ═══════════════════════════════════════════════════════════
+       Testimonials Section
+    ═══════════════════════════════════════════════════════════ */
+    .testimonials {
+      position: relative;
+      padding: var(--space-2xl) 0;
+      z-index: var(--z-content);
+    }
+    
+    .testimonials__slider {
+      display: flex;
+      gap: var(--space-md);
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: var(--space-md) 0;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    
+    .testimonials__slider::-webkit-scrollbar {
+      display: none;
+    }
+    
+    .testimonial-card {
+      flex: 0 0 90%;
+      max-width: 400px;
+      scroll-snap-align: center;
+      background: var(--color-glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--color-glass-border);
+      border-radius: 12px;
+      padding: var(--space-lg);
+      position: relative;
+      transition: all var(--transition-normal);
+    }
+    
+    @media (min-width: 768px) {
+      .testimonial-card {
+        flex: 0 0 45%;
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .testimonial-card {
+        flex: 0 0 30%;
+      }
+    }
+    
+    .testimonial-card:hover {
+      border-color: var(--color-gold-muted);
+      transform: translateY(-5px);
+    }
+    
+    .testimonial-card__quote {
+      font-size: 3rem;
+      color: var(--color-gold-muted);
+      line-height: 1;
+      margin-bottom: var(--space-sm);
+    }
+    
+    .testimonial-card__text {
+      font-size: 0.95rem;
+      line-height: 1.9;
+      color: var(--color-text);
+      margin-bottom: var(--space-md);
+    }
+    
+    .testimonial-card__author {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding-top: var(--space-sm);
+      border-top: 1px solid var(--color-glass-border);
+    }
+    
+    .testimonial-card__avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--color-purple);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: var(--color-gold);
+    }
+    
+    .testimonial-card__info {
+      font-size: 0.85rem;
+    }
+    
+    .testimonial-card__name {
+      color: var(--color-white);
+    }
+    
+    .testimonial-card__detail {
+      color: var(--color-text-muted);
+      font-size: 0.8rem;
+    }
+    
+    .testimonials__dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: var(--space-md);
+    }
+    
+    .testimonials__dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-glass-border);
+      transition: all var(--transition-fast);
+      cursor: pointer;
+    }
+    
+    .testimonials__dot.is-active {
+      background: var(--color-gold);
+      width: 24px;
+      border-radius: 4px;
+    }
+    
+    .testimonials__more {
+      text-align: center;
+      margin-top: var(--space-lg);
+    }
+    
+    /* ═══════════════════════════════════════════════════════════
+       About Section
+    ═══════════════════════════════════════════════════════════ */
+    .about {
+      position: relative;
+      padding: var(--space-2xl) 0;
+      z-index: var(--z-content);
+    }
+    
+    .about__content {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+      align-items: center;
+    }
+    
+    @media (min-width: 768px) {
+      .about__content {
+        grid-template-columns: 1fr 1.2fr;
+      }
+    }
+    
+    .about__image-wrapper {
+      position: relative;
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: all var(--transition-slower);
+    }
+    
+    .about__image-wrapper.is-visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    .about__image {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    
+    .about__image img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      filter: sepia(20%) saturate(90%) hue-rotate(200deg);
+    }
+    
+    /* Decorative frame */
+    .about__image::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: 10px;
+      bottom: 10px;
+      border: 1px solid var(--color-gold-muted);
+      border-radius: 12px;
+      z-index: -1;
+    }
+    
+    .about__image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 50%, rgba(201, 162, 39, 0.1) 100%);
+    }
+    
+    .about__decoration {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      width: 100px;
+      height: 100px;
+      border: 1px solid var(--color-gold-muted);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: var(--color-gold);
+      background: var(--color-deep-navy);
+    }
+    
+    .about__text {
+      opacity: 0;
+      transform: translateX(50px);
+      transition: all var(--transition-slower);
+    }
+    
+    .about__text.is-visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    .about__name {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      color: var(--color-gold);
+      margin-bottom: var(--space-xs);
+    }
+    
+    .about__title {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      letter-spacing: 0.1em;
+      margin-bottom: var(--space-md);
+    }
+    
+    .about__description {
+      font-size: 1rem;
+      line-height: 2;
+      margin-bottom: var(--space-md);
+    }
+    
+    .about__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--color-gold);
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      transition: gap var(--transition-fast);
+    }
+    
+    .about__link:hover {
+      gap: 1rem;
+    }
+    
+    /* ═══════════════════════════════════════════════════════════
+       LINE CTA Section
+    ═══════════════════════════════════════════════════════════ */
+    .line-cta {
+      position: relative;
+      padding: var(--space-xl) 0;
+      z-index: var(--z-content);
+    }
+    
+    .line-cta__inner {
+      background: linear-gradient(135deg, rgba(201, 162, 39, 0.1) 0%, rgba(75, 0, 130, 0.2) 100%);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--color-gold-muted);
+      border-radius: 16px;
+      padding: var(--space-lg);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .line-cta__inner::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      border: 1px solid rgba(201, 162, 39, 0.2);
+      border-radius: 12px;
+      pointer-events: none;
+    }
+    
+    .line-cta__icon {
+      font-size: 3rem;
+      margin-bottom: var(--space-sm);
+    }
+    
+    .line-cta__title {
+      font-family: var(--font-serif-jp);
+      font-size: 1.5rem;
+      color: var(--color-white);
+      margin-bottom: var(--space-sm);
+    }
+    
+    .line-cta__description {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-md);
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .line-cta__benefits {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+    
+    .line-cta__benefit {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--color-text);
+    }
+    
+    .line-cta__benefit-icon {
+      color: var(--color-gold);
+    }
+    
+    .btn--line {
+      background: #06C755;
+      color: white;
+      border: none;
+    }
+    
+    .btn--line:hover {
+      background: #05B34C;
+      box-shadow: 0 0 30px rgba(6, 199, 85, 0.3);
+    }
+    
+    /* ═══════════════════════════════════════════════════════════
+       Final CTA Section
+    ═══════════════════════════════════════════════════════════ */
+    .final-cta {
+      position: relative;
+      padding: var(--space-2xl) 0;
+      text-align: center;
+      z-index: var(--z-content);
+    }
+    
+    .final-cta__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      color: var(--color-white);
+      margin-bottom: var(--space-sm);
+      line-height: 1.6;
+    }
+    
+    .final-cta__subtitle {
+      font-size: 1rem;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-lg);
+    }
+    
+    /* ═══════════════════════════════════════════════════════════
+       Footer
+    ═══════════════════════════════════════════════════════════ */
+    .footer {
+      position: relative;
+      padding: var(--space-xl) 0 var(--space-md);
+      z-index: var(--z-content);
+      border-top: 1px solid var(--color-glass-border);
+    }
+    
+    .footer__inner {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+    }
+    
+    @media (min-width: 768px) {
+      .footer__inner {
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+      }
+    }
+    
+    .footer__brand {
+      max-width: 300px;
+    }
+    
+    .footer__logo {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--color-gold);
+      letter-spacing: 0.1em;
+      display: inline-block;
+      margin-bottom: var(--space-sm);
+    }
+    
+    .footer__description {
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      line-height: 1.8;
+      margin-bottom: var(--space-md);
+    }
+    
+    .footer__social {
+      display: flex;
+      gap: var(--space-sm);
+    }
+    
+    .footer__social-link {
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--color-glass-border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: all var(--transition-fast);
+    }
+    
+    .footer__social-link:hover {
+      border-color: var(--color-gold);
+      color: var(--color-gold);
+    }
+    
+    .footer__nav-title {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      color: var(--color-gold);
+      letter-spacing: 0.15em;
+      margin-bottom: var(--space-sm);
+    }
+    
+    .footer__nav-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    
+    .footer__nav-link {
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      transition: color var(--transition-fast);
+    }
+    
+    .footer__nav-link:hover {
+      color: var(--color-gold);
+    }
+    
+    .footer__bottom {
+      margin-top: var(--space-lg);
+      padding-top: var(--space-md);
+      border-top: 1px solid var(--color-glass-border);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+    
+    @media (min-width: 768px) {
+      .footer__bottom {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+    
+    .footer__copyright {
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+    }
+    
+    .footer__links {
+      display: flex;
+      gap: var(--space-md);
+    }
+    
+    .footer__link {
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+      transition: color var(--transition-fast);
+    }
+    
+    .footer__link:hover {
+      color: var(--color-gold);
+    }
+    
+    /* ═══════════════════════════════════════════════════════════
+       Scroll to Top Button
+    ═══════════════════════════════════════════════════════════ */
+    .scroll-top {
+      position: fixed;
+      bottom: var(--space-md);
+      right: var(--space-md);
+      width: 50px;
+      height: 50px;
+      background: var(--color-glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--color-glass-border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-gold);
+      font-size: 1.2rem;
+      z-index: var(--z-header);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: all var(--transition-normal);
+    }
+    
+    .scroll-top.is-visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    
+    .scroll-top:hover {
+      background: rgba(201, 162, 39, 0.2);
+      border-color: var(--color-gold);
+    }
+    
+    /* ═══════════════════════════════════════════════════════════
+       Animations
+    ═══════════════════════════════════════════════════════════ */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    
+    .animate-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Stagger delays */
+    .stagger-1 { transition-delay: 0.1s; }
+    .stagger-2 { transition-delay: 0.2s; }
+    .stagger-3 { transition-delay: 0.3s; }
+    .stagger-4 { transition-delay: 0.4s; }
+  </style>
+</head>
+<body>
+  <!-- Background Elements -->
+  <div class="page-background"></div>
+  <div class="texture-overlay"></div>
+  <canvas id="stars-canvas"></canvas>
+  
+  <!-- Tarot Card Decorations -->
+  <div class="tarot-decoration"></div>
+  <div class="tarot-decoration"></div>
+  <div class="tarot-decoration"></div>
+  
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container">
+      <div class="header__inner">
+        <a href="index.html" class="header__logo">
+          <span class="header__logo-icon">☾</span>
+          ねこさん占い
+        </a>
+        
+        <nav class="header__nav">
+          <ul class="header__nav-list">
+            <li><a href="index.html" class="header__nav-link">ホーム</a></li>
+            <li><a href="menu.html" class="header__nav-link">占いメニュー</a></li>
+            <li><a href="about.html" class="header__nav-link">About</a></li>
+            <li><a href="voices.html" class="header__nav-link">お客様の声</a></li>
+            <li><a href="contact.html#faq" class="header__nav-link">FAQ</a></li>
+            <li><a href="#" class="header__nav-link">ブログ</a></li>
+          </ul>
+        </nav>
+        
+        <a href="contact.html" class="header__cta btn btn--primary">鑑定を予約する</a>
+        
+        <button class="hamburger" id="hamburger" aria-label="メニューを開く">
+          <span class="hamburger__line"></span>
+          <span class="hamburger__line"></span>
+          <span class="hamburger__line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+  
+  <!-- Mobile Navigation -->
+  <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+  <nav class="mobile-nav" id="mobileNav">
+    <ul class="mobile-nav__list">
+      <li><a href="index.html" class="mobile-nav__link">ホーム</a></li>
+      <li><a href="menu.html" class="mobile-nav__link">占いメニュー</a></li>
+      <li><a href="about.html" class="mobile-nav__link">About</a></li>
+      <li><a href="voices.html" class="mobile-nav__link">お客様の声</a></li>
+      <li><a href="contact.html#faq" class="mobile-nav__link">FAQ</a></li>
+      <li><a href="#" class="mobile-nav__link">ブログ</a></li>
+    </ul>
+    <div class="mobile-nav__cta">
+      <a href="contact.html" class="btn btn--primary">鑑定を予約する</a>
+    </div>
+  </nav>
+  
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <span class="hero__decoration hero__decoration--top">✦</span>
+      <span class="hero__decoration hero__decoration--bottom">✧</span>
+      
+      <div class="hero__content">
+        <p class="hero__subtitle">— Tarot & Oracle Card Reading —</p>
+        <h1 class="hero__title">
+          <span class="hero__title-accent">星と月</span>が導く、<br>
+          あなただけの物語
+        </h1>
+        <p class="hero__description">
+          タロットとオラクルカードで、恋愛のお悩みに寄り添います。<br>
+          あなたの心の声に耳を傾け、未来への一歩を照らすお手伝いをいたします。
+        </p>
+        <div class="hero__cta">
+          <a href="contact.html" class="btn btn--primary">鑑定を予約する</a>
+          <a href="menu.html" class="btn btn--secondary">メニューを見る</a>
+        </div>
+      </div>
+      
+      <div class="hero__scroll">
+        <span>SCROLL</span>
+        <span class="hero__scroll-line"></span>
+      </div>
+    </section>
+    
+    <!-- Problems Section -->
+    <section class="problems">
+      <div class="container">
+        <div class="section-title animate-on-scroll">
+          <h2 class="section-title__en">
+            <span class="section-title__star">✦</span>
+            Worries
+            <span class="section-title__star">✦</span>
+          </h2>
+          <p class="section-title__jp">こんなお悩みありませんか？</p>
+        </div>
+        
+        <ul class="problems__list">
+          <li class="problems__item stagger-1">
+            <span class="problems__icon">💭</span>
+            <p class="problems__text">彼の本当の気持ちがわからない…<br>私のこと、どう思っているの？</p>
+          </li>
+          <li class="problems__item stagger-2">
+            <span class="problems__icon">💫</span>
+            <p class="problems__text">この恋、続けるべき？<br>それとも新しい一歩を踏み出すべき？</p>
+          </li>
+          <li class="problems__item stagger-3">
+            <span class="problems__icon">🌙</span>
+            <p class="problems__text">運命の人にいつ出会えるの？<br>私に合う人ってどんな人？</p>
+          </li>
+          <li class="problems__item stagger-4">
+            <span class="problems__icon">✨</span>
+            <p class="problems__text">自分の気持ちがわからない…<br>本当に望んでいることって何？</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="features">
+      <div class="container">
+        <div class="section-title animate-on-scroll">
+          <h2 class="section-title__en">
+            <span class="section-title__star">✦</span>
+            Features
+            <span class="section-title__star">✦</span>
+          </h2>
+          <p class="section-title__jp">ねこさん占いの特徴</p>
+        </div>
+        
+        <div class="features__grid">
+          <article class="feature-card stagger-1">
+            <span class="feature-card__icon">🤍</span>
+            <h3 class="feature-card__title">心に寄り添う鑑定</h3>
+            <p class="feature-card__description">
+              ただ結果を伝えるだけでなく、あなたの気持ちに寄り添いながら、優しく丁寧にお伝えします。
+            </p>
+          </article>
+          
+          <article class="feature-card stagger-2">
+            <span class="feature-card__icon">🔮</span>
+            <h3 class="feature-card__title">高い的中率</h3>
+            <p class="feature-card__description">
+              タロットとオラクルカードを組み合わせた独自の鑑定で、より深く正確なメッセージをお届けします。
+            </p>
+          </article>
+          
+          <article class="feature-card stagger-3">
+            <span class="feature-card__icon">💬</span>
+            <h3 class="feature-card__title">気軽に相談できる</h3>
+            <p class="feature-card__description">
+              初めての方でも安心。LINEから簡単に予約でき、リラックスしてお話しいただけます。
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Menu Section -->
+    <section class="menu">
+      <div class="container">
+        <div class="section-title animate-on-scroll">
+          <h2 class="section-title__en">
+            <span class="section-title__star">✦</span>
+            Menu
+            <span class="section-title__star">✦</span>
+          </h2>
+          <p class="section-title__jp">占いメニュー</p>
+        </div>
+        
+        <div class="menu__grid">
+          <article class="menu-card">
+            <div class="menu-card__image">
+              <img src="https://images.unsplash.com/photo-1633968561253-3dc4f176f0a4?w=600&h=400&fit=crop" alt="タロットカード">
+            </div>
+            <div class="menu-card__content">
+              <span class="menu-card__tag">POPULAR</span>
+              <h3 class="menu-card__title">タロット＋オラクルカード</h3>
+              <p class="menu-card__description">
+                2つのカードを組み合わせた、深いメッセージをお届けする人気メニューです。
+              </p>
+              <div class="menu-card__meta">
+                <span class="menu-card__price">¥5,000〜</span>
+                <a href="menu.html" class="menu-card__link">
+                  詳しく見る <span>→</span>
+                </a>
+              </div>
+            </div>
+          </article>
+          
+          <article class="menu-card">
+            <div class="menu-card__image">
+              <img src="https://images.unsplash.com/photo-1602519653498-e3703c012e32?w=600&h=400&fit=crop" alt="オラクルカード">
+            </div>
+            <div class="menu-card__content">
+              <span class="menu-card__tag">QUICK</span>
+              <h3 class="menu-card__title">ワンオラクル</h3>
+              <p class="menu-card__description">
+                1枚のカードから今のあなたへのメッセージを読み解く、お手軽メニューです。
+              </p>
+              <div class="menu-card__meta">
+                <span class="menu-card__price">¥1,500</span>
+                <a href="menu.html" class="menu-card__link">
+                  詳しく見る <span>→</span>
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+      <div class="container">
+        <div class="section-title animate-on-scroll">
+          <h2 class="section-title__en">
+            <span class="section-title__star">✦</span>
+            Voice
+            <span class="section-title__star">✦</span>
+          </h2>
+          <p class="section-title__jp">お客様の声</p>
+        </div>
+        
+        <div class="testimonials__slider">
+          <article class="testimonial-card">
+            <span class="testimonial-card__quote">"</span>
+            <p class="testimonial-card__text">
+              ずっと悩んでいた彼との関係について相談しました。ねこさんの言葉がとても温かくて、涙が出ました。おかげで前に進む勇気が持てました。
+            </p>
+            <div class="testimonial-card__author">
+              <div class="testimonial-card__avatar">M</div>
+              <div class="testimonial-card__info">
+                <p class="testimonial-card__name">M.K様</p>
+                <p class="testimonial-card__detail">20代・恋愛相談</p>
+              </div>
+            </div>
+          </article>
+          
+          <article class="testimonial-card">
+            <span class="testimonial-card__quote">"</span>
+            <p class="testimonial-card__text">
+              的中率の高さにびっくり！彼の性格や状況を言い当てられて驚きました。アドバイス通りに行動したら、関係が良い方向に進みました。
+            </p>
+            <div class="testimonial-card__author">
+              <div class="testimonial-card__avatar">A</div>
+              <div class="testimonial-card__info">
+                <p class="testimonial-card__name">A.S様</p>
+                <p class="testimonial-card__detail">30代・片思い相談</p>
+              </div>
+            </div>
+          </article>
+          
+          <article class="testimonial-card">
+            <span class="testimonial-card__quote">"</span>
+            <p class="testimonial-card__text">
+              初めての占いで緊張していましたが、ねこさんの優しい雰囲気で安心して話せました。自分では気づかなかった本当の気持ちに気づけました。
+            </p>
+            <div class="testimonial-card__author">
+              <div class="testimonial-card__avatar">Y</div>
+              <div class="testimonial-card__info">
+                <p class="testimonial-card__name">Y.T様</p>
+                <p class="testimonial-card__detail">20代・自分探し</p>
+              </div>
+            </div>
+          </article>
+        </div>
+        
+        <div class="testimonials__dots">
+          <span class="testimonials__dot is-active"></span>
+          <span class="testimonials__dot"></span>
+          <span class="testimonials__dot"></span>
+        </div>
+        
+        <div class="testimonials__more">
+          <a href="voices.html" class="btn btn--ghost">もっと見る →</a>
+        </div>
+      </div>
+    </section>
+    
+    <!-- About Section -->
+    <section class="about">
+      <div class="container">
+        <div class="section-title animate-on-scroll">
+          <h2 class="section-title__en">
+            <span class="section-title__star">✦</span>
+            About
+            <span class="section-title__star">✦</span>
+          </h2>
+          <p class="section-title__jp">占い師について</p>
+        </div>
+        
+        <div class="about__content">
+          <div class="about__image-wrapper">
+            <div class="about__image">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&h=600&fit=crop" alt="ねこさん">
+            </div>
+            <div class="about__decoration">☾</div>
+          </div>
+          
+          <div class="about__text">
+            <h3 class="about__name">ねこさん</h3>
+            <p class="about__title">タロット＆オラクルカードリーダー</p>
+            <p class="about__description">
+              幼い頃から直感が強く、人の気持ちに敏感な子どもでした。大学時代にタロットカードと出会い、その深い叡智に魅了されました。<br><br>
+              「占いは未来を当てるものではなく、今のあなたの心を映し出す鏡」という信念のもと、お一人おひとりの気持ちに寄り添った鑑定を心がけています。<br><br>
+              あなたの心の声を、カードを通じて一緒に読み解いていきましょう。
+            </p>
+            <a href="about.html" class="about__link">
+              もっと詳しく <span>→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- LINE CTA Section -->
+    <section class="line-cta">
+      <div class="container">
+        <div class="line-cta__inner animate-on-scroll">
+          <span class="line-cta__icon">💚</span>
+          <h2 class="line-cta__title">LINE公式アカウント</h2>
+          <p class="line-cta__description">
+            お友だち追加で、限定コラムや新月・満月の開運メッセージをお届けします。<br>
+            ご予約もLINEから簡単に行えます。
+          </p>
+          <div class="line-cta__benefits">
+            <span class="line-cta__benefit">
+              <span class="line-cta__benefit-icon">✓</span>
+              限定コラム配信
+            </span>
+            <span class="line-cta__benefit">
+              <span class="line-cta__benefit-icon">✓</span>
+              月のメッセージ
+            </span>
+            <span class="line-cta__benefit">
+              <span class="line-cta__benefit-icon">✓</span>
+              簡単予約
+            </span>
+          </div>
+          <a href="#" class="btn btn--line">LINEで友だち追加</a>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Final CTA Section -->
+    <section class="final-cta">
+      <div class="container">
+        <h2 class="final-cta__title animate-on-scroll">
+          あなたの恋愛、<br class="sp-only">一緒に読み解きませんか？
+        </h2>
+        <p class="final-cta__subtitle animate-on-scroll">カードがあなたへのメッセージを届けます</p>
+        <a href="contact.html" class="btn btn--primary animate-on-scroll">鑑定を予約する</a>
+      </div>
+    </section>
+  </main>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <a href="index.html" class="footer__logo">☾ ねこさん占い</a>
+          <p class="footer__description">
+            タロットとオラクルカードで、あなたの恋愛のお悩みに寄り添います。心の声に耳を傾け、未来への一歩を照らすお手伝いをいたします。
+          </p>
+          <div class="footer__social">
+            <a href="#" class="footer__social-link" aria-label="Instagram">📷</a>
+            <a href="#" class="footer__social-link" aria-label="Twitter">🐦</a>
+            <a href="#" class="footer__social-link" aria-label="LINE">💬</a>
+          </div>
+        </div>
+        
+        <nav class="footer__nav">
+          <h3 class="footer__nav-title">MENU</h3>
+          <ul class="footer__nav-list">
+            <li><a href="menu.html" class="footer__nav-link">メニュー・料金</a></li>
+            <li><a href="menu.html" class="footer__nav-link">タロット＋オラクル</a></li>
+          </ul>
+        </nav>
+        
+        <nav class="footer__nav">
+          <h3 class="footer__nav-title">ABOUT</h3>
+          <ul class="footer__nav-list">
+            <li><a href="about.html" class="footer__nav-link">占い師について</a></li>
+            <li><a href="voices.html" class="footer__nav-link">お客様の声</a></li>
+          </ul>
+        </nav>
+        
+        <nav class="footer__nav">
+          <h3 class="footer__nav-title">SUPPORT</h3>
+          <ul class="footer__nav-list">
+            <li><a href="contact.html#faq" class="footer__nav-link">よくある質問</a></li>
+            <li><a href="contact.html" class="footer__nav-link">お問い合わせ</a></li>
+            <li><a href="#" class="footer__nav-link">ブログ</a></li>
+          </ul>
+        </nav>
+      </div>
+      
+      <div class="footer__bottom">
+        <p class="footer__copyright">© 2024 ねこさん占い All Rights Reserved.</p>
+        <div class="footer__links">
+          <a href="#" class="footer__link">プライバシーポリシー</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- Scroll to Top Button -->
+  <button class="scroll-top" id="scrollTop" aria-label="ページトップへ戻る">↑</button>
+  
+  <script>
+    // ═══════════════════════════════════════════════════════════
+    // Stars Canvas Animation
+    // ═══════════════════════════════════════════════════════════
+    const canvas = document.getElementById('stars-canvas');
+    const ctx = canvas.getContext('2d');
+    
+    let stars = [];
+    let shootingStars = [];
+    
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    
+    function createStars() {
+      stars = [];
+      const numStars = Math.floor((canvas.width * canvas.height) / 8000);
+      
+      for (let i = 0; i < numStars; i++) {
+        stars.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          radius: Math.random() * 1.5 + 0.5,
+          opacity: Math.random() * 0.8 + 0.2,
+          twinkleSpeed: Math.random() * 0.02 + 0.01,
+          twinkleOffset: Math.random() * Math.PI * 2,
+          driftX: (Math.random() - 0.5) * 0.1,
+          driftY: (Math.random() - 0.5) * 0.1
+        });
+      }
+    }
+    
+    function createShootingStar() {
+      if (Math.random() < 0.003) { // Occasional shooting star
+        shootingStars.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height * 0.5,
+          length: Math.random() * 80 + 40,
+          speed: Math.random() * 8 + 6,
+          angle: Math.PI / 4 + (Math.random() - 0.5) * 0.3,
+          opacity: 1,
+          trail: []
+        });
+      }
+    }
+    
+    function drawStars(time) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Draw regular stars
+      stars.forEach(star => {
+        const twinkle = Math.sin(time * star.twinkleSpeed + star.twinkleOffset);
+        const currentOpacity = star.opacity * (0.5 + twinkle * 0.5);
+        
+        // Slow drift
+        star.x += star.driftX;
+        star.y += star.driftY;
+        
+        // Wrap around
+        if (star.x < 0) star.x = canvas.width;
+        if (star.x > canvas.width) star.x = 0;
+        if (star.y < 0) star.y = canvas.height;
+        if (star.y > canvas.height) star.y = 0;
+        
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${currentOpacity})`;
+        ctx.fill();
+        
+        // Add glow effect for larger stars
+        if (star.radius > 1) {
+          ctx.beginPath();
+          ctx.arc(star.x, star.y, star.radius * 2, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(201, 162, 39, ${currentOpacity * 0.2})`;
+          ctx.fill();
+        }
+      });
+      
+      // Draw shooting stars
+      shootingStars.forEach((star, index) => {
+        star.x += Math.cos(star.angle) * star.speed;
+        star.y += Math.sin(star.angle) * star.speed;
+        star.opacity -= 0.02;
+        
+        // Draw trail
+        const gradient = ctx.createLinearGradient(
+          star.x, star.y,
+          star.x - Math.cos(star.angle) * star.length,
+          star.y - Math.sin(star.angle) * star.length
+        );
+        gradient.addColorStop(0, `rgba(255, 255, 255, ${star.opacity})`);
+        gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+        
+        ctx.beginPath();
+        ctx.moveTo(star.x, star.y);
+        ctx.lineTo(
+          star.x - Math.cos(star.angle) * star.length,
+          star.y - Math.sin(star.angle) * star.length
+        );
+        ctx.strokeStyle = gradient;
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        
+        // Remove faded shooting stars
+        if (star.opacity <= 0 || star.x > canvas.width || star.y > canvas.height) {
+          shootingStars.splice(index, 1);
+        }
+      });
+    }
+    
+    function animateStars(time) {
+      createShootingStar();
+      drawStars(time);
+      requestAnimationFrame(animateStars);
+    }
+    
+    resizeCanvas();
+    createStars();
+    animateStars(0);
+    
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      createStars();
+    });
+    
+    // ═══════════════════════════════════════════════════════════
+    // Header Scroll Effect
+    // ═══════════════════════════════════════════════════════════
+    const header = document.getElementById('header');
+    
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('is-scrolled');
+      } else {
+        header.classList.remove('is-scrolled');
+      }
+    });
+    
+    // ═══════════════════════════════════════════════════════════
+    // Mobile Navigation
+    // ═══════════════════════════════════════════════════════════
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+    
+    function toggleMobileNav() {
+      hamburger.classList.toggle('is-active');
+      mobileNav.classList.toggle('is-open');
+      mobileNavOverlay.classList.toggle('is-visible');
+      document.body.style.overflow = mobileNav.classList.contains('is-open') ? 'hidden' : '';
+    }
+    
+    hamburger.addEventListener('click', toggleMobileNav);
+    mobileNavOverlay.addEventListener('click', toggleMobileNav);
+    
+    // Close mobile nav on link click
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', toggleMobileNav);
+    });
+    
+    // ═══════════════════════════════════════════════════════════
+    // Scroll to Top Button
+    // ═══════════════════════════════════════════════════════════
+    const scrollTopBtn = document.getElementById('scrollTop');
+    
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) {
+        scrollTopBtn.classList.add('is-visible');
+      } else {
+        scrollTopBtn.classList.remove('is-visible');
+      }
+    });
+    
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    
+    // ═══════════════════════════════════════════════════════════
+    // Scroll Animations
+    // ═══════════════════════════════════════════════════════════
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, observerOptions);
+    
+    // Observe all animated elements
+    document.querySelectorAll('.animate-on-scroll, .problems__item, .feature-card, .menu-card, .about__image-wrapper, .about__text').forEach(el => {
+      observer.observe(el);
+    });
+    
+    // ═══════════════════════════════════════════════════════════
+    // Testimonials Slider (Simple)
+    // ═══════════════════════════════════════════════════════════
+    const slider = document.querySelector('.testimonials__slider');
+    const dots = document.querySelectorAll('.testimonials__dot');
+    
+    if (slider && dots.length) {
+      slider.addEventListener('scroll', () => {
+        const scrollLeft = slider.scrollLeft;
+        const cardWidth = slider.querySelector('.testimonial-card').offsetWidth + 32; // Include gap
+        const activeIndex = Math.round(scrollLeft / cardWidth);
+        
+        dots.forEach((dot, index) => {
+          dot.classList.toggle('is-active', index === activeIndex);
+        });
+      });
+      
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          const cardWidth = slider.querySelector('.testimonial-card').offsetWidth + 32;
+          slider.scrollTo({ left: cardWidth * index, behavior: 'smooth' });
+        });
+      });
+    }
+  </script>
+</body>
+</html>
