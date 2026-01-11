@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ねこさん占い | 星と月が導く、あなただけの物語</title>
-  <meta name="description" content="タロットとオラクルカードで、恋愛のお悩みに寄り添います。的中率の高さと温かい鑑定が特徴の占いサービスです。">
+  <title>ねこさん占い｜星と月が導く、あなただけの物語</title>
+  <meta name="description" content="タロットとオラクルカードで、恋愛のお悩みに寄り添います。あなたの心に寄り添う占い師ねこさんが、星と月からのメッセージをお届けします。">
   
   <!-- OGP -->
-  <meta property="og:title" content="ねこさん占い | 星と月が導く、あなただけの物語">
+  <meta property="og:title" content="ねこさん占い｜星と月が導く、あなただけの物語">
   <meta property="og:description" content="タロットとオラクルカードで、恋愛のお悩みに寄り添います。">
   <meta property="og:type" content="website">
   <meta property="og:image" content="ogp.jpg">
@@ -15,35 +15,33 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Cinzel:wght@400;500;600&family=Noto+Sans+JP:wght@300;400;500;600&family=Noto+Serif+JP:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Noto+Sans+JP:wght@300;400;500;600&family=Noto+Serif+JP:wght@400;500;600&display=swap" rel="stylesheet">
   
   <style>
-    /* ═══════════════════════════════════════════════════════════
+    /* ═══════════════════════════════════════════════════════════════
        CSS Variables & Reset
-    ═══════════════════════════════════════════════════════════ */
+       ═══════════════════════════════════════════════════════════════ */
     :root {
       /* Colors */
-      --color-deep-navy: #0a0a1a;
-      --color-navy: #12122a;
-      --color-purple-dark: #1a1a3a;
-      --color-purple: #2d2d5a;
-      --color-purple-light: #4a4a7a;
-      --color-gold: #c9a227;
-      --color-gold-light: #d4b84a;
-      --color-gold-dark: #9a7a1a;
-      --color-gold-muted: rgba(201, 162, 39, 0.6);
-      --color-white: #f8f6f0;
-      --color-white-pure: #ffffff;
-      --color-text: #e8e6e0;
-      --color-text-muted: #a8a6a0;
-      --color-glass: rgba(255, 255, 255, 0.05);
-      --color-glass-border: rgba(255, 255, 255, 0.1);
+      --color-deep-navy: #1a1a2e;
+      --color-dark-blue: #16213e;
+      --color-midnight: #0f0f23;
+      --color-gold: #d4af37;
+      --color-gold-light: #e8c964;
+      --color-gold-dark: #b8942f;
+      --color-pastel-blue: #a8d8ea;
+      --color-pastel-blue-light: #c5e8f5;
+      --color-off-white: #f8f9fa;
+      --color-text-light: #ffffff;
+      --color-text-dark: #333333;
+      --color-text-muted: #888888;
+      --color-border-dark: #2a2a4a;
+      --color-star: rgba(255, 255, 255, 0.8);
       
       /* Typography */
-      --font-display: 'Cormorant Garamond', 'Noto Serif JP', serif;
-      --font-heading: 'Cinzel', 'Noto Serif JP', serif;
-      --font-body: 'Noto Sans JP', sans-serif;
+      --font-display: 'Cormorant Garamond', serif;
       --font-serif-jp: 'Noto Serif JP', serif;
+      --font-sans-jp: 'Noto Sans JP', sans-serif;
       
       /* Spacing */
       --space-xs: 0.5rem;
@@ -51,19 +49,11 @@
       --space-md: 2rem;
       --space-lg: 4rem;
       --space-xl: 6rem;
-      --space-2xl: 10rem;
+      --space-2xl: 8rem;
       
       /* Transitions */
-      --transition-fast: 0.2s ease;
-      --transition-normal: 0.4s ease;
-      --transition-slow: 0.8s ease;
-      --transition-slower: 1.2s ease;
-      
-      /* Z-index */
-      --z-stars: 1;
-      --z-content: 10;
-      --z-header: 100;
-      --z-modal: 1000;
+      --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
     }
     
     *, *::before, *::after {
@@ -77,13 +67,12 @@
     }
     
     body {
-      font-family: var(--font-body);
+      font-family: var(--font-sans-jp);
       font-weight: 400;
       line-height: 1.8;
-      color: var(--color-text);
+      color: var(--color-text-light);
       background: var(--color-deep-navy);
       overflow-x: hidden;
-      letter-spacing: 0.02em;
     }
     
     img {
@@ -97,28 +86,21 @@
       text-decoration: none;
     }
     
-    ul, ol {
+    ul {
       list-style: none;
     }
     
-    button {
-      font-family: inherit;
-      cursor: pointer;
-      border: none;
-      background: none;
-    }
-    
-    /* ═══════════════════════════════════════════════════════════
+    /* ═══════════════════════════════════════════════════════════════
        Utility Classes
-    ═══════════════════════════════════════════════════════════ */
+       ═══════════════════════════════════════════════════════════════ */
     .container {
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 var(--space-md);
+      padding: 0 1.5rem;
     }
     
-    .sr-only {
+    .visually-hidden {
       position: absolute;
       width: 1px;
       height: 1px;
@@ -126,117 +108,71 @@
       margin: -1px;
       overflow: hidden;
       clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
       border: 0;
     }
     
-    /* ═══════════════════════════════════════════════════════════
-       Background & Particles
-    ═══════════════════════════════════════════════════════════ */
-    .page-background {
+    /* ═══════════════════════════════════════════════════════════════
+       Star Background
+       ═══════════════════════════════════════════════════════════════ */
+    .stars-container {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
+      pointer-events: none;
       z-index: 0;
-      pointer-events: none;
-      background: 
-        radial-gradient(ellipse at 20% 20%, rgba(75, 0, 130, 0.3) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 80%, rgba(45, 0, 80, 0.4) 0%, transparent 50%),
-        radial-gradient(ellipse at 50% 50%, rgba(30, 0, 60, 0.2) 0%, transparent 70%),
-        linear-gradient(180deg, var(--color-deep-navy) 0%, #15152d 50%, #1a1a35 100%);
+      overflow: hidden;
     }
     
-    /* Paper texture overlay */
-    .texture-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      pointer-events: none;
-      opacity: 0.03;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    }
-    
-    /* Stars Canvas */
-    #stars-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: var(--z-stars);
-      pointer-events: none;
-    }
-    
-    /* Tarot card background decoration */
-    .tarot-decoration {
-      position: fixed;
-      width: 120px;
-      height: 180px;
-      border: 1px solid rgba(201, 162, 39, 0.1);
-      border-radius: 8px;
-      background: linear-gradient(135deg, rgba(201, 162, 39, 0.02) 0%, transparent 100%);
-      pointer-events: none;
-      z-index: 2;
-    }
-    
-    .tarot-decoration::before {
-      content: '✦';
+    .star {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 2rem;
-      color: rgba(201, 162, 39, 0.1);
+      background: var(--color-star);
+      border-radius: 50%;
+      animation: twinkle var(--duration) ease-in-out infinite;
+      animation-delay: var(--delay);
     }
     
-    .tarot-decoration:nth-child(1) {
-      top: 15%;
-      left: 5%;
-      transform: rotate(-15deg);
-      animation: floatCard 20s ease-in-out infinite;
+    @keyframes twinkle {
+      0%, 100% { opacity: var(--opacity); transform: scale(1); }
+      50% { opacity: calc(var(--opacity) * 0.3); transform: scale(0.8); }
     }
     
-    .tarot-decoration:nth-child(2) {
-      top: 60%;
-      right: 3%;
-      transform: rotate(12deg);
-      animation: floatCard 25s ease-in-out infinite reverse;
+    .shooting-star {
+      position: absolute;
+      width: 100px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--color-gold), transparent);
+      animation: shoot 3s ease-in-out infinite;
+      opacity: 0;
     }
     
-    .tarot-decoration:nth-child(3) {
-      bottom: 20%;
-      left: 8%;
-      transform: rotate(8deg);
-      animation: floatCard 22s ease-in-out infinite 2s;
+    @keyframes shoot {
+      0% { transform: translateX(-100px) translateY(0); opacity: 0; }
+      10% { opacity: 1; }
+      30% { transform: translateX(300px) translateY(150px); opacity: 0; }
+      100% { opacity: 0; }
     }
     
-    @keyframes floatCard {
-      0%, 100% { transform: translateY(0) rotate(-15deg); }
-      50% { transform: translateY(-20px) rotate(-12deg); }
-    }
-    
-    /* ═══════════════════════════════════════════════════════════
+    /* ═══════════════════════════════════════════════════════════════
        Header
-    ═══════════════════════════════════════════════════════════ */
+       ═══════════════════════════════════════════════════════════════ */
     .header {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      z-index: var(--z-header);
-      padding: var(--space-md) 0;
-      transition: background var(--transition-normal), padding var(--transition-normal);
+      z-index: 1000;
+      padding: 1.5rem 0;
+      transition: all 0.4s var(--transition-smooth);
     }
     
-    .header.is-scrolled {
-      background: rgba(10, 10, 26, 0.95);
+    .header.scrolled {
+      background: rgba(26, 26, 46, 0.95);
       backdrop-filter: blur(10px);
-      padding: var(--space-sm) 0;
-      border-bottom: 1px solid var(--color-glass-border);
+      padding: 1rem 0;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
     }
     
     .header__inner {
@@ -246,48 +182,49 @@
     }
     
     .header__logo {
-      font-family: var(--font-display);
-      font-size: 1.5rem;
-      font-weight: 500;
-      color: var(--color-gold);
-      letter-spacing: 0.1em;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.75rem;
     }
     
     .header__logo-icon {
-      font-size: 1.2rem;
-    }
-    
-    .header__nav {
-      display: none;
-    }
-    
-    @media (min-width: 1024px) {
-      .header__nav {
-        display: flex;
-        align-items: center;
-        gap: var(--space-lg);
-      }
-    }
-    
-    .header__nav-list {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+      border-radius: 50%;
       display: flex;
-      gap: var(--space-md);
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
     }
     
-    .header__nav-link {
-      font-size: 0.85rem;
-      font-weight: 400;
+    .header__logo-text {
+      font-family: var(--font-serif-jp);
+      font-size: 1.25rem;
+      font-weight: 500;
       letter-spacing: 0.1em;
-      color: var(--color-text);
-      position: relative;
-      padding: 0.5rem 0;
-      transition: color var(--transition-fast);
     }
     
-    .header__nav-link::after {
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+    }
+    
+    .nav__list {
+      display: flex;
+      gap: 2rem;
+    }
+    
+    .nav__link {
+      font-size: 0.875rem;
+      letter-spacing: 0.05em;
+      position: relative;
+      padding: 0.25rem 0;
+      transition: color 0.3s ease;
+    }
+    
+    .nav__link::after {
       content: '';
       position: absolute;
       bottom: 0;
@@ -295,768 +232,644 @@
       width: 0;
       height: 1px;
       background: var(--color-gold);
-      transition: width var(--transition-normal);
+      transition: width 0.3s ease;
     }
     
-    .header__nav-link:hover {
-      color: var(--color-gold);
-    }
-    
-    .header__nav-link:hover::after {
+    .nav__link:hover::after {
       width: 100%;
     }
     
-    .header__cta {
-      display: none;
+    .nav__cta {
+      padding: 0.75rem 1.5rem;
+      background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+      color: var(--color-deep-navy);
+      font-size: 0.875rem;
+      font-weight: 500;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
     }
     
-    @media (min-width: 1024px) {
-      .header__cta {
-        display: block;
-      }
+    .nav__cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
     }
     
-    /* Hamburger Menu */
+    /* Mobile Menu */
     .hamburger {
-      display: flex;
+      display: none;
       flex-direction: column;
-      gap: 6px;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
       padding: 10px;
-      z-index: calc(var(--z-header) + 10);
+      z-index: 1001;
     }
     
-    @media (min-width: 1024px) {
-      .hamburger {
-        display: none;
-      }
-    }
-    
-    .hamburger__line {
+    .hamburger span {
       width: 24px;
-      height: 1px;
-      background: var(--color-gold);
-      transition: transform var(--transition-normal), opacity var(--transition-normal);
+      height: 2px;
+      background: var(--color-text-light);
+      transition: all 0.3s ease;
     }
     
-    .hamburger.is-active .hamburger__line:nth-child(1) {
+    .hamburger.active span:nth-child(1) {
       transform: rotate(45deg) translate(5px, 5px);
     }
     
-    .hamburger.is-active .hamburger__line:nth-child(2) {
+    .hamburger.active span:nth-child(2) {
       opacity: 0;
     }
     
-    .hamburger.is-active .hamburger__line:nth-child(3) {
+    .hamburger.active span:nth-child(3) {
       transform: rotate(-45deg) translate(5px, -5px);
     }
     
-    /* Mobile Navigation */
-    .mobile-nav {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: 100%;
-      max-width: 400px;
-      height: 100vh;
-      background: rgba(10, 10, 26, 0.98);
-      backdrop-filter: blur(20px);
-      z-index: calc(var(--z-header) + 5);
-      transform: translateX(100%);
-      transition: transform var(--transition-normal);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: var(--space-lg);
-      border-left: 1px solid var(--color-glass-border);
-    }
-    
-    .mobile-nav.is-open {
-      transform: translateX(0);
-    }
-    
-    .mobile-nav__list {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-md);
-    }
-    
-    .mobile-nav__link {
-      font-family: var(--font-display);
-      font-size: 1.5rem;
-      color: var(--color-text);
-      letter-spacing: 0.1em;
-      transition: color var(--transition-fast);
-    }
-    
-    .mobile-nav__link:hover {
-      color: var(--color-gold);
-    }
-    
-    .mobile-nav__cta {
-      margin-top: var(--space-lg);
-    }
-    
-    .mobile-nav-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: calc(var(--z-header) + 1);
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity var(--transition-normal), visibility var(--transition-normal);
-    }
-    
-    .mobile-nav-overlay.is-visible {
-      opacity: 1;
-      visibility: visible;
-    }
-    
-    /* ═══════════════════════════════════════════════════════════
-       Buttons
-    ═══════════════════════════════════════════════════════════ */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      padding: 1rem 2rem;
-      font-family: var(--font-body);
-      font-size: 0.9rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      border-radius: 4px;
-      transition: all var(--transition-normal);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .btn--primary {
-      background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
-      color: var(--color-deep-navy);
-      border: 1px solid var(--color-gold);
-    }
-    
-    .btn--primary::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-      transition: left 0.6s ease;
-    }
-    
-    .btn--primary:hover {
-      box-shadow: 0 0 30px rgba(201, 162, 39, 0.4), 0 0 60px rgba(201, 162, 39, 0.2);
-      transform: translateY(-2px);
-    }
-    
-    .btn--primary:hover::before {
-      left: 100%;
-    }
-    
-    .btn--secondary {
-      background: transparent;
-      color: var(--color-gold);
-      border: 1px solid var(--color-gold);
-    }
-    
-    .btn--secondary:hover {
-      background: rgba(201, 162, 39, 0.1);
-      box-shadow: 0 0 20px rgba(201, 162, 39, 0.2);
-    }
-    
-    .btn--ghost {
-      background: var(--color-glass);
-      color: var(--color-text);
-      border: 1px solid var(--color-glass-border);
-      backdrop-filter: blur(10px);
-    }
-    
-    .btn--ghost:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: var(--color-gold-muted);
-    }
-    
-    /* ═══════════════════════════════════════════════════════════
-       Section Titles
-    ═══════════════════════════════════════════════════════════ */
-    .section-title {
-      text-align: center;
-      margin-bottom: var(--space-lg);
-    }
-    
-    .section-title__en {
-      font-family: var(--font-heading);
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 400;
-      color: var(--color-gold);
-      letter-spacing: 0.2em;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 0.5rem;
-    }
-    
-    .section-title__en::before,
-    .section-title__en::after {
-      content: '';
-      width: 60px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--color-gold-muted), transparent);
-    }
-    
-    .section-title__star {
-      font-size: 0.8em;
-      color: var(--color-gold);
-    }
-    
-    .section-title__jp {
-      font-family: var(--font-serif-jp);
-      font-size: 1rem;
-      font-weight: 400;
-      color: var(--color-text-muted);
-      letter-spacing: 0.15em;
-    }
-    
-    /* ═══════════════════════════════════════════════════════════
+    /* ═══════════════════════════════════════════════════════════════
        Hero Section
-    ═══════════════════════════════════════════════════════════ */
+       ═══════════════════════════════════════════════════════════════ */
     .hero {
       position: relative;
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      padding: var(--space-2xl) var(--space-md);
-      z-index: var(--z-content);
+      overflow: hidden;
+      background: linear-gradient(180deg, 
+        var(--color-midnight) 0%, 
+        var(--color-deep-navy) 50%, 
+        var(--color-dark-blue) 100%
+      );
+    }
+    
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    
+    .hero__moon {
+      position: absolute;
+      top: 15%;
+      right: 10%;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle at 30% 30%, 
+        rgba(255, 255, 240, 0.9) 0%, 
+        rgba(200, 200, 180, 0.4) 50%, 
+        transparent 70%
+      );
+      border-radius: 50%;
+      filter: blur(2px);
+      box-shadow: 
+        0 0 60px rgba(255, 255, 200, 0.3),
+        0 0 120px rgba(255, 255, 200, 0.2);
+      animation: moonGlow 4s ease-in-out infinite;
+    }
+    
+    @keyframes moonGlow {
+      0%, 100% { box-shadow: 0 0 60px rgba(255, 255, 200, 0.3), 0 0 120px rgba(255, 255, 200, 0.2); }
+      50% { box-shadow: 0 0 80px rgba(255, 255, 200, 0.4), 0 0 160px rgba(255, 255, 200, 0.3); }
+    }
+    
+    .hero__gradient-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.3;
+    }
+    
+    .hero__gradient-orb--1 {
+      width: 500px;
+      height: 500px;
+      background: var(--color-pastel-blue);
+      top: 20%;
+      left: -10%;
+      animation: floatOrb 8s ease-in-out infinite;
+    }
+    
+    .hero__gradient-orb--2 {
+      width: 400px;
+      height: 400px;
+      background: var(--color-gold);
+      bottom: 10%;
+      right: -5%;
+      animation: floatOrb 10s ease-in-out infinite reverse;
+    }
+    
+    @keyframes floatOrb {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(30px, -30px); }
     }
     
     .hero__content {
-      max-width: 800px;
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 0 1.5rem;
+      max-width: 900px;
     }
     
-    .hero__decoration {
-      position: absolute;
+    .hero__label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1.25rem;
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 50px;
+      font-size: 0.8125rem;
+      color: var(--color-gold);
+      margin-bottom: 2rem;
+      animation: fadeInUp 1s ease forwards;
+      opacity: 0;
+    }
+    
+    .hero__label-icon {
       font-size: 1rem;
-      color: var(--color-gold-muted);
-      opacity: 0.6;
     }
     
-    .hero__decoration--top {
-      top: 20%;
-      left: 10%;
-      animation: twinkle 3s ease-in-out infinite;
+    .hero__title-en {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      font-weight: 300;
+      font-style: italic;
+      letter-spacing: 0.15em;
+      color: var(--color-gold);
+      margin-bottom: 1rem;
+      animation: fadeInUp 1s ease 0.2s forwards;
+      opacity: 0;
     }
     
-    .hero__decoration--bottom {
-      bottom: 25%;
-      right: 15%;
-      animation: twinkle 3s ease-in-out infinite 1.5s;
-    }
-    
-    @keyframes twinkle {
-      0%, 100% { opacity: 0.3; transform: scale(1); }
-      50% { opacity: 0.8; transform: scale(1.2); }
+    .hero__title-jp {
+      font-family: var(--font-serif-jp);
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      margin-bottom: 1.5rem;
+      animation: fadeInUp 1s ease 0.4s forwards;
+      opacity: 0;
     }
     
     .hero__subtitle {
-      font-family: var(--font-heading);
-      font-size: 0.9rem;
-      font-weight: 400;
-      color: var(--color-gold-muted);
-      letter-spacing: 0.3em;
-      margin-bottom: var(--space-md);
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 1s ease forwards 0.3s;
-    }
-    
-    .hero__title {
-      font-family: var(--font-display);
-      font-size: clamp(2.5rem, 7vw, 4.5rem);
-      font-weight: 400;
-      line-height: 1.3;
-      color: var(--color-white);
-      margin-bottom: var(--space-md);
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeInUp 1s ease forwards 0.6s;
-    }
-    
-    .hero__title-accent {
-      color: var(--color-gold);
-      font-style: italic;
-    }
-    
-    .hero__description {
       font-size: 1rem;
-      color: var(--color-text-muted);
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.8);
+      letter-spacing: 0.1em;
       line-height: 2;
-      margin-bottom: var(--space-lg);
+      margin-bottom: 3rem;
+      animation: fadeInUp 1s ease 0.6s forwards;
       opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 1s ease forwards 0.9s;
     }
     
     .hero__cta {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-sm);
+      display: inline-flex;
       align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 2.5rem;
+      background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+      color: var(--color-deep-navy);
+      font-size: 1rem;
+      font-weight: 500;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 25px rgba(212, 175, 55, 0.4);
+      animation: fadeInUp 1s ease 0.8s forwards;
       opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 1s ease forwards 1.2s;
     }
     
-    @media (min-width: 640px) {
-      .hero__cta {
-        flex-direction: row;
-        justify-content: center;
-      }
+    .hero__cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 35px rgba(212, 175, 55, 0.5);
+    }
+    
+    .hero__cta-icon {
+      transition: transform 0.3s ease;
+    }
+    
+    .hero__cta:hover .hero__cta-icon {
+      transform: translateX(5px);
     }
     
     .hero__scroll {
       position: absolute;
-      bottom: var(--space-lg);
+      bottom: 3rem;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 0.5rem;
-      color: var(--color-text-muted);
+      animation: fadeInUp 1s ease 1s forwards;
+      opacity: 0;
+    }
+    
+    .hero__scroll-text {
+      font-family: var(--font-display);
       font-size: 0.75rem;
       letter-spacing: 0.2em;
-      opacity: 0;
-      animation: fadeIn 1s ease forwards 1.5s;
+      color: rgba(255, 255, 255, 0.5);
     }
     
     .hero__scroll-line {
       width: 1px;
-      height: 40px;
-      background: linear-gradient(to bottom, var(--color-gold), transparent);
-      animation: scrollLine 2s ease-in-out infinite;
+      height: 50px;
+      background: linear-gradient(to bottom, rgba(212, 175, 55, 0.8), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
     }
     
-    @keyframes scrollLine {
+    @keyframes scrollPulse {
       0%, 100% { transform: scaleY(1); opacity: 1; }
-      50% { transform: scaleY(0.5); opacity: 0.5; }
+      50% { transform: scaleY(0.6); opacity: 0.5; }
     }
     
     @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
-    }
-    
-    /* ═══════════════════════════════════════════════════════════
-       Problems Section
-    ═══════════════════════════════════════════════════════════ */
-    .problems {
+    /* ═══════════════════════════════════════════════════════════════
+       Section Common Styles
+       ═══════════════════════════════════════════════════════════════ */
+    .section {
       position: relative;
       padding: var(--space-2xl) 0;
-      z-index: var(--z-content);
+      z-index: 1;
     }
     
-    .problems__list {
+    .section--light {
+      background: var(--color-off-white);
+      color: var(--color-text-dark);
+    }
+    
+    .section--dark {
+      background: var(--color-dark-blue);
+    }
+    
+    .section--gradient {
+      background: linear-gradient(180deg, var(--color-deep-navy) 0%, var(--color-dark-blue) 100%);
+    }
+    
+    .section__header {
+      text-align: center;
+      margin-bottom: var(--space-lg);
+    }
+    
+    .section__title-en {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 300;
+      font-style: italic;
+      letter-spacing: 0.15em;
+      color: var(--color-gold);
+      margin-bottom: 0.5rem;
+    }
+    
+    .section--light .section__title-en {
+      color: var(--color-dark-blue);
+    }
+    
+    .section__title-jp {
+      font-family: var(--font-serif-jp);
+      font-size: 1.25rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+    }
+    
+    .section__subtitle {
+      margin-top: 1.5rem;
+      font-size: 0.9375rem;
+      color: rgba(255, 255, 255, 0.7);
+      letter-spacing: 0.05em;
+    }
+    
+    .section--light .section__subtitle {
+      color: var(--color-text-muted);
+    }
+    
+    /* ═══════════════════════════════════════════════════════════════
+       Concerns Section
+       ═══════════════════════════════════════════════════════════════ */
+    .concerns {
+      background: linear-gradient(180deg, var(--color-dark-blue) 0%, var(--color-deep-navy) 100%);
+    }
+    
+    .concerns__question {
+      text-align: center;
+      margin-bottom: var(--space-lg);
+    }
+    
+    .concerns__question-text {
+      font-family: var(--font-serif-jp);
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      line-height: 1.8;
+    }
+    
+    .concerns__question-text span {
+      color: var(--color-gold);
+    }
+    
+    .concerns__list {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--space-md);
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
       max-width: 900px;
       margin: 0 auto;
     }
     
-    @media (min-width: 768px) {
-      .problems__list {
-        grid-template-columns: repeat(2, 1fr);
-      }
+    .concern-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.4s ease;
     }
     
-    .problems__item {
-      background: var(--color-glass);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--color-glass-border);
-      border-radius: 8px;
-      padding: var(--space-md);
-      display: flex;
-      align-items: flex-start;
-      gap: var(--space-sm);
-      transition: all var(--transition-normal);
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    
-    .problems__item.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    
-    .problems__item:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: var(--color-gold-muted);
+    .concern-card:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(212, 175, 55, 0.3);
       transform: translateY(-5px);
     }
     
-    .problems__icon {
-      font-size: 1.5rem;
-      color: var(--color-gold);
-      flex-shrink: 0;
+    .concern-card__icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
     }
     
-    .problems__text {
+    .concern-card__text {
       font-size: 1rem;
+      letter-spacing: 0.05em;
       line-height: 1.8;
     }
     
-    /* ═══════════════════════════════════════════════════════════
+    /* ═══════════════════════════════════════════════════════════════
        Features Section
-    ═══════════════════════════════════════════════════════════ */
+       ═══════════════════════════════════════════════════════════════ */
     .features {
-      position: relative;
-      padding: var(--space-2xl) 0;
-      z-index: var(--z-content);
+      background: var(--color-off-white);
+      color: var(--color-text-dark);
     }
     
     .features__grid {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--space-md);
-    }
-    
-    @media (min-width: 768px) {
-      .features__grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
     }
     
     .feature-card {
-      position: relative;
-      background: var(--color-glass);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--color-glass-border);
-      border-radius: 12px;
-      padding: var(--space-lg);
+      background: white;
+      border-radius: 16px;
+      padding: 3rem 2rem;
       text-align: center;
-      transition: all var(--transition-normal);
-      opacity: 0;
-      transform: translateY(30px);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+      transition: all 0.4s ease;
+      position: relative;
       overflow: hidden;
     }
     
-    .feature-card.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    
-    /* Antique frame decoration */
     .feature-card::before {
       content: '';
       position: absolute;
-      top: 10px;
-      left: 10px;
-      right: 10px;
-      bottom: 10px;
-      border: 1px solid var(--color-gold-muted);
-      border-radius: 8px;
-      opacity: 0.3;
-      pointer-events: none;
-      transition: opacity var(--transition-normal);
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--color-gold), var(--color-pastel-blue));
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
     
     .feature-card:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: var(--color-gold-muted);
-      transform: translateY(-10px);
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
     }
     
     .feature-card:hover::before {
-      opacity: 0.6;
+      opacity: 1;
+    }
+    
+    .feature-card__number {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--color-gold);
+      opacity: 0.5;
+      margin-bottom: 1rem;
     }
     
     .feature-card__icon {
-      font-size: 3rem;
-      margin-bottom: var(--space-md);
-      display: block;
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, rgba(168, 216, 234, 0.2), rgba(212, 175, 55, 0.1));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 2rem;
     }
     
     .feature-card__title {
       font-family: var(--font-serif-jp);
       font-size: 1.25rem;
       font-weight: 500;
-      color: var(--color-white);
-      margin-bottom: var(--space-sm);
+      margin-bottom: 1rem;
+      color: var(--color-deep-navy);
     }
     
-    .feature-card__description {
-      font-size: 0.9rem;
+    .feature-card__text {
+      font-size: 0.9375rem;
+      line-height: 1.9;
       color: var(--color-text-muted);
-      line-height: 1.8;
     }
     
-    /* ═══════════════════════════════════════════════════════════
+    /* ═══════════════════════════════════════════════════════════════
        Menu Section
-    ═══════════════════════════════════════════════════════════ */
+       ═══════════════════════════════════════════════════════════════ */
     .menu {
-      position: relative;
-      padding: var(--space-2xl) 0;
-      z-index: var(--z-content);
+      background: linear-gradient(180deg, var(--color-deep-navy) 0%, var(--color-dark-blue) 100%);
     }
     
     .menu__grid {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--space-lg);
-    }
-    
-    @media (min-width: 768px) {
-      .menu__grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
     }
     
     .menu-card {
-      position: relative;
-      background: var(--color-glass);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--color-glass-border);
-      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
       overflow: hidden;
-      transition: all var(--transition-normal);
-      opacity: 0;
-      transform: translateX(-30px);
-    }
-    
-    .menu-card:nth-child(even) {
-      transform: translateX(30px);
-    }
-    
-    .menu-card.is-visible {
-      opacity: 1;
-      transform: translateX(0);
+      transition: all 0.4s ease;
     }
     
     .menu-card:hover {
-      border-color: var(--color-gold-muted);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      border-color: rgba(212, 175, 55, 0.4);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     }
     
     .menu-card__image {
       position: relative;
-      height: 200px;
+      height: 220px;
+      background: linear-gradient(135deg, var(--color-dark-blue) 0%, var(--color-deep-navy) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       overflow: hidden;
     }
     
-    .menu-card__image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: sepia(30%) saturate(80%) hue-rotate(200deg);
-      transition: transform var(--transition-slow), filter var(--transition-normal);
+    .menu-card__image-icon {
+      font-size: 5rem;
+      opacity: 0.5;
+      transition: all 0.4s ease;
     }
     
-    .menu-card:hover .menu-card__image img {
-      transform: scale(1.05);
-      filter: sepia(20%) saturate(100%) hue-rotate(200deg);
-    }
-    
-    .menu-card__image::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, var(--color-deep-navy), transparent 50%);
+    .menu-card:hover .menu-card__image-icon {
+      transform: scale(1.1);
+      opacity: 0.7;
     }
     
     .menu-card__content {
-      padding: var(--space-md);
+      padding: 2rem;
     }
     
-    .menu-card__tag {
+    .menu-card__badge {
       display: inline-block;
-      font-size: 0.75rem;
-      color: var(--color-gold);
-      letter-spacing: 0.15em;
-      border: 1px solid var(--color-gold-muted);
       padding: 0.25rem 0.75rem;
-      border-radius: 20px;
-      margin-bottom: var(--space-sm);
+      background: rgba(212, 175, 55, 0.15);
+      color: var(--color-gold);
+      font-size: 0.75rem;
+      border-radius: 4px;
+      margin-bottom: 1rem;
     }
     
     .menu-card__title {
       font-family: var(--font-serif-jp);
       font-size: 1.5rem;
       font-weight: 500;
-      color: var(--color-white);
-      margin-bottom: var(--space-xs);
+      margin-bottom: 0.75rem;
     }
     
-    .menu-card__description {
-      font-size: 0.9rem;
-      color: var(--color-text-muted);
+    .menu-card__desc {
+      font-size: 0.9375rem;
+      color: rgba(255, 255, 255, 0.7);
       line-height: 1.8;
-      margin-bottom: var(--space-sm);
+      margin-bottom: 1.5rem;
     }
     
     .menu-card__meta {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-top: var(--space-sm);
-      border-top: 1px solid var(--color-glass-border);
+      gap: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
     }
     
-    .menu-card__price {
-      font-family: var(--font-display);
-      font-size: 1.25rem;
+    .menu-card__meta-item {
+      font-size: 0.875rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+    
+    .menu-card__meta-item strong {
       color: var(--color-gold);
+      font-weight: 500;
     }
     
     .menu-card__link {
-      font-size: 0.85rem;
-      color: var(--color-text-muted);
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      transition: color var(--transition-fast);
+      margin-top: 1.5rem;
+      font-size: 0.875rem;
+      color: var(--color-gold);
+      transition: all 0.3s ease;
     }
     
     .menu-card__link:hover {
-      color: var(--color-gold);
+      gap: 0.75rem;
     }
     
-    /* ═══════════════════════════════════════════════════════════
+    /* ═══════════════════════════════════════════════════════════════
        Testimonials Section
-    ═══════════════════════════════════════════════════════════ */
+       ═══════════════════════════════════════════════════════════════ */
     .testimonials {
-      position: relative;
-      padding: var(--space-2xl) 0;
-      z-index: var(--z-content);
+      background: var(--color-off-white);
+      color: var(--color-text-dark);
     }
     
     .testimonials__slider {
-      display: flex;
-      gap: var(--space-md);
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      padding: var(--space-md) 0;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-    }
-    
-    .testimonials__slider::-webkit-scrollbar {
-      display: none;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
     }
     
     .testimonial-card {
-      flex: 0 0 90%;
-      max-width: 400px;
-      scroll-snap-align: center;
-      background: var(--color-glass);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--color-glass-border);
-      border-radius: 12px;
-      padding: var(--space-lg);
+      background: white;
+      border-radius: 16px;
+      padding: 2.5rem;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
       position: relative;
-      transition: all var(--transition-normal);
-    }
-    
-    @media (min-width: 768px) {
-      .testimonial-card {
-        flex: 0 0 45%;
-      }
-    }
-    
-    @media (min-width: 1024px) {
-      .testimonial-card {
-        flex: 0 0 30%;
-      }
-    }
-    
-    .testimonial-card:hover {
-      border-color: var(--color-gold-muted);
-      transform: translateY(-5px);
     }
     
     .testimonial-card__quote {
-      font-size: 3rem;
-      color: var(--color-gold-muted);
+      position: absolute;
+      top: 1.5rem;
+      left: 2rem;
+      font-family: var(--font-display);
+      font-size: 4rem;
+      color: var(--color-gold);
+      opacity: 0.3;
       line-height: 1;
-      margin-bottom: var(--space-sm);
+    }
+    
+    .testimonial-card__stars {
+      color: var(--color-gold);
+      font-size: 0.875rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
     }
     
     .testimonial-card__text {
-      font-size: 0.95rem;
+      font-size: 0.9375rem;
       line-height: 1.9;
-      color: var(--color-text);
-      margin-bottom: var(--space-md);
+      color: var(--color-text-dark);
+      margin-bottom: 1.5rem;
     }
     
     .testimonial-card__author {
       display: flex;
       align-items: center;
-      gap: var(--space-sm);
-      padding-top: var(--space-sm);
-      border-top: 1px solid var(--color-glass-border);
+      gap: 1rem;
     }
     
     .testimonial-card__avatar {
-      width: 40px;
-      height: 40px;
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--color-pastel-blue), var(--color-gold));
       border-radius: 50%;
-      background: var(--color-purple);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1rem;
-      color: var(--color-gold);
+      font-size: 1.25rem;
     }
     
     .testimonial-card__info {
-      font-size: 0.85rem;
+      font-size: 0.875rem;
     }
     
     .testimonial-card__name {
-      color: var(--color-white);
+      font-weight: 500;
+      color: var(--color-deep-navy);
     }
     
-    .testimonial-card__detail {
+    .testimonial-card__category {
       color: var(--color-text-muted);
-      font-size: 0.8rem;
-    }
-    
-    .testimonials__dots {
-      display: flex;
-      justify-content: center;
-      gap: 0.5rem;
-      margin-top: var(--space-md);
-    }
-    
-    .testimonials__dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--color-glass-border);
-      transition: all var(--transition-fast);
-      cursor: pointer;
-    }
-    
-    .testimonials__dot.is-active {
-      background: var(--color-gold);
-      width: 24px;
-      border-radius: 4px;
+      font-size: 0.8125rem;
     }
     
     .testimonials__more {
@@ -1064,324 +877,340 @@
       margin-top: var(--space-lg);
     }
     
-    /* ═══════════════════════════════════════════════════════════
+    .testimonials__more-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      border: 1px solid var(--color-deep-navy);
+      border-radius: 4px;
+      font-size: 0.875rem;
+      color: var(--color-deep-navy);
+      transition: all 0.3s ease;
+    }
+    
+    .testimonials__more-link:hover {
+      background: var(--color-deep-navy);
+      color: white;
+    }
+    
+    /* ═══════════════════════════════════════════════════════════════
        About Section
-    ═══════════════════════════════════════════════════════════ */
+       ═══════════════════════════════════════════════════════════════ */
     .about {
-      position: relative;
-      padding: var(--space-2xl) 0;
-      z-index: var(--z-content);
+      background: linear-gradient(180deg, var(--color-dark-blue) 0%, var(--color-deep-navy) 100%);
     }
     
     .about__content {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--space-lg);
+      grid-template-columns: 1fr 1.2fr;
+      gap: 4rem;
       align-items: center;
-    }
-    
-    @media (min-width: 768px) {
-      .about__content {
-        grid-template-columns: 1fr 1.2fr;
-      }
-    }
-    
-    .about__image-wrapper {
-      position: relative;
-      opacity: 0;
-      transform: translateX(-50px);
-      transition: all var(--transition-slower);
-    }
-    
-    .about__image-wrapper.is-visible {
-      opacity: 1;
-      transform: translateX(0);
     }
     
     .about__image {
       position: relative;
-      border-radius: 12px;
-      overflow: hidden;
     }
     
-    .about__image img {
-      width: 100%;
-      aspect-ratio: 4 / 5;
-      object-fit: cover;
-      filter: sepia(20%) saturate(90%) hue-rotate(200deg);
+    .about__image-frame {
+      position: relative;
+      padding: 1.5rem;
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(168, 216, 234, 0.1));
+      border-radius: 20px;
     }
     
-    /* Decorative frame */
-    .about__image::before {
-      content: '';
-      position: absolute;
-      top: -10px;
-      left: -10px;
-      right: 10px;
-      bottom: 10px;
-      border: 1px solid var(--color-gold-muted);
-      border-radius: 12px;
-      z-index: -1;
-    }
-    
-    .about__image::after {
+    .about__image-frame::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, transparent 50%, rgba(201, 162, 39, 0.1) 100%);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 20px;
+      pointer-events: none;
     }
     
-    .about__decoration {
-      position: absolute;
-      bottom: -20px;
-      right: -20px;
-      width: 100px;
-      height: 100px;
-      border: 1px solid var(--color-gold-muted);
-      border-radius: 50%;
+    .about__image-inner {
+      aspect-ratio: 4/5;
+      background: linear-gradient(135deg, var(--color-deep-navy) 0%, var(--color-dark-blue) 100%);
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2rem;
-      color: var(--color-gold);
-      background: var(--color-deep-navy);
+      font-size: 6rem;
+      opacity: 0.7;
     }
     
-    .about__text {
-      opacity: 0;
-      transform: translateX(50px);
-      transition: all var(--transition-slower);
+    .about__image-deco {
+      position: absolute;
+      font-size: 3rem;
     }
     
-    .about__text.is-visible {
-      opacity: 1;
-      transform: translateX(0);
+    .about__image-deco--1 {
+      top: -1rem;
+      right: -1rem;
     }
     
-    .about__name {
+    .about__image-deco--2 {
+      bottom: -1rem;
+      left: -1rem;
+    }
+    
+    .about__text-area {
+      padding-right: 2rem;
+    }
+    
+    .about__label {
       font-family: var(--font-display);
-      font-size: 2rem;
+      font-size: 1rem;
+      font-style: italic;
       color: var(--color-gold);
-      margin-bottom: var(--space-xs);
+      letter-spacing: 0.15em;
+      margin-bottom: 0.5rem;
     }
     
     .about__title {
-      font-size: 0.9rem;
-      color: var(--color-text-muted);
+      font-family: var(--font-serif-jp);
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+      font-weight: 400;
       letter-spacing: 0.1em;
-      margin-bottom: var(--space-md);
+      margin-bottom: 2rem;
+      line-height: 1.6;
     }
     
-    .about__description {
-      font-size: 1rem;
-      line-height: 2;
-      margin-bottom: var(--space-md);
+    .about__text {
+      font-size: 0.9375rem;
+      line-height: 2.2;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 1.5rem;
     }
     
     .about__link {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
+      margin-top: 1rem;
+      font-size: 0.875rem;
       color: var(--color-gold);
-      font-size: 0.9rem;
-      letter-spacing: 0.1em;
-      transition: gap var(--transition-fast);
+      transition: all 0.3s ease;
     }
     
     .about__link:hover {
-      gap: 1rem;
+      gap: 0.75rem;
     }
     
-    /* ═══════════════════════════════════════════════════════════
+    /* ═══════════════════════════════════════════════════════════════
        LINE CTA Section
-    ═══════════════════════════════════════════════════════════ */
+       ═══════════════════════════════════════════════════════════════ */
     .line-cta {
-      position: relative;
+      background: linear-gradient(135deg, #06c755 0%, #04a648 100%);
       padding: var(--space-xl) 0;
-      z-index: var(--z-content);
     }
     
     .line-cta__inner {
-      background: linear-gradient(135deg, rgba(201, 162, 39, 0.1) 0%, rgba(75, 0, 130, 0.2) 100%);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--color-gold-muted);
-      border-radius: 16px;
-      padding: var(--space-lg);
-      text-align: center;
-      position: relative;
-      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 3rem;
     }
     
-    .line-cta__inner::before {
-      content: '';
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      right: 10px;
-      bottom: 10px;
-      border: 1px solid rgba(201, 162, 39, 0.2);
-      border-radius: 12px;
-      pointer-events: none;
-    }
-    
-    .line-cta__icon {
-      font-size: 3rem;
-      margin-bottom: var(--space-sm);
+    .line-cta__content {
+      flex: 1;
     }
     
     .line-cta__title {
       font-family: var(--font-serif-jp);
-      font-size: 1.5rem;
-      color: var(--color-white);
-      margin-bottom: var(--space-sm);
-    }
-    
-    .line-cta__description {
-      font-size: 0.9rem;
-      color: var(--color-text-muted);
-      margin-bottom: var(--space-md);
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
+      font-size: 1.75rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
     }
     
     .line-cta__benefits {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: var(--space-sm);
-      margin-bottom: var(--space-md);
+      gap: 2rem;
+      margin-bottom: 0;
     }
     
     .line-cta__benefit {
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      font-size: 0.85rem;
-      color: var(--color-text);
+      font-size: 0.9375rem;
     }
     
     .line-cta__benefit-icon {
-      color: var(--color-gold);
+      color: rgba(255, 255, 255, 0.9);
     }
     
-    .btn--line {
-      background: #06C755;
-      color: white;
-      border: none;
+    .line-cta__button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 2.5rem;
+      background: white;
+      color: #06c755;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     }
     
-    .btn--line:hover {
-      background: #05B34C;
-      box-shadow: 0 0 30px rgba(6, 199, 85, 0.3);
+    .line-cta__button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
     }
     
-    /* ═══════════════════════════════════════════════════════════
+    /* ═══════════════════════════════════════════════════════════════
        Final CTA Section
-    ═══════════════════════════════════════════════════════════ */
+       ═══════════════════════════════════════════════════════════════ */
     .final-cta {
-      position: relative;
-      padding: var(--space-2xl) 0;
+      background: linear-gradient(180deg, var(--color-deep-navy) 0%, var(--color-midnight) 100%);
       text-align: center;
-      z-index: var(--z-content);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .final-cta__deco {
+      position: absolute;
+      font-size: 8rem;
+      opacity: 0.1;
+    }
+    
+    .final-cta__deco--1 {
+      top: 10%;
+      left: 5%;
+    }
+    
+    .final-cta__deco--2 {
+      bottom: 10%;
+      right: 5%;
+    }
+    
+    .final-cta__content {
+      position: relative;
+      z-index: 1;
     }
     
     .final-cta__title {
-      font-family: var(--font-display);
-      font-size: clamp(1.5rem, 4vw, 2.5rem);
-      color: var(--color-white);
-      margin-bottom: var(--space-sm);
-      line-height: 1.6;
+      font-family: var(--font-serif-jp);
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      line-height: 1.8;
+      margin-bottom: 2rem;
     }
     
-    .final-cta__subtitle {
-      font-size: 1rem;
-      color: var(--color-text-muted);
+    .final-cta__button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1.25rem 3rem;
+      background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+      color: var(--color-deep-navy);
+      font-size: 1.125rem;
+      font-weight: 500;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 25px rgba(212, 175, 55, 0.4);
+    }
+    
+    .final-cta__button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 35px rgba(212, 175, 55, 0.5);
+    }
+    
+    /* ═══════════════════════════════════════════════════════════════
+       Footer
+       ═══════════════════════════════════════════════════════════════ */
+    .footer {
+      background: var(--color-midnight);
+      padding: var(--space-xl) 0 var(--space-md);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 1.5fr repeat(3, 1fr);
+      gap: 3rem;
       margin-bottom: var(--space-lg);
     }
     
-    /* ═══════════════════════════════════════════════════════════
-       Footer
-    ═══════════════════════════════════════════════════════════ */
-    .footer {
-      position: relative;
-      padding: var(--space-xl) 0 var(--space-md);
-      z-index: var(--z-content);
-      border-top: 1px solid var(--color-glass-border);
-    }
-    
-    .footer__inner {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--space-lg);
-    }
-    
-    @media (min-width: 768px) {
-      .footer__inner {
-        grid-template-columns: 2fr 1fr 1fr 1fr;
-      }
-    }
-    
     .footer__brand {
-      max-width: 300px;
+      padding-right: 2rem;
     }
     
     .footer__logo {
-      font-family: var(--font-display);
-      font-size: 1.5rem;
-      color: var(--color-gold);
-      letter-spacing: 0.1em;
-      display: inline-block;
-      margin-bottom: var(--space-sm);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
     }
     
-    .footer__description {
-      font-size: 0.85rem;
-      color: var(--color-text-muted);
-      line-height: 1.8;
-      margin-bottom: var(--space-md);
+    .footer__logo-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+    }
+    
+    .footer__logo-text {
+      font-family: var(--font-serif-jp);
+      font-size: 1.25rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+    }
+    
+    .footer__desc {
+      font-size: 0.875rem;
+      line-height: 1.9;
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 1.5rem;
     }
     
     .footer__social {
       display: flex;
-      gap: var(--space-sm);
+      gap: 1rem;
     }
     
     .footer__social-link {
       width: 40px;
       height: 40px;
-      border: 1px solid var(--color-glass-border);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1rem;
-      transition: all var(--transition-fast);
+      transition: all 0.3s ease;
     }
     
     .footer__social-link:hover {
+      background: var(--color-gold);
       border-color: var(--color-gold);
-      color: var(--color-gold);
+      color: var(--color-deep-navy);
     }
     
     .footer__nav-title {
-      font-family: var(--font-heading);
-      font-size: 0.85rem;
+      font-family: var(--font-display);
+      font-size: 0.875rem;
+      font-style: italic;
       color: var(--color-gold);
-      letter-spacing: 0.15em;
-      margin-bottom: var(--space-sm);
+      letter-spacing: 0.1em;
+      margin-bottom: 1.5rem;
     }
     
-    .footer__nav-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
+    .footer__nav-list li {
+      margin-bottom: 0.75rem;
     }
     
     .footer__nav-link {
-      font-size: 0.85rem;
-      color: var(--color-text-muted);
-      transition: color var(--transition-fast);
+      font-size: 0.875rem;
+      color: rgba(255, 255, 255, 0.7);
+      transition: color 0.3s ease;
     }
     
     .footer__nav-link:hover {
@@ -1389,493 +1218,634 @@
     }
     
     .footer__bottom {
-      margin-top: var(--space-lg);
-      padding-top: var(--space-md);
-      border-top: 1px solid var(--color-glass-border);
       display: flex;
-      flex-direction: column;
-      gap: var(--space-sm);
+      justify-content: space-between;
       align-items: center;
-    }
-    
-    @media (min-width: 768px) {
-      .footer__bottom {
-        flex-direction: row;
-        justify-content: space-between;
-      }
+      padding-top: var(--space-md);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
     
     .footer__copyright {
-      font-size: 0.8rem;
-      color: var(--color-text-muted);
+      font-size: 0.8125rem;
+      color: rgba(255, 255, 255, 0.4);
     }
     
-    .footer__links {
+    .footer__legal {
       display: flex;
-      gap: var(--space-md);
+      gap: 1.5rem;
     }
     
-    .footer__link {
-      font-size: 0.8rem;
-      color: var(--color-text-muted);
-      transition: color var(--transition-fast);
+    .footer__legal-link {
+      font-size: 0.8125rem;
+      color: rgba(255, 255, 255, 0.4);
+      transition: color 0.3s ease;
     }
     
-    .footer__link:hover {
+    .footer__legal-link:hover {
       color: var(--color-gold);
     }
     
-    /* ═══════════════════════════════════════════════════════════
+    /* ═══════════════════════════════════════════════════════════════
        Scroll to Top Button
-    ═══════════════════════════════════════════════════════════ */
+       ═══════════════════════════════════════════════════════════════ */
     .scroll-top {
       position: fixed;
-      bottom: var(--space-md);
-      right: var(--space-md);
-      width: 50px;
-      height: 50px;
-      background: var(--color-glass);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--color-glass-border);
+      bottom: 2rem;
+      right: 2rem;
+      width: 48px;
+      height: 48px;
+      background: var(--color-gold);
+      color: var(--color-deep-navy);
+      border: none;
       border-radius: 50%;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 999;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--color-gold);
-      font-size: 1.2rem;
-      z-index: var(--z-header);
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(20px);
-      transition: all var(--transition-normal);
+      font-size: 1.25rem;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
     }
     
-    .scroll-top.is-visible {
+    .scroll-top.visible {
       opacity: 1;
       visibility: visible;
-      transform: translateY(0);
     }
     
     .scroll-top:hover {
-      background: rgba(201, 162, 39, 0.2);
-      border-color: var(--color-gold);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
     }
     
-    /* ═══════════════════════════════════════════════════════════
+    /* ═══════════════════════════════════════════════════════════════
        Animations
-    ═══════════════════════════════════════════════════════════ */
-    .animate-on-scroll {
+       ═══════════════════════════════════════════════════════════════ */
+    .fade-in-up {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(40px);
       transition: opacity 0.8s ease, transform 0.8s ease;
     }
     
-    .animate-on-scroll.is-visible {
+    .fade-in-up.visible {
       opacity: 1;
       transform: translateY(0);
     }
     
-    /* Stagger delays */
-    .stagger-1 { transition-delay: 0.1s; }
-    .stagger-2 { transition-delay: 0.2s; }
-    .stagger-3 { transition-delay: 0.3s; }
-    .stagger-4 { transition-delay: 0.4s; }
+    /* ═══════════════════════════════════════════════════════════════
+       Responsive
+       ═══════════════════════════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .features__grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .testimonials__slider {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .about__content {
+        gap: 3rem;
+      }
+      
+      .footer__grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      :root {
+        --space-xl: 4rem;
+        --space-2xl: 5rem;
+      }
+      
+      .nav__list, .nav__cta {
+        display: none;
+      }
+      
+      .hamburger {
+        display: flex;
+      }
+      
+      .hero__moon {
+        width: 120px;
+        height: 120px;
+        top: 10%;
+        right: 5%;
+      }
+      
+      .features__grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .menu__grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .testimonials__slider {
+        grid-template-columns: 1fr;
+      }
+      
+      .testimonial-card:nth-child(3) {
+        display: none;
+      }
+      
+      .about__content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      
+      .about__image {
+        max-width: 300px;
+        margin: 0 auto;
+      }
+      
+      .about__text-area {
+        padding-right: 0;
+        text-align: center;
+      }
+      
+      .line-cta__inner {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .line-cta__benefits {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      
+      .footer__grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      
+      .footer__brand {
+        padding-right: 0;
+      }
+      
+      .footer__logo {
+        justify-content: center;
+      }
+      
+      .footer__social {
+        justify-content: center;
+      }
+      
+      .footer__bottom {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+    
+    /* Mobile Navigation Overlay */
+    .mobile-nav {
+      position: fixed;
+      inset: 0;
+      background: rgba(26, 26, 46, 0.98);
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s ease;
+    }
+    
+    .mobile-nav.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .mobile-nav__link {
+      font-family: var(--font-serif-jp);
+      font-size: 1.5rem;
+      letter-spacing: 0.1em;
+      transition: color 0.3s ease;
+    }
+    
+    .mobile-nav__link:hover {
+      color: var(--color-gold);
+    }
+    
+    .mobile-nav__cta {
+      margin-top: 1rem;
+      padding: 1rem 2.5rem;
+      background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+      color: var(--color-deep-navy);
+      font-weight: 500;
+      border-radius: 4px;
+    }
   </style>
 </head>
 <body>
-  <!-- Background Elements -->
-  <div class="page-background"></div>
-  <div class="texture-overlay"></div>
-  <canvas id="stars-canvas"></canvas>
-  
-  <!-- Tarot Card Decorations -->
-  <div class="tarot-decoration"></div>
-  <div class="tarot-decoration"></div>
-  <div class="tarot-decoration"></div>
+  <!-- Stars Background -->
+  <div class="stars-container" id="stars"></div>
   
   <!-- Header -->
   <header class="header" id="header">
     <div class="container">
       <div class="header__inner">
-        <a href="index.html" class="header__logo">
-          <span class="header__logo-icon">☾</span>
-          ねこさん占い
+        <a href="" class="header__logo">
+          <div class="header__logo-icon">🌙</div>
+          <span class="header__logo-text">ねこさん占い</span>
         </a>
         
-        <nav class="header__nav">
-          <ul class="header__nav-list">
-            <li><a href="index.html" class="header__nav-link">ホーム</a></li>
-            <li><a href="menu.html" class="header__nav-link">占いメニュー</a></li>
-            <li><a href="about.html" class="header__nav-link">About</a></li>
-            <li><a href="voices.html" class="header__nav-link">お客様の声</a></li>
-            <li><a href="contact.html#faq" class="header__nav-link">FAQ</a></li>
-            <li><a href="#" class="header__nav-link">ブログ</a></li>
+        <nav class="nav">
+          <ul class="nav__list">
+            <li><a href="" class="nav__link">ホーム</a></li>
+            <li><a href="menu/index.html" class="nav__link">占いメニュー</a></li>
+            <li><a href="about.html" class="nav__link">About</a></li>
+            <li><a href="voice.html" class="nav__link">お客様の声</a></li>
+            <li><a href="faq.html" class="nav__link">FAQ</a></li>
+            <li><a href="#" class="nav__link">ブログ</a></li>
           </ul>
+          <a href="contact.html" class="nav__cta">鑑定を予約する</a>
         </nav>
         
-        <a href="contact.html" class="header__cta btn btn--primary">鑑定を予約する</a>
-        
-        <button class="hamburger" id="hamburger" aria-label="メニューを開く">
-          <span class="hamburger__line"></span>
-          <span class="hamburger__line"></span>
-          <span class="hamburger__line"></span>
+        <button class="hamburger" id="hamburger" aria-label="メニュー">
+          <span></span>
+          <span></span>
+          <span></span>
         </button>
       </div>
     </div>
   </header>
   
   <!-- Mobile Navigation -->
-  <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
   <nav class="mobile-nav" id="mobileNav">
-    <ul class="mobile-nav__list">
-      <li><a href="index.html" class="mobile-nav__link">ホーム</a></li>
-      <li><a href="menu.html" class="mobile-nav__link">占いメニュー</a></li>
-      <li><a href="about.html" class="mobile-nav__link">About</a></li>
-      <li><a href="voices.html" class="mobile-nav__link">お客様の声</a></li>
-      <li><a href="contact.html#faq" class="mobile-nav__link">FAQ</a></li>
-      <li><a href="#" class="mobile-nav__link">ブログ</a></li>
-    </ul>
-    <div class="mobile-nav__cta">
-      <a href="contact.html" class="btn btn--primary">鑑定を予約する</a>
-    </div>
+    <a href="" class="mobile-nav__link">ホーム</a>
+    <a href="menu/index.html" class="mobile-nav__link">占いメニュー</a>
+    <a href="about.html" class="mobile-nav__link">About</a>
+    <a href="voice.html" class="mobile-nav__link">お客様の声</a>
+    <a href="faq.html" class="mobile-nav__link">FAQ</a>
+    <a href="#" class="mobile-nav__link">ブログ</a>
+    <a href="contact.html" class="mobile-nav__cta">鑑定を予約する</a>
   </nav>
   
-  <main>
-    <!-- Hero Section -->
-    <section class="hero">
-      <span class="hero__decoration hero__decoration--top">✦</span>
-      <span class="hero__decoration hero__decoration--bottom">✧</span>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero__bg">
+      <div class="hero__moon"></div>
+      <div class="hero__gradient-orb hero__gradient-orb--1"></div>
+      <div class="hero__gradient-orb hero__gradient-orb--2"></div>
+      <div class="shooting-star" style="top: 20%; left: 10%; animation-delay: 0s;"></div>
+      <div class="shooting-star" style="top: 40%; left: 60%; animation-delay: 2s;"></div>
+      <div class="shooting-star" style="top: 60%; left: 30%; animation-delay: 4s;"></div>
+    </div>
+    
+    <div class="hero__content">
+      <div class="hero__label">
+        <span class="hero__label-icon">✨</span>
+        <span>タロット × オラクルカード鑑定</span>
+      </div>
       
-      <div class="hero__content">
-        <p class="hero__subtitle">— Tarot & Oracle Card Reading —</p>
-        <h1 class="hero__title">
-          <span class="hero__title-accent">星と月</span>が導く、<br>
-          あなただけの物語
-        </h1>
-        <p class="hero__description">
-          タロットとオラクルカードで、恋愛のお悩みに寄り添います。<br>
-          あなたの心の声に耳を傾け、未来への一歩を照らすお手伝いをいたします。
+      <h1>
+        <span class="hero__title-en">The Stars Guide Your Story</span>
+        <span class="hero__title-jp">星と月が導く、あなただけの物語</span>
+      </h1>
+      
+      <p class="hero__subtitle">
+        タロットとオラクルカードで、恋愛のお悩みに寄り添います。<br>
+        あなたの心に寄り添う占い師ねこさんが、星と月からのメッセージをお届けします。
+      </p>
+      
+      <a href="contact.html" class="hero__cta">
+        <span>鑑定を予約する</span>
+        <span class="hero__cta-icon">→</span>
+      </a>
+    </div>
+    
+    <div class="hero__scroll">
+      <span class="hero__scroll-text">SCROLL</span>
+      <span class="hero__scroll-line"></span>
+    </div>
+  </section>
+  
+  <!-- Concerns Section -->
+  <section class="section concerns">
+    <div class="container">
+      <div class="concerns__question fade-in-up">
+        <p class="concerns__question-text">
+          こんな<span>お悩み</span>、ありませんか？
         </p>
-        <div class="hero__cta">
-          <a href="contact.html" class="btn btn--primary">鑑定を予約する</a>
-          <a href="menu.html" class="btn btn--secondary">メニューを見る</a>
-        </div>
       </div>
       
-      <div class="hero__scroll">
-        <span>SCROLL</span>
-        <span class="hero__scroll-line"></span>
-      </div>
-    </section>
-    
-    <!-- Problems Section -->
-    <section class="problems">
-      <div class="container">
-        <div class="section-title animate-on-scroll">
-          <h2 class="section-title__en">
-            <span class="section-title__star">✦</span>
-            Worries
-            <span class="section-title__star">✦</span>
-          </h2>
-          <p class="section-title__jp">こんなお悩みありませんか？</p>
+      <div class="concerns__list">
+        <div class="concern-card fade-in-up">
+          <div class="concern-card__icon">💭</div>
+          <p class="concern-card__text">彼の本当の気持ちが<br>わからない...</p>
         </div>
-        
-        <ul class="problems__list">
-          <li class="problems__item stagger-1">
-            <span class="problems__icon">💭</span>
-            <p class="problems__text">彼の本当の気持ちがわからない…<br>私のこと、どう思っているの？</p>
-          </li>
-          <li class="problems__item stagger-2">
-            <span class="problems__icon">💫</span>
-            <p class="problems__text">この恋、続けるべき？<br>それとも新しい一歩を踏み出すべき？</p>
-          </li>
-          <li class="problems__item stagger-3">
-            <span class="problems__icon">🌙</span>
-            <p class="problems__text">運命の人にいつ出会えるの？<br>私に合う人ってどんな人？</p>
-          </li>
-          <li class="problems__item stagger-4">
-            <span class="problems__icon">✨</span>
-            <p class="problems__text">自分の気持ちがわからない…<br>本当に望んでいることって何？</p>
-          </li>
-        </ul>
-      </div>
-    </section>
-    
-    <!-- Features Section -->
-    <section class="features">
-      <div class="container">
-        <div class="section-title animate-on-scroll">
-          <h2 class="section-title__en">
-            <span class="section-title__star">✦</span>
-            Features
-            <span class="section-title__star">✦</span>
-          </h2>
-          <p class="section-title__jp">ねこさん占いの特徴</p>
+        <div class="concern-card fade-in-up">
+          <div class="concern-card__icon">💔</div>
+          <p class="concern-card__text">この恋を続けるべきか<br>迷っている</p>
         </div>
-        
-        <div class="features__grid">
-          <article class="feature-card stagger-1">
-            <span class="feature-card__icon">🤍</span>
-            <h3 class="feature-card__title">心に寄り添う鑑定</h3>
-            <p class="feature-card__description">
-              ただ結果を伝えるだけでなく、あなたの気持ちに寄り添いながら、優しく丁寧にお伝えします。
-            </p>
-          </article>
-          
-          <article class="feature-card stagger-2">
-            <span class="feature-card__icon">🔮</span>
-            <h3 class="feature-card__title">高い的中率</h3>
-            <p class="feature-card__description">
-              タロットとオラクルカードを組み合わせた独自の鑑定で、より深く正確なメッセージをお届けします。
-            </p>
-          </article>
-          
-          <article class="feature-card stagger-3">
-            <span class="feature-card__icon">💬</span>
-            <h3 class="feature-card__title">気軽に相談できる</h3>
-            <p class="feature-card__description">
-              初めての方でも安心。LINEから簡単に予約でき、リラックスしてお話しいただけます。
-            </p>
-          </article>
+        <div class="concern-card fade-in-up">
+          <div class="concern-card__icon">🌟</div>
+          <p class="concern-card__text">運命の人に<br>出会いたい</p>
         </div>
       </div>
-    </section>
-    
-    <!-- Menu Section -->
-    <section class="menu">
-      <div class="container">
-        <div class="section-title animate-on-scroll">
-          <h2 class="section-title__en">
-            <span class="section-title__star">✦</span>
-            Menu
-            <span class="section-title__star">✦</span>
-          </h2>
-          <p class="section-title__jp">占いメニュー</p>
-        </div>
+    </div>
+  </section>
+  
+  <!-- Features Section -->
+  <section class="section features">
+    <div class="container">
+      <header class="section__header fade-in-up">
+        <h2>
+          <span class="section__title-en">Features</span>
+          <span class="section__title-jp">ねこさん占いの3つの特徴</span>
+        </h2>
+      </header>
+      
+      <div class="features__grid">
+        <article class="feature-card fade-in-up">
+          <span class="feature-card__number">01</span>
+          <div class="feature-card__icon">🤝</div>
+          <h3 class="feature-card__title">寄り添う鑑定</h3>
+          <p class="feature-card__text">
+            あなたの気持ちを大切に、一方的なアドバイスではなく、
+            一緒に考え寄り添うスタイルの鑑定です。
+          </p>
+        </article>
         
-        <div class="menu__grid">
-          <article class="menu-card">
-            <div class="menu-card__image">
-              <img src="https://images.unsplash.com/photo-1633968561253-3dc4f176f0a4?w=600&h=400&fit=crop" alt="タロットカード">
-            </div>
-            <div class="menu-card__content">
-              <span class="menu-card__tag">POPULAR</span>
-              <h3 class="menu-card__title">タロット＋オラクルカード</h3>
-              <p class="menu-card__description">
-                2つのカードを組み合わせた、深いメッセージをお届けする人気メニューです。
-              </p>
-              <div class="menu-card__meta">
-                <span class="menu-card__price">¥5,000〜</span>
-                <a href="menu.html" class="menu-card__link">
-                  詳しく見る <span>→</span>
-                </a>
-              </div>
-            </div>
-          </article>
-          
-          <article class="menu-card">
-            <div class="menu-card__image">
-              <img src="https://images.unsplash.com/photo-1602519653498-e3703c012e32?w=600&h=400&fit=crop" alt="オラクルカード">
-            </div>
-            <div class="menu-card__content">
-              <span class="menu-card__tag">QUICK</span>
-              <h3 class="menu-card__title">ワンオラクル</h3>
-              <p class="menu-card__description">
-                1枚のカードから今のあなたへのメッセージを読み解く、お手軽メニューです。
-              </p>
-              <div class="menu-card__meta">
-                <span class="menu-card__price">¥1,500</span>
-                <a href="menu.html" class="menu-card__link">
-                  詳しく見る <span>→</span>
-                </a>
-              </div>
-            </div>
-          </article>
-        </div>
+        <article class="feature-card fade-in-up">
+          <span class="feature-card__number">02</span>
+          <div class="feature-card__icon">🎯</div>
+          <h3 class="feature-card__title">的中率の高さ</h3>
+          <p class="feature-card__text">
+            タロットとオラクルカードを組み合わせた独自のリーディングで、
+            深いメッセージをお届けします。
+          </p>
+        </article>
+        
+        <article class="feature-card fade-in-up">
+          <span class="feature-card__number">03</span>
+          <div class="feature-card__icon">💬</div>
+          <h3 class="feature-card__title">気軽に相談</h3>
+          <p class="feature-card__text">
+            オンライン鑑定だから、お家からリラックスして
+            相談できます。LINEでの予約も可能です。
+          </p>
+        </article>
       </div>
-    </section>
-    
-    <!-- Testimonials Section -->
-    <section class="testimonials">
-      <div class="container">
-        <div class="section-title animate-on-scroll">
-          <h2 class="section-title__en">
-            <span class="section-title__star">✦</span>
-            Voice
-            <span class="section-title__star">✦</span>
-          </h2>
-          <p class="section-title__jp">お客様の声</p>
-        </div>
-        
-        <div class="testimonials__slider">
-          <article class="testimonial-card">
-            <span class="testimonial-card__quote">"</span>
-            <p class="testimonial-card__text">
-              ずっと悩んでいた彼との関係について相談しました。ねこさんの言葉がとても温かくて、涙が出ました。おかげで前に進む勇気が持てました。
-            </p>
-            <div class="testimonial-card__author">
-              <div class="testimonial-card__avatar">M</div>
-              <div class="testimonial-card__info">
-                <p class="testimonial-card__name">M.K様</p>
-                <p class="testimonial-card__detail">20代・恋愛相談</p>
-              </div>
-            </div>
-          </article>
-          
-          <article class="testimonial-card">
-            <span class="testimonial-card__quote">"</span>
-            <p class="testimonial-card__text">
-              的中率の高さにびっくり！彼の性格や状況を言い当てられて驚きました。アドバイス通りに行動したら、関係が良い方向に進みました。
-            </p>
-            <div class="testimonial-card__author">
-              <div class="testimonial-card__avatar">A</div>
-              <div class="testimonial-card__info">
-                <p class="testimonial-card__name">A.S様</p>
-                <p class="testimonial-card__detail">30代・片思い相談</p>
-              </div>
-            </div>
-          </article>
-          
-          <article class="testimonial-card">
-            <span class="testimonial-card__quote">"</span>
-            <p class="testimonial-card__text">
-              初めての占いで緊張していましたが、ねこさんの優しい雰囲気で安心して話せました。自分では気づかなかった本当の気持ちに気づけました。
-            </p>
-            <div class="testimonial-card__author">
-              <div class="testimonial-card__avatar">Y</div>
-              <div class="testimonial-card__info">
-                <p class="testimonial-card__name">Y.T様</p>
-                <p class="testimonial-card__detail">20代・自分探し</p>
-              </div>
-            </div>
-          </article>
-        </div>
-        
-        <div class="testimonials__dots">
-          <span class="testimonials__dot is-active"></span>
-          <span class="testimonials__dot"></span>
-          <span class="testimonials__dot"></span>
-        </div>
-        
-        <div class="testimonials__more">
-          <a href="voices.html" class="btn btn--ghost">もっと見る →</a>
-        </div>
-      </div>
-    </section>
-    
-    <!-- About Section -->
-    <section class="about">
-      <div class="container">
-        <div class="section-title animate-on-scroll">
-          <h2 class="section-title__en">
-            <span class="section-title__star">✦</span>
-            About
-            <span class="section-title__star">✦</span>
-          </h2>
-          <p class="section-title__jp">占い師について</p>
-        </div>
-        
-        <div class="about__content">
-          <div class="about__image-wrapper">
-            <div class="about__image">
-              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&h=600&fit=crop" alt="ねこさん">
-            </div>
-            <div class="about__decoration">☾</div>
+    </div>
+  </section>
+  
+  <!-- Menu Section -->
+  <section class="section menu">
+    <div class="container">
+      <header class="section__header fade-in-up">
+        <h2>
+          <span class="section__title-en">Menu</span>
+          <span class="section__title-jp">占いメニュー</span>
+        </h2>
+        <p class="section__subtitle">あなたにぴったりの鑑定をお選びください</p>
+      </header>
+      
+      <div class="menu__grid">
+        <article class="menu-card fade-in-up">
+          <div class="menu-card__image">
+            <span class="menu-card__image-icon">🃏</span>
           </div>
-          
-          <div class="about__text">
-            <h3 class="about__name">ねこさん</h3>
-            <p class="about__title">タロット＆オラクルカードリーダー</p>
-            <p class="about__description">
-              幼い頃から直感が強く、人の気持ちに敏感な子どもでした。大学時代にタロットカードと出会い、その深い叡智に魅了されました。<br><br>
-              「占いは未来を当てるものではなく、今のあなたの心を映し出す鏡」という信念のもと、お一人おひとりの気持ちに寄り添った鑑定を心がけています。<br><br>
-              あなたの心の声を、カードを通じて一緒に読み解いていきましょう。
+          <div class="menu-card__content">
+            <span class="menu-card__badge">人気No.1</span>
+            <h3 class="menu-card__title">タロット＋オラクルカード鑑定</h3>
+            <p class="menu-card__desc">
+              タロットで現状と未来を読み解き、オラクルカードで
+              天使からのメッセージをお届けする、贅沢な鑑定です。
             </p>
-            <a href="about.html" class="about__link">
-              もっと詳しく <span>→</span>
+            <div class="menu-card__meta">
+              <span class="menu-card__meta-item"><strong>¥5,000</strong> 〜</span>
+              <span class="menu-card__meta-item">約<strong>30</strong>分〜</span>
+            </div>
+            <a href="menu/tarot-oracle.html" class="menu-card__link">
+              <span>詳細を見る</span>
+              <span>→</span>
             </a>
           </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- LINE CTA Section -->
-    <section class="line-cta">
-      <div class="container">
-        <div class="line-cta__inner animate-on-scroll">
-          <span class="line-cta__icon">💚</span>
-          <h2 class="line-cta__title">LINE公式アカウント</h2>
-          <p class="line-cta__description">
-            お友だち追加で、限定コラムや新月・満月の開運メッセージをお届けします。<br>
-            ご予約もLINEから簡単に行えます。
-          </p>
-          <div class="line-cta__benefits">
-            <span class="line-cta__benefit">
-              <span class="line-cta__benefit-icon">✓</span>
-              限定コラム配信
-            </span>
-            <span class="line-cta__benefit">
-              <span class="line-cta__benefit-icon">✓</span>
-              月のメッセージ
-            </span>
-            <span class="line-cta__benefit">
-              <span class="line-cta__benefit-icon">✓</span>
-              簡単予約
-            </span>
+        </article>
+        
+        <article class="menu-card fade-in-up">
+          <div class="menu-card__image">
+            <span class="menu-card__image-icon">✨</span>
           </div>
-          <a href="#" class="btn btn--line">LINEで友だち追加</a>
+          <div class="menu-card__content">
+            <span class="menu-card__badge">お気軽に</span>
+            <h3 class="menu-card__title">ワンカードリーディング</h3>
+            <p class="menu-card__desc">
+              今日のあなたへのメッセージや、簡単な質問への
+              アドバイスをお伝えする、お手軽な鑑定です。
+            </p>
+            <div class="menu-card__meta">
+              <span class="menu-card__meta-item"><strong>¥1,500</strong> 〜</span>
+              <span class="menu-card__meta-item">約<strong>10</strong>分〜</span>
+            </div>
+            <a href="menu/index.html" class="menu-card__link">
+              <span>詳細を見る</span>
+              <span>→</span>
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Testimonials Section -->
+  <section class="section testimonials">
+    <div class="container">
+      <header class="section__header fade-in-up">
+        <h2>
+          <span class="section__title-en">Voice</span>
+          <span class="section__title-jp">お客様の声</span>
+        </h2>
+        <p class="section__subtitle">鑑定を受けた方からの感想をご紹介します</p>
+      </header>
+      
+      <div class="testimonials__slider">
+        <article class="testimonial-card fade-in-up">
+          <span class="testimonial-card__quote">"</span>
+          <div class="testimonial-card__stars">★★★★★</div>
+          <p class="testimonial-card__text">
+            ねこさんの鑑定で、モヤモヤしていた気持ちがスッキリしました。
+            彼の気持ちを教えてもらって、自信を持って行動できるようになりました。
+          </p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">🌸</div>
+            <div class="testimonial-card__info">
+              <span class="testimonial-card__name">A.M さん</span>
+              <span class="testimonial-card__category">20代・恋愛相談</span>
+            </div>
+          </div>
+        </article>
+        
+        <article class="testimonial-card fade-in-up">
+          <span class="testimonial-card__quote">"</span>
+          <div class="testimonial-card__stars">★★★★★</div>
+          <p class="testimonial-card__text">
+            オラクルカードからのメッセージがとても心に響きました。
+            寄り添ってくれる鑑定スタイルで、話しやすかったです。
+          </p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">🌷</div>
+            <div class="testimonial-card__info">
+              <span class="testimonial-card__name">K.T さん</span>
+              <span class="testimonial-card__category">30代・人生相談</span>
+            </div>
+          </div>
+        </article>
+        
+        <article class="testimonial-card fade-in-up">
+          <span class="testimonial-card__quote">"</span>
+          <div class="testimonial-card__stars">★★★★★</div>
+          <p class="testimonial-card__text">
+            的確なアドバイスで、迷っていた決断ができました。
+            また何かあったら相談したいと思える占い師さんです。
+          </p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">🌻</div>
+            <div class="testimonial-card__info">
+              <span class="testimonial-card__name">S.Y さん</span>
+              <span class="testimonial-card__category">20代・仕事相談</span>
+            </div>
+          </div>
+        </article>
+      </div>
+      
+      <div class="testimonials__more fade-in-up">
+        <a href="voice.html" class="testimonials__more-link">
+          <span>すべての声を見る</span>
+          <span>→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- About Section -->
+  <section class="section about">
+    <div class="container">
+      <div class="about__content">
+        <div class="about__image fade-in-up">
+          <div class="about__image-frame">
+            <div class="about__image-inner">🐱</div>
+          </div>
+          <span class="about__image-deco about__image-deco--1">✨</span>
+          <span class="about__image-deco about__image-deco--2">🌙</span>
+        </div>
+        
+        <div class="about__text-area fade-in-up">
+          <span class="about__label">About</span>
+          <h2 class="about__title">占い師ねこさんについて</h2>
+          <p class="about__text">
+            はじめまして、占い師のねこさんです。
+            タロットカードとオラクルカードを使って、
+            あなたの恋愛や人生のお悩みに寄り添います。
+          </p>
+          <p class="about__text">
+            占いは「未来を決めつけるもの」ではなく、
+            「より良い未来を選ぶためのヒント」だと考えています。
+            カードからのメッセージを通じて、
+            あなたが前に進むお手伝いができれば嬉しいです。
+          </p>
+          <a href="about.html" class="about__link">
+            <span>もっと詳しく見る</span>
+            <span>→</span>
+          </a>
         </div>
       </div>
-    </section>
-    
-    <!-- Final CTA Section -->
-    <section class="final-cta">
-      <div class="container">
-        <h2 class="final-cta__title animate-on-scroll">
-          あなたの恋愛、<br class="sp-only">一緒に読み解きませんか？
-        </h2>
-        <p class="final-cta__subtitle animate-on-scroll">カードがあなたへのメッセージを届けます</p>
-        <a href="contact.html" class="btn btn--primary animate-on-scroll">鑑定を予約する</a>
+    </div>
+  </section>
+  
+  <!-- LINE CTA Section -->
+  <section class="line-cta">
+    <div class="container">
+      <div class="line-cta__inner">
+        <div class="line-cta__content">
+          <h2 class="line-cta__title">LINE公式アカウントで最新情報をお届け ✨</h2>
+          <ul class="line-cta__benefits">
+            <li class="line-cta__benefit">
+              <span class="line-cta__benefit-icon">✓</span>
+              <span>限定コラム配信</span>
+            </li>
+            <li class="line-cta__benefit">
+              <span class="line-cta__benefit-icon">✓</span>
+              <span>予約が簡単に</span>
+            </li>
+            <li class="line-cta__benefit">
+              <span class="line-cta__benefit-icon">✓</span>
+              <span>お得な情報も</span>
+            </li>
+          </ul>
+        </div>
+        <a href="#" class="line-cta__button">
+          <span>📱</span>
+          <span>友だち追加する</span>
+        </a>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
+  
+  <!-- Final CTA Section -->
+  <section class="section final-cta">
+    <span class="final-cta__deco final-cta__deco--1">🌙</span>
+    <span class="final-cta__deco final-cta__deco--2">✨</span>
+    
+    <div class="container">
+      <div class="final-cta__content fade-in-up">
+        <h2 class="final-cta__title">
+          あなたの恋愛、<br>一緒に読み解きませんか？
+        </h2>
+        <a href="contact.html" class="final-cta__button">
+          <span>鑑定を予約する</span>
+          <span>→</span>
+        </a>
+      </div>
+    </div>
+  </section>
   
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <div class="footer__inner">
+      <div class="footer__grid">
         <div class="footer__brand">
-          <a href="index.html" class="footer__logo">☾ ねこさん占い</a>
-          <p class="footer__description">
-            タロットとオラクルカードで、あなたの恋愛のお悩みに寄り添います。心の声に耳を傾け、未来への一歩を照らすお手伝いをいたします。
+          <a href="" class="footer__logo">
+            <div class="footer__logo-icon">🌙</div>
+            <span class="footer__logo-text">ねこさん占い</span>
+          </a>
+          <p class="footer__desc">
+            タロットとオラクルカードで、<br>
+            あなたの恋愛のお悩みに寄り添います。
           </p>
           <div class="footer__social">
             <a href="#" class="footer__social-link" aria-label="Instagram">📷</a>
             <a href="#" class="footer__social-link" aria-label="Twitter">🐦</a>
-            <a href="#" class="footer__social-link" aria-label="LINE">💬</a>
           </div>
         </div>
         
         <nav class="footer__nav">
-          <h3 class="footer__nav-title">MENU</h3>
+          <h3 class="footer__nav-title">Menu</h3>
           <ul class="footer__nav-list">
-            <li><a href="menu.html" class="footer__nav-link">メニュー・料金</a></li>
-            <li><a href="menu.html" class="footer__nav-link">タロット＋オラクル</a></li>
+            <li><a href="menu/index.html" class="footer__nav-link">メニュー・料金一覧</a></li>
+            <li><a href="menu/tarot-oracle.html" class="footer__nav-link">タロット＋オラクルカード</a></li>
           </ul>
         </nav>
         
         <nav class="footer__nav">
-          <h3 class="footer__nav-title">ABOUT</h3>
+          <h3 class="footer__nav-title">About</h3>
           <ul class="footer__nav-list">
             <li><a href="about.html" class="footer__nav-link">占い師について</a></li>
-            <li><a href="voices.html" class="footer__nav-link">お客様の声</a></li>
+            <li><a href="voice.html" class="footer__nav-link">お客様の声</a></li>
           </ul>
         </nav>
         
         <nav class="footer__nav">
-          <h3 class="footer__nav-title">SUPPORT</h3>
+          <h3 class="footer__nav-title">Support</h3>
           <ul class="footer__nav-list">
-            <li><a href="contact.html#faq" class="footer__nav-link">よくある質問</a></li>
+            <li><a href="faq.html" class="footer__nav-link">よくある質問</a></li>
             <li><a href="contact.html" class="footer__nav-link">お問い合わせ</a></li>
             <li><a href="#" class="footer__nav-link">ブログ</a></li>
           </ul>
@@ -1884,197 +1854,88 @@
       
       <div class="footer__bottom">
         <p class="footer__copyright">© 2024 ねこさん占い All Rights Reserved.</p>
-        <div class="footer__links">
-          <a href="#" class="footer__link">プライバシーポリシー</a>
+        <div class="footer__legal">
+          <a href="privacy.html" class="footer__legal-link">プライバシーポリシー</a>
         </div>
       </div>
     </div>
   </footer>
   
   <!-- Scroll to Top Button -->
-  <button class="scroll-top" id="scrollTop" aria-label="ページトップへ戻る">↑</button>
+  <button class="scroll-top" id="scrollTop" aria-label="ページトップへ">↑</button>
   
   <script>
-    // ═══════════════════════════════════════════════════════════
-    // Stars Canvas Animation
-    // ═══════════════════════════════════════════════════════════
-    const canvas = document.getElementById('stars-canvas');
-    const ctx = canvas.getContext('2d');
-    
-    let stars = [];
-    let shootingStars = [];
-    
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    
+    // ═══════════════════════════════════════════════════════════════
+    // Star Background Generator
+    // ═══════════════════════════════════════════════════════════════
     function createStars() {
-      stars = [];
-      const numStars = Math.floor((canvas.width * canvas.height) / 8000);
+      const container = document.getElementById('stars');
+      const starCount = 150;
       
-      for (let i = 0; i < numStars; i++) {
-        stars.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          radius: Math.random() * 1.5 + 0.5,
-          opacity: Math.random() * 0.8 + 0.2,
-          twinkleSpeed: Math.random() * 0.02 + 0.01,
-          twinkleOffset: Math.random() * Math.PI * 2,
-          driftX: (Math.random() - 0.5) * 0.1,
-          driftY: (Math.random() - 0.5) * 0.1
-        });
+      for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        
+        const size = Math.random() * 3 + 1;
+        const x = Math.random() * 100;
+        const y = Math.random() * 100;
+        const duration = Math.random() * 3 + 2;
+        const delay = Math.random() * 3;
+        const opacity = Math.random() * 0.5 + 0.3;
+        
+        star.style.cssText = `
+          width: ${size}px;
+          height: ${size}px;
+          left: ${x}%;
+          top: ${y}%;
+          --duration: ${duration}s;
+          --delay: ${delay}s;
+          --opacity: ${opacity};
+        `;
+        
+        container.appendChild(star);
       }
     }
     
-    function createShootingStar() {
-      if (Math.random() < 0.003) { // Occasional shooting star
-        shootingStars.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height * 0.5,
-          length: Math.random() * 80 + 40,
-          speed: Math.random() * 8 + 6,
-          angle: Math.PI / 4 + (Math.random() - 0.5) * 0.3,
-          opacity: 1,
-          trail: []
-        });
-      }
-    }
-    
-    function drawStars(time) {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      // Draw regular stars
-      stars.forEach(star => {
-        const twinkle = Math.sin(time * star.twinkleSpeed + star.twinkleOffset);
-        const currentOpacity = star.opacity * (0.5 + twinkle * 0.5);
-        
-        // Slow drift
-        star.x += star.driftX;
-        star.y += star.driftY;
-        
-        // Wrap around
-        if (star.x < 0) star.x = canvas.width;
-        if (star.x > canvas.width) star.x = 0;
-        if (star.y < 0) star.y = canvas.height;
-        if (star.y > canvas.height) star.y = 0;
-        
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${currentOpacity})`;
-        ctx.fill();
-        
-        // Add glow effect for larger stars
-        if (star.radius > 1) {
-          ctx.beginPath();
-          ctx.arc(star.x, star.y, star.radius * 2, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(201, 162, 39, ${currentOpacity * 0.2})`;
-          ctx.fill();
-        }
-      });
-      
-      // Draw shooting stars
-      shootingStars.forEach((star, index) => {
-        star.x += Math.cos(star.angle) * star.speed;
-        star.y += Math.sin(star.angle) * star.speed;
-        star.opacity -= 0.02;
-        
-        // Draw trail
-        const gradient = ctx.createLinearGradient(
-          star.x, star.y,
-          star.x - Math.cos(star.angle) * star.length,
-          star.y - Math.sin(star.angle) * star.length
-        );
-        gradient.addColorStop(0, `rgba(255, 255, 255, ${star.opacity})`);
-        gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
-        
-        ctx.beginPath();
-        ctx.moveTo(star.x, star.y);
-        ctx.lineTo(
-          star.x - Math.cos(star.angle) * star.length,
-          star.y - Math.sin(star.angle) * star.length
-        );
-        ctx.strokeStyle = gradient;
-        ctx.lineWidth = 2;
-        ctx.stroke();
-        
-        // Remove faded shooting stars
-        if (star.opacity <= 0 || star.x > canvas.width || star.y > canvas.height) {
-          shootingStars.splice(index, 1);
-        }
-      });
-    }
-    
-    function animateStars(time) {
-      createShootingStar();
-      drawStars(time);
-      requestAnimationFrame(animateStars);
-    }
-    
-    resizeCanvas();
     createStars();
-    animateStars(0);
     
-    window.addEventListener('resize', () => {
-      resizeCanvas();
-      createStars();
-    });
-    
-    // ═══════════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════════════════════════
     // Header Scroll Effect
-    // ═══════════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════════════════════════
     const header = document.getElementById('header');
     
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        header.classList.add('is-scrolled');
+      if (window.scrollY > 100) {
+        header.classList.add('scrolled');
       } else {
-        header.classList.remove('is-scrolled');
+        header.classList.remove('scrolled');
       }
     });
     
-    // ═══════════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════════════════════════
     // Mobile Navigation
-    // ═══════════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════════════════════════
     const hamburger = document.getElementById('hamburger');
     const mobileNav = document.getElementById('mobileNav');
-    const mobileNavOverlay = document.getElementById('mobileNavOverlay');
     
-    function toggleMobileNav() {
-      hamburger.classList.toggle('is-active');
-      mobileNav.classList.toggle('is-open');
-      mobileNavOverlay.classList.toggle('is-visible');
-      document.body.style.overflow = mobileNav.classList.contains('is-open') ? 'hidden' : '';
-    }
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileNav.classList.toggle('active');
+      document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+    });
     
-    hamburger.addEventListener('click', toggleMobileNav);
-    mobileNavOverlay.addEventListener('click', toggleMobileNav);
-    
-    // Close mobile nav on link click
+    // Close mobile nav when clicking a link
     mobileNav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', toggleMobileNav);
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('active');
+        document.body.style.overflow = '';
+      });
     });
     
-    // ═══════════════════════════════════════════════════════════
-    // Scroll to Top Button
-    // ═══════════════════════════════════════════════════════════
-    const scrollTopBtn = document.getElementById('scrollTop');
-    
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 500) {
-        scrollTopBtn.classList.add('is-visible');
-      } else {
-        scrollTopBtn.classList.remove('is-visible');
-      }
-    });
-    
-    scrollTopBtn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-    
-    // ═══════════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════════════════════════
     // Scroll Animations
-    // ═══════════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════════════════════════
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
@@ -2083,40 +1944,38 @@
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
+          entry.target.classList.add('visible');
         }
       });
     }, observerOptions);
     
-    // Observe all animated elements
-    document.querySelectorAll('.animate-on-scroll, .problems__item, .feature-card, .menu-card, .about__image-wrapper, .about__text').forEach(el => {
+    document.querySelectorAll('.fade-in-up').forEach(el => {
       observer.observe(el);
     });
     
-    // ═══════════════════════════════════════════════════════════
-    // Testimonials Slider (Simple)
-    // ═══════════════════════════════════════════════════════════
-    const slider = document.querySelector('.testimonials__slider');
-    const dots = document.querySelectorAll('.testimonials__dot');
+    // ═══════════════════════════════════════════════════════════════
+    // Scroll to Top Button
+    // ═══════════════════════════════════════════════════════════════
+    const scrollTopBtn = document.getElementById('scrollTop');
     
-    if (slider && dots.length) {
-      slider.addEventListener('scroll', () => {
-        const scrollLeft = slider.scrollLeft;
-        const cardWidth = slider.querySelector('.testimonial-card').offsetWidth + 32; // Include gap
-        const activeIndex = Math.round(scrollLeft / cardWidth);
-        
-        dots.forEach((dot, index) => {
-          dot.classList.toggle('is-active', index === activeIndex);
-        });
-      });
-      
-      dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-          const cardWidth = slider.querySelector('.testimonial-card').offsetWidth + 32;
-          slider.scrollTo({ left: cardWidth * index, behavior: 'smooth' });
-        });
-      });
-    }
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) {
+        scrollTopBtn.classList.add('visible');
+      } else {
+        scrollTopBtn.classList.remove('visible');
+      }
+    });
+    
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    
+    // ═══════════════════════════════════════════════════════════════
+    // Stagger Animation for Cards
+    // ═══════════════════════════════════════════════════════════════
+    document.querySelectorAll('.concern-card, .feature-card, .menu-card, .testimonial-card').forEach((card, index) => {
+      card.style.transitionDelay = `${index * 0.1}s`;
+    });
   </script>
 </body>
 </html>

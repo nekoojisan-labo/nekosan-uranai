@@ -3,213 +3,174 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ご予約・お問い合わせ | ねこさん占い - 月と星が導くあなたの物語</title>
-  <meta name="description" content="ねこさん占いのご予約・お問い合わせページ。LINEまたはフォームからお気軽にご連絡ください。">
+  <title>お問い合わせ｜ねこさん占い</title>
+  <meta name="description" content="ねこさん占いへのお問い合わせはこちらから。鑑定に関するご質問や、サービスについてのお問い合わせをお受けしております。">
   
-  <!-- Google Fonts -->
+  <!-- OGP -->
+  <meta property="og:title" content="お問い合わせ｜ねこさん占い">
+  <meta property="og:description" content="ねこさん占いへのお問い合わせはこちらから。">
+  <meta property="og:type" content="website">
+  
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Sans+JP:wght@300;400;500;600&family=Noto+Serif+JP:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Noto+Sans+JP:wght@300;400;500;600&family=Noto+Serif+JP:wght@400;500;600&display=swap" rel="stylesheet">
   
   <style>
-    /* ===== CSS Variables ===== */
+    /* ═══════════════════════════════════════════════════════════════
+       CSS Variables & Reset
+       ═══════════════════════════════════════════════════════════════ */
     :root {
-      /* Colors - Mystical Night Sky */
-      --color-bg-deep: #0d0d1a;
-      --color-bg-primary: #1a1a2e;
-      --color-bg-secondary: #16213e;
-      --color-purple-dark: #2d1b4e;
-      --color-purple-medium: #4a3270;
-      --color-purple-light: #7b5ea7;
+      --color-deep-navy: #1a1a2e;
+      --color-dark-blue: #16213e;
+      --color-midnight: #0f0f23;
       --color-gold: #d4af37;
-      --color-gold-muted: #b8956e;
-      --color-gold-light: #e8d5a3;
-      --color-text-primary: #f5f5f5;
-      --color-text-secondary: #c9c9d4;
-      --color-text-muted: #8b8b9e;
-      --color-accent-pink: #e8b4c8;
-      --color-accent-blue: #7ec8e3;
-      --color-error: #e57373;
-      --color-success: #81c784;
+      --color-gold-light: #e8c964;
+      --color-gold-dark: #b8942f;
+      --color-pastel-blue: #a8d8ea;
+      --color-pastel-blue-light: #c5e8f5;
+      --color-off-white: #f8f9fa;
+      --color-text-light: #ffffff;
+      --color-text-dark: #333333;
+      --color-text-muted: #888888;
+      --color-border-dark: #2a2a4a;
+      --color-star: rgba(255, 255, 255, 0.8);
+      --color-error: #e74c3c;
+      --color-success: #2ecc71;
       
-      /* Glassmorphism */
-      --glass-bg: rgba(255, 255, 255, 0.05);
-      --glass-border: rgba(255, 255, 255, 0.1);
-      --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-      
-      /* Typography */
-      --font-display: 'Cormorant Garamond', 'Noto Serif JP', serif;
-      --font-heading: 'Cinzel', 'Noto Serif JP', serif;
-      --font-body: 'Noto Sans JP', sans-serif;
+      --font-display: 'Cormorant Garamond', serif;
       --font-serif-jp: 'Noto Serif JP', serif;
+      --font-sans-jp: 'Noto Sans JP', sans-serif;
       
-      /* Spacing */
       --space-xs: 0.5rem;
       --space-sm: 1rem;
-      --space-md: 1.5rem;
-      --space-lg: 2rem;
-      --space-xl: 3rem;
-      --space-2xl: 5rem;
-      --space-3xl: 8rem;
+      --space-md: 2rem;
+      --space-lg: 4rem;
+      --space-xl: 6rem;
+      --space-2xl: 8rem;
       
-      /* Transitions */
-      --transition-fast: 0.2s ease;
-      --transition-normal: 0.3s ease;
-      --transition-slow: 0.5s ease;
-      
-      /* Border Radius */
-      --radius-sm: 4px;
-      --radius-md: 8px;
-      --radius-lg: 16px;
-      --radius-xl: 24px;
+      --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
     }
-
-    /* ===== Reset & Base ===== */
+    
     *, *::before, *::after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    
+    html { scroll-behavior: smooth; }
+    
     body {
-      font-family: var(--font-body);
+      font-family: var(--font-sans-jp);
       font-weight: 400;
       line-height: 1.8;
-      color: var(--color-text-primary);
-      background: linear-gradient(135deg, var(--color-bg-deep) 0%, var(--color-bg-primary) 30%, var(--color-purple-dark) 70%, var(--color-bg-secondary) 100%);
-      background-attachment: fixed;
-      min-height: 100vh;
+      color: var(--color-text-light);
+      background: var(--color-deep-navy);
       overflow-x: hidden;
     }
-
-    /* Paper texture overlay */
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
-      opacity: 0.03;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    /* ===== Utility Classes ===== */
+    
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    
     .container {
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 var(--space-md);
-      position: relative;
-      z-index: 2;
+      padding: 0 1.5rem;
     }
 
-    .container--narrow {
-      max-width: 800px;
-    }
-
-    /* ===== Star Canvas ===== */
-    #starCanvas {
+    /* ═══════════════════════════════════════════════════════════════
+       Star Background
+       ═══════════════════════════════════════════════════════════════ */
+    .stars-container {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: 0;
       pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    
+    .star {
+      position: absolute;
+      background: var(--color-star);
+      border-radius: 50%;
+      animation: twinkle var(--duration) ease-in-out infinite;
+      animation-delay: var(--delay);
+    }
+    
+    @keyframes twinkle {
+      0%, 100% { opacity: var(--opacity); transform: scale(1); }
+      50% { opacity: calc(var(--opacity) * 0.3); transform: scale(0.8); }
     }
 
-    /* ===== Header ===== */
+    /* ═══════════════════════════════════════════════════════════════
+       Header
+       ═══════════════════════════════════════════════════════════════ */
     .header {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       z-index: 1000;
-      padding: var(--space-md) 0;
-      background: rgba(13, 13, 26, 0.8);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--glass-border);
-      transition: var(--transition-normal);
+      padding: 1.5rem 0;
+      transition: all 0.4s var(--transition-smooth);
+      background: rgba(26, 26, 46, 0.95);
+      backdrop-filter: blur(10px);
     }
-
+    
     .header.scrolled {
-      padding: var(--space-sm) 0;
-      background: rgba(13, 13, 26, 0.95);
+      padding: 1rem 0;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
     }
-
+    
     .header__inner {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-
+    
     .header__logo {
       display: flex;
       align-items: center;
-      gap: var(--space-sm);
+      gap: 0.75rem;
     }
-
+    
     .header__logo-icon {
       width: 40px;
       height: 40px;
-      background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-muted) 100%);
+      background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.2rem;
+      font-size: 1.25rem;
     }
-
+    
     .header__logo-text {
-      font-family: var(--font-display);
-      font-size: 1.5rem;
+      font-family: var(--font-serif-jp);
+      font-size: 1.25rem;
       font-weight: 500;
-      color: var(--color-gold-light);
-      letter-spacing: 0.05em;
+      color: var(--color-text-light);
     }
-
+    
     .header__nav {
       display: flex;
       align-items: center;
-      gap: var(--space-xl);
+      gap: 2.5rem;
     }
-
-    .header__menu {
-      display: flex;
-      gap: var(--space-lg);
-      list-style: none;
-    }
-
-    .header__menu a {
-      font-family: var(--font-body);
+    
+    .header__nav-link {
       font-size: 0.875rem;
-      font-weight: 400;
-      letter-spacing: 0.08em;
-      color: var(--color-text-secondary);
-      transition: var(--transition-normal);
+      letter-spacing: 0.05em;
       position: relative;
+      transition: color 0.3s ease;
     }
-
-    .header__menu a::after {
+    
+    .header__nav-link::after {
       content: '';
       position: absolute;
       bottom: -4px;
@@ -217,1015 +178,703 @@
       width: 0;
       height: 1px;
       background: var(--color-gold);
-      transition: var(--transition-normal);
+      transition: width 0.3s var(--transition-smooth);
     }
-
-    .header__menu a:hover,
-    .header__menu a.active {
-      color: var(--color-gold-light);
+    
+    .header__nav-link:hover {
+      color: var(--color-gold);
     }
-
-    .header__menu a:hover::after,
-    .header__menu a.active::after {
+    
+    .header__nav-link:hover::after {
       width: 100%;
     }
-
+    
     .header__cta {
-      padding: var(--space-xs) var(--space-md);
-      font-family: var(--font-body);
+      padding: 0.625rem 1.5rem;
+      background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+      color: var(--color-deep-navy);
       font-size: 0.875rem;
       font-weight: 500;
-      color: var(--color-bg-deep);
-      background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-muted) 100%);
-      border: none;
-      border-radius: var(--radius-sm);
-      cursor: pointer;
-      transition: var(--transition-normal);
+      border-radius: 30px;
+      transition: all 0.3s ease;
     }
-
+    
     .header__cta:hover {
       transform: translateY(-2px);
-      box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
     }
-
-    /* Mobile menu button */
-    .header__hamburger {
+    
+    /* Hamburger Menu */
+    .hamburger {
       display: none;
       flex-direction: column;
-      gap: 5px;
+      justify-content: center;
+      gap: 6px;
+      width: 32px;
+      height: 32px;
       background: none;
       border: none;
       cursor: pointer;
-      padding: 5px;
+      z-index: 1001;
     }
-
-    .header__hamburger span {
-      width: 24px;
+    
+    .hamburger span {
+      display: block;
+      width: 100%;
       height: 2px;
-      background: var(--color-gold-light);
-      transition: var(--transition-normal);
-    }
-
-    /* ===== Page Header Section ===== */
-    .page-header {
-      padding: calc(100px + var(--space-3xl)) 0 var(--space-2xl);
-      text-align: center;
-      position: relative;
-    }
-
-    .page-header__subtitle {
-      font-family: var(--font-display);
-      font-size: 1rem;
-      font-style: italic;
-      color: var(--color-gold);
-      letter-spacing: 0.2em;
-      margin-bottom: var(--space-sm);
-    }
-
-    .page-header__title {
-      font-family: var(--font-heading);
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      font-weight: 400;
-      color: var(--color-text-primary);
-      letter-spacing: 0.15em;
-      margin-bottom: var(--space-md);
-    }
-
-    .page-header__line {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: var(--space-md);
-      margin-bottom: var(--space-lg);
-    }
-
-    .page-header__line span {
-      width: 60px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
-    }
-
-    .page-header__line-icon {
-      color: var(--color-gold);
-      font-size: 1.2rem;
-    }
-
-    .page-header__description {
-      font-family: var(--font-serif-jp);
-      font-size: 1rem;
-      color: var(--color-text-secondary);
-      max-width: 600px;
-      margin: 0 auto;
-      line-height: 2;
-    }
-
-    /* ===== Contact Options Section ===== */
-    .contact-options {
-      padding: var(--space-xl) 0 var(--space-3xl);
-    }
-
-    .contact-options__grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--space-xl);
-    }
-
-    .contact-option {
-      background: var(--glass-bg);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-xl);
-      padding: var(--space-xl);
-      text-align: center;
-      transition: var(--transition-normal);
-    }
-
-    .contact-option:hover {
-      transform: translateY(-5px);
-      border-color: rgba(212, 175, 55, 0.3);
-    }
-
-    .contact-option--line {
-      background: linear-gradient(135deg, rgba(6, 199, 85, 0.1) 0%, rgba(6, 199, 85, 0.05) 100%);
-      border-color: rgba(6, 199, 85, 0.2);
-    }
-
-    .contact-option--line:hover {
-      border-color: rgba(6, 199, 85, 0.4);
-    }
-
-    .contact-option__icon {
-      width: 80px;
-      height: 80px;
-      margin: 0 auto var(--space-md);
-      background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.1) 100%);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.5rem;
-    }
-
-    .contact-option--line .contact-option__icon {
-      background: linear-gradient(135deg, rgba(6, 199, 85, 0.3) 0%, rgba(6, 199, 85, 0.1) 100%);
-    }
-
-    .contact-option__title {
-      font-family: var(--font-heading);
-      font-size: 1.2rem;
-      font-weight: 400;
-      color: var(--color-text-primary);
-      letter-spacing: 0.1em;
-      margin-bottom: var(--space-sm);
-    }
-
-    .contact-option__text {
-      font-size: 0.9rem;
-      color: var(--color-text-secondary);
-      margin-bottom: var(--space-lg);
-      line-height: 1.8;
-    }
-
-    .contact-option__badge {
-      display: inline-block;
-      padding: 6px 16px;
-      font-size: 0.75rem;
-      color: var(--color-gold-light);
-      background: rgba(212, 175, 55, 0.15);
-      border: 1px solid rgba(212, 175, 55, 0.3);
-      border-radius: 20px;
-      margin-bottom: var(--space-md);
-    }
-
-    .contact-option--line .contact-option__badge {
-      color: #06C755;
-      background: rgba(6, 199, 85, 0.15);
-      border-color: rgba(6, 199, 85, 0.3);
-    }
-
-    /* ===== Form Section ===== */
-    .form-section {
-      padding: var(--space-2xl) 0 var(--space-3xl);
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: var(--space-2xl);
-    }
-
-    .section-title__en {
-      font-family: var(--font-heading);
-      font-size: clamp(1.5rem, 4vw, 2.5rem);
-      font-weight: 400;
-      color: var(--color-text-primary);
-      letter-spacing: 0.15em;
-      margin-bottom: var(--space-sm);
-    }
-
-    .section-title__line {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: var(--space-md);
-      margin-bottom: var(--space-sm);
-    }
-
-    .section-title__line span {
-      width: 40px;
-      height: 1px;
-      background: var(--color-gold);
-    }
-
-    .section-title__icon {
-      color: var(--color-gold);
-    }
-
-    .section-title__jp {
-      font-family: var(--font-serif-jp);
-      font-size: 0.9rem;
-      color: var(--color-text-muted);
-      letter-spacing: 0.1em;
-    }
-
-    .form-card {
-      background: var(--glass-bg);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-xl);
-      padding: var(--space-2xl);
-    }
-
-    .form-intro {
-      text-align: center;
-      margin-bottom: var(--space-xl);
-    }
-
-    .form-intro__text {
-      font-size: 0.95rem;
-      color: var(--color-text-secondary);
-      line-height: 1.8;
-    }
-
-    /* Form Styles */
-    .form {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-lg);
-    }
-
-    .form__group {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-xs);
-    }
-
-    .form__row {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--space-lg);
-    }
-
-    .form__label {
-      display: flex;
-      align-items: center;
-      gap: var(--space-sm);
-      font-family: var(--font-serif-jp);
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--color-text-primary);
-    }
-
-    .form__required {
-      display: inline-block;
-      padding: 2px 8px;
-      font-size: 0.65rem;
-      font-weight: 500;
-      color: var(--color-gold);
-      background: rgba(212, 175, 55, 0.15);
-      border-radius: 4px;
-    }
-
-    .form__optional {
-      display: inline-block;
-      padding: 2px 8px;
-      font-size: 0.65rem;
-      font-weight: 500;
-      color: var(--color-text-muted);
-      background: rgba(139, 139, 158, 0.15);
-      border-radius: 4px;
-    }
-
-    .form__input,
-    .form__select,
-    .form__textarea {
-      width: 100%;
-      padding: var(--space-md);
-      font-family: var(--font-body);
-      font-size: 1rem;
-      color: var(--color-text-primary);
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-md);
-      outline: none;
-      transition: var(--transition-normal);
-    }
-
-    .form__input::placeholder,
-    .form__textarea::placeholder {
-      color: var(--color-text-muted);
-    }
-
-    .form__input:focus,
-    .form__select:focus,
-    .form__textarea:focus {
-      border-color: var(--color-gold-muted);
-      background: rgba(255, 255, 255, 0.08);
-      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
-    }
-
-    .form__select {
-      appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23c9c9d4' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 16px center;
-      padding-right: 48px;
-      cursor: pointer;
-    }
-
-    .form__select option {
-      background: var(--color-bg-primary);
-      color: var(--color-text-primary);
-    }
-
-    .form__textarea {
-      resize: vertical;
-      min-height: 150px;
-    }
-
-    .form__radio-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--space-md);
-    }
-
-    .form__radio {
-      display: flex;
-      align-items: center;
-      gap: var(--space-sm);
-      cursor: pointer;
-    }
-
-    .form__radio input {
-      appearance: none;
-      width: 20px;
-      height: 20px;
-      border: 2px solid var(--glass-border);
-      border-radius: 50%;
-      background: transparent;
-      cursor: pointer;
-      transition: var(--transition-normal);
-      position: relative;
-    }
-
-    .form__radio input:checked {
-      border-color: var(--color-gold);
-    }
-
-    .form__radio input:checked::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 10px;
-      height: 10px;
-      background: var(--color-gold);
-      border-radius: 50%;
-    }
-
-    .form__radio span {
-      font-size: 0.9rem;
-      color: var(--color-text-secondary);
-    }
-
-    .form__checkbox {
-      display: flex;
-      align-items: flex-start;
-      gap: var(--space-sm);
-      cursor: pointer;
-    }
-
-    .form__checkbox input {
-      appearance: none;
-      width: 20px;
-      height: 20px;
-      border: 2px solid var(--glass-border);
-      border-radius: var(--radius-sm);
-      background: transparent;
-      cursor: pointer;
-      transition: var(--transition-normal);
-      flex-shrink: 0;
-      margin-top: 2px;
-      position: relative;
-    }
-
-    .form__checkbox input:checked {
-      border-color: var(--color-gold);
-      background: var(--color-gold);
-    }
-
-    .form__checkbox input:checked::before {
-      content: '✓';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: var(--color-bg-deep);
-      font-size: 0.75rem;
-      font-weight: bold;
-    }
-
-    .form__checkbox span {
-      font-size: 0.85rem;
-      color: var(--color-text-secondary);
-      line-height: 1.6;
-    }
-
-    .form__checkbox a {
-      color: var(--color-gold-light);
-      text-decoration: underline;
-    }
-
-    .form__hint {
-      font-size: 0.8rem;
-      color: var(--color-text-muted);
-      margin-top: 4px;
-    }
-
-    .form__submit {
-      margin-top: var(--space-lg);
-      text-align: center;
-    }
-
-    /* Buttons */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: var(--space-sm);
-      padding: var(--space-md) var(--space-xl);
-      font-family: var(--font-body);
-      font-size: 0.95rem;
-      font-weight: 500;
-      border-radius: var(--radius-sm);
-      cursor: pointer;
-      transition: var(--transition-normal);
-      text-decoration: none;
-      border: none;
-    }
-
-    .btn--primary {
-      color: var(--color-bg-deep);
-      background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-muted) 100%);
-      box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
-    }
-
-    .btn--primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
-    }
-
-    .btn--primary:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    .btn--secondary {
-      color: var(--color-gold-light);
-      background: transparent;
-      border: 1px solid var(--color-gold-muted);
-    }
-
-    .btn--secondary:hover {
-      background: rgba(212, 175, 55, 0.1);
-      transform: translateY(-2px);
-    }
-
-    .btn--line {
-      color: white;
-      background: #06C755;
-      min-width: 200px;
-    }
-
-    .btn--line:hover {
-      background: #05b04c;
-      transform: translateY(-3px);
-      box-shadow: 0 8px 30px rgba(6, 199, 85, 0.3);
-    }
-
-    .btn--lg {
-      padding: var(--space-md) var(--space-2xl);
-      font-size: 1rem;
-    }
-
-    /* ===== Info Section ===== */
-    .info-section {
-      padding: var(--space-2xl) 0 var(--space-3xl);
-    }
-
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: var(--space-lg);
-    }
-
-    .info-card {
-      background: var(--glass-bg);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-lg);
-      padding: var(--space-lg);
-      text-align: center;
-    }
-
-    .info-card__icon {
-      font-size: 2rem;
-      margin-bottom: var(--space-sm);
-    }
-
-    .info-card__title {
-      font-family: var(--font-serif-jp);
-      font-size: 1rem;
-      font-weight: 500;
-      color: var(--color-text-primary);
-      margin-bottom: var(--space-sm);
-    }
-
-    .info-card__text {
-      font-size: 0.85rem;
-      color: var(--color-text-muted);
-      line-height: 1.7;
-    }
-
-    /* ===== FAQ Section ===== */
-    .faq-section {
-      padding: var(--space-2xl) 0 var(--space-3xl);
-    }
-
-    .faq-list {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-md);
-    }
-
-    .faq-item {
-      background: var(--glass-bg);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-    }
-
-    .faq-item__question {
-      width: 100%;
-      padding: var(--space-md) var(--space-lg);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: var(--space-md);
-      background: none;
-      border: none;
-      cursor: pointer;
-      text-align: left;
-      font-family: var(--font-serif-jp);
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: var(--color-text-primary);
-      transition: var(--transition-normal);
-    }
-
-    .faq-item__question:hover {
-      background: rgba(255, 255, 255, 0.02);
-    }
-
-    .faq-item__icon {
-      width: 24px;
-      height: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--color-gold);
-      font-size: 1.2rem;
-      transition: var(--transition-normal);
-      flex-shrink: 0;
-    }
-
-    .faq-item.active .faq-item__icon {
-      transform: rotate(45deg);
-    }
-
-    .faq-item__answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease;
-    }
-
-    .faq-item__answer-inner {
-      padding: 0 var(--space-lg) var(--space-lg);
-      font-size: 0.9rem;
-      color: var(--color-text-secondary);
-      line-height: 1.8;
-    }
-
-    .faq-item.active .faq-item__answer {
-      max-height: 500px;
-    }
-
-    /* ===== Footer ===== */
-    .footer {
-      padding: var(--space-3xl) 0 var(--space-lg);
-      background: rgba(13, 13, 26, 0.8);
-      border-top: 1px solid var(--glass-border);
-      position: relative;
-      z-index: 2;
-    }
-
-    .footer__grid {
-      display: grid;
-      grid-template-columns: 2fr repeat(3, 1fr);
-      gap: var(--space-2xl);
-      margin-bottom: var(--space-2xl);
-    }
-
-    .footer__brand {
-      max-width: 280px;
-    }
-
-    .footer__logo {
-      display: flex;
-      align-items: center;
-      gap: var(--space-sm);
-      margin-bottom: var(--space-md);
-    }
-
-    .footer__logo-icon {
-      width: 36px;
-      height: 36px;
-      background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-muted) 100%);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-    }
-
-    .footer__logo-text {
-      font-family: var(--font-display);
-      font-size: 1.3rem;
-      font-weight: 500;
-      color: var(--color-gold-light);
-    }
-
-    .footer__description {
-      font-size: 0.85rem;
-      color: var(--color-text-muted);
-      line-height: 1.8;
-    }
-
-    .footer__heading {
-      font-family: var(--font-heading);
-      font-size: 0.85rem;
-      font-weight: 400;
-      color: var(--color-gold-light);
-      letter-spacing: 0.15em;
-      margin-bottom: var(--space-md);
-    }
-
-    .footer__list {
-      list-style: none;
-    }
-
-    .footer__list li {
-      margin-bottom: var(--space-sm);
-    }
-
-    .footer__list a {
-      font-size: 0.85rem;
-      color: var(--color-text-muted);
-      transition: var(--transition-normal);
-    }
-
-    .footer__list a:hover {
-      color: var(--color-gold-light);
-    }
-
-    .footer__social {
-      display: flex;
-      gap: var(--space-sm);
-      margin-top: var(--space-md);
-    }
-
-    .footer__social a {
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--glass-bg);
-      border: 1px solid var(--glass-border);
-      border-radius: 50%;
-      font-size: 1rem;
-      transition: var(--transition-normal);
-    }
-
-    .footer__social a:hover {
-      background: rgba(212, 175, 55, 0.2);
-      border-color: var(--color-gold-muted);
-      transform: translateY(-3px);
-    }
-
-    .footer__bottom {
-      padding-top: var(--space-lg);
-      border-top: 1px solid var(--glass-border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: var(--space-md);
-    }
-
-    .footer__copyright {
-      font-size: 0.8rem;
-      color: var(--color-text-muted);
-    }
-
-    .footer__legal {
-      display: flex;
-      gap: var(--space-lg);
-    }
-
-    .footer__legal a {
-      font-size: 0.8rem;
-      color: var(--color-text-muted);
-      transition: var(--transition-normal);
-    }
-
-    .footer__legal a:hover {
-      color: var(--color-gold-light);
-    }
-
-    /* ===== Animations ===== */
-    .fade-in {
+      background: var(--color-text-light);
+      transition: all 0.3s ease;
+    }
+    
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .hamburger.active span:nth-child(2) {
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
     }
 
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .stagger > * {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    .stagger.visible > *:nth-child(1) { transition-delay: 0s; }
-    .stagger.visible > *:nth-child(2) { transition-delay: 0.1s; }
-    .stagger.visible > *:nth-child(3) { transition-delay: 0.2s; }
-
-    .stagger.visible > * {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ===== Scroll to Top Button ===== */
-    .scroll-top {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      width: 50px;
-      height: 50px;
-      background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-muted) 100%);
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      opacity: 0;
-      visibility: hidden;
-      transition: var(--transition-normal);
-      z-index: 999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--color-bg-deep);
-      font-size: 1.2rem;
-    }
-
-    .scroll-top.visible {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .scroll-top:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
-    }
-
-    /* ===== Responsive ===== */
-    @media (max-width: 1024px) {
-      .contact-options__grid {
-        grid-template-columns: 1fr;
-      }
-
-      .info-grid {
-        grid-template-columns: 1fr;
-        gap: var(--space-md);
-      }
-
-      .footer__grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: var(--space-xl);
-      }
-    }
-
-    @media (max-width: 768px) {
-      .header__nav {
-        display: none;
-      }
-
-      .header__hamburger {
-        display: flex;
-      }
-
-      .form__row {
-        grid-template-columns: 1fr;
-      }
-
-      .form-card {
-        padding: var(--space-lg);
-      }
-
-      .footer__grid {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-
-      .footer__brand {
-        max-width: 100%;
-      }
-
-      .footer__logo {
-        justify-content: center;
-      }
-
-      .footer__social {
-        justify-content: center;
-      }
-
-      .footer__bottom {
-        flex-direction: column;
-        text-align: center;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .btn--lg {
-        width: 100%;
-      }
-
-      .form__radio-group {
-        flex-direction: column;
-      }
-    }
-
-    /* Mobile Navigation Overlay */
+    /* Mobile Navigation */
     .mobile-nav {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(13, 13, 26, 0.98);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      background: rgba(15, 15, 35, 0.98);
       z-index: 999;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: var(--space-lg);
       opacity: 0;
       visibility: hidden;
-      transition: var(--transition-normal);
+      transition: all 0.4s var(--transition-smooth);
     }
-
+    
     .mobile-nav.active {
       opacity: 1;
       visibility: visible;
     }
+    
+    .mobile-nav__inner {
+      text-align: center;
+    }
+    
+    .mobile-nav__link {
+      display: block;
+      font-family: var(--font-serif-jp);
+      font-size: 1.5rem;
+      padding: 1rem 0;
+      transition: color 0.3s ease;
+    }
+    
+    .mobile-nav__link:hover {
+      color: var(--color-gold);
+    }
+    
+    .mobile-nav__cta {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 1rem 2.5rem;
+      background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+      color: var(--color-deep-navy);
+      font-weight: 500;
+      border-radius: 30px;
+    }
 
-    .mobile-nav__close {
+    @media (max-width: 900px) {
+      .header__nav { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       Page Header
+       ═══════════════════════════════════════════════════════════════ */
+    .page-header {
+      position: relative;
+      padding: calc(80px + var(--space-xl)) 0 var(--space-lg);
+      text-align: center;
+      z-index: 1;
+    }
+    
+    .page-header::before {
+      content: '';
       position: absolute;
-      top: 20px;
-      right: 20px;
-      background: none;
-      border: none;
-      color: var(--color-text-primary);
-      font-size: 2rem;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(ellipse at center top, rgba(168, 216, 234, 0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    
+    .page-header__label {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 0.875rem;
+      font-style: italic;
+      color: var(--color-gold);
+      letter-spacing: 0.2em;
+      margin-bottom: 1rem;
+    }
+    
+    .page-header__title {
+      font-family: var(--font-serif-jp);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 500;
+      line-height: 1.4;
+      margin-bottom: 1.5rem;
+    }
+    
+    .breadcrumb {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8125rem;
+      color: var(--color-text-muted);
+    }
+    
+    .breadcrumb a {
+      transition: color 0.3s ease;
+    }
+    
+    .breadcrumb a:hover {
+      color: var(--color-gold);
+    }
+    
+    .breadcrumb__separator {
+      font-size: 0.75rem;
+    }
+    
+    .breadcrumb__current {
+      color: var(--color-pastel-blue);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       Contact Section
+       ═══════════════════════════════════════════════════════════════ */
+    .contact-section {
+      position: relative;
+      padding: var(--space-lg) 0 var(--space-xl);
+      z-index: 1;
+    }
+    
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    
+    @media (max-width: 1024px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+      }
+    }
+
+    /* Contact Form */
+    .contact-form {
+      background: rgba(22, 33, 62, 0.6);
+      border: 1px solid var(--color-border-dark);
+      border-radius: 16px;
+      padding: var(--space-md);
+      backdrop-filter: blur(10px);
+    }
+    
+    .contact-form__intro {
+      text-align: center;
+      margin-bottom: var(--space-md);
+      padding-bottom: var(--space-md);
+      border-bottom: 1px solid var(--color-border-dark);
+    }
+    
+    .contact-form__intro-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .contact-form__intro-title {
+      font-family: var(--font-serif-jp);
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+    
+    .contact-form__intro-text {
+      font-size: 0.875rem;
+      color: var(--color-text-muted);
+      line-height: 1.8;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      margin-bottom: 0.625rem;
+    }
+    
+    .form-label__required {
+      display: inline-block;
+      padding: 0.125rem 0.5rem;
+      background: var(--color-gold);
+      color: var(--color-deep-navy);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      border-radius: 3px;
+    }
+    
+    .form-label__optional {
+      display: inline-block;
+      padding: 0.125rem 0.5rem;
+      background: var(--color-border-dark);
+      color: var(--color-text-muted);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      border-radius: 3px;
+    }
+    
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      padding: 0.875rem 1rem;
+      font-family: var(--font-sans-jp);
+      font-size: 1rem;
+      color: var(--color-text-light);
+      background: rgba(15, 15, 35, 0.6);
+      border: 1px solid var(--color-border-dark);
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: var(--color-gold);
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+    }
+    
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+      color: rgba(255, 255, 255, 0.3);
+    }
+    
+    .form-select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23888888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6,9 12,15 18,9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-size: 16px;
+      padding-right: 3rem;
       cursor: pointer;
     }
-
-    .mobile-nav__list {
-      list-style: none;
+    
+    .form-select option {
+      background: var(--color-deep-navy);
+      color: var(--color-text-light);
+    }
+    
+    .form-textarea {
+      min-height: 180px;
+      resize: vertical;
+    }
+    
+    .form-hint {
+      font-size: 0.8125rem;
+      color: var(--color-text-muted);
+      margin-top: 0.5rem;
+    }
+    
+    /* Checkbox */
+    .form-checkbox {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin: var(--space-md) 0;
+      padding: 1rem;
+      background: rgba(15, 15, 35, 0.4);
+      border-radius: 8px;
+    }
+    
+    .form-checkbox input[type="checkbox"] {
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      min-width: 22px;
+      background: rgba(15, 15, 35, 0.6);
+      border: 1px solid var(--color-border-dark);
+      border-radius: 4px;
+      cursor: pointer;
+      position: relative;
+      margin-top: 2px;
+      transition: all 0.3s ease;
+    }
+    
+    .form-checkbox input[type="checkbox"]:checked {
+      background: var(--color-gold);
+      border-color: var(--color-gold);
+    }
+    
+    .form-checkbox input[type="checkbox"]:checked::after {
+      content: '✓';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: var(--color-deep-navy);
+      font-size: 0.875rem;
+      font-weight: bold;
+    }
+    
+    .form-checkbox__label {
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+    
+    .form-checkbox__label a {
+      color: var(--color-pastel-blue);
+      text-decoration: underline;
+    }
+    
+    .form-checkbox__label a:hover {
+      color: var(--color-gold);
+    }
+    
+    /* Submit Button */
+    .form-submit {
+      display: block;
+      width: 100%;
+      padding: 1.125rem 2rem;
+      font-family: var(--font-sans-jp);
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--color-deep-navy);
+      background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .form-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(212, 175, 55, 0.35);
+    }
+    
+    .form-submit:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+    
+    .form-note {
       text-align: center;
+      font-size: 0.8125rem;
+      color: var(--color-text-muted);
+      margin-top: 1rem;
     }
 
-    .mobile-nav__list li {
-      margin-bottom: var(--space-lg);
+    /* Contact Info Sidebar */
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .contact-info__card {
+      background: rgba(22, 33, 62, 0.6);
+      border: 1px solid var(--color-border-dark);
+      border-radius: 16px;
+      padding: 1.5rem;
+      backdrop-filter: blur(10px);
+    }
+    
+    .contact-info__header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--color-border-dark);
+    }
+    
+    .contact-info__icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(212, 175, 55, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+    }
+    
+    .contact-info__title {
+      font-family: var(--font-serif-jp);
+      font-size: 1rem;
+      font-weight: 500;
+    }
+    
+    .contact-info__content {
+      font-size: 0.875rem;
+      color: var(--color-text-muted);
+      line-height: 1.9;
+    }
+    
+    .contact-info__content strong {
+      color: var(--color-text-light);
+      font-weight: 500;
+    }
+    
+    .contact-info__highlight {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      background: rgba(168, 216, 234, 0.1);
+      color: var(--color-pastel-blue);
+      border-radius: 20px;
+      font-size: 0.8125rem;
+      margin-top: 0.5rem;
+    }
+    
+    /* FAQ Link Card */
+    .faq-link-card {
+      background: linear-gradient(135deg, rgba(168, 216, 234, 0.1), rgba(212, 175, 55, 0.05));
+      border: 1px solid rgba(168, 216, 234, 0.2);
+      border-radius: 16px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    
+    .faq-link-card:hover {
+      border-color: var(--color-gold);
+      transform: translateY(-3px);
+    }
+    
+    .faq-link-card__icon {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+    
+    .faq-link-card__title {
+      font-family: var(--font-serif-jp);
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+    
+    .faq-link-card__text {
+      font-size: 0.8125rem;
+      color: var(--color-text-muted);
+      margin-bottom: 1rem;
+      line-height: 1.7;
+    }
+    
+    .faq-link-card__button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--color-gold);
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+    
+    .faq-link-card__button span {
+      transition: transform 0.3s ease;
+    }
+    
+    .faq-link-card:hover .faq-link-card__button span {
+      transform: translateX(5px);
     }
 
-    .mobile-nav__list a {
-      font-family: var(--font-display);
-      font-size: 1.5rem;
-      color: var(--color-text-secondary);
-      transition: var(--transition-normal);
-    }
-
-    .mobile-nav__list a:hover,
-    .mobile-nav__list a.active {
-      color: var(--color-gold-light);
-    }
-
-    /* Success Message */
-    .form-success {
+    /* ═══════════════════════════════════════════════════════════════
+       Thank You Message (Hidden by default)
+       ═══════════════════════════════════════════════════════════════ */
+    .thank-you {
       display: none;
       text-align: center;
-      padding: var(--space-2xl);
+      padding: var(--space-xl) var(--space-md);
     }
-
-    .form-success.show {
+    
+    .thank-you.visible {
       display: block;
     }
-
-    .form-success__icon {
+    
+    .thank-you__icon {
       font-size: 4rem;
-      margin-bottom: var(--space-md);
+      margin-bottom: 1.5rem;
+    }
+    
+    .thank-you__title {
+      font-family: var(--font-serif-jp);
+      font-size: 1.75rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+    
+    .thank-you__text {
+      font-size: 0.9375rem;
+      color: var(--color-text-muted);
+      line-height: 2;
+      margin-bottom: 2rem;
+    }
+    
+    .thank-you__button {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: transparent;
+      color: var(--color-gold);
+      font-weight: 500;
+      border: 1px solid var(--color-gold);
+      border-radius: 50px;
+      transition: all 0.3s ease;
+    }
+    
+    .thank-you__button:hover {
+      background: var(--color-gold);
+      color: var(--color-deep-navy);
     }
 
-    .form-success__title {
-      font-family: var(--font-display);
-      font-size: 1.8rem;
-      color: var(--color-gold-light);
-      margin-bottom: var(--space-md);
+    /* ═══════════════════════════════════════════════════════════════
+       Footer
+       ═══════════════════════════════════════════════════════════════ */
+    .footer {
+      position: relative;
+      padding: var(--space-lg) 0 var(--space-md);
+      background: var(--color-midnight);
+      z-index: 1;
+    }
+    
+    .footer__inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-md);
+    }
+    
+    .footer__logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .footer__logo-icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.125rem;
+    }
+    
+    .footer__logo-text {
+      font-family: var(--font-serif-jp);
+      font-size: 1.125rem;
+      font-weight: 500;
+    }
+    
+    .footer__nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem 2rem;
+    }
+    
+    .footer__nav-link {
+      font-size: 0.8125rem;
+      color: var(--color-text-muted);
+      transition: color 0.3s ease;
+    }
+    
+    .footer__nav-link:hover {
+      color: var(--color-gold);
+    }
+    
+    .footer__copyright {
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      margin-top: var(--space-sm);
     }
 
-    .form-success__text {
-      font-size: 0.95rem;
-      color: var(--color-text-secondary);
-      line-height: 1.8;
-      margin-bottom: var(--space-xl);
+    /* ═══════════════════════════════════════════════════════════════
+       Animations
+       ═══════════════════════════════════════════════════════════════ */
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s var(--transition-smooth), transform 0.8s var(--transition-smooth);
+    }
+    
+    .fade-in-up.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    .form-wrapper.submitted .form {
-      display: none;
-    }
-
-    .form-wrapper.submitted .form-success {
-      display: block;
+    /* ═══════════════════════════════════════════════════════════════
+       Responsive
+       ═══════════════════════════════════════════════════════════════ */
+    @media (max-width: 640px) {
+      .page-header {
+        padding: calc(80px + var(--space-lg)) 0 var(--space-md);
+      }
+      
+      .contact-form {
+        padding: 1.5rem;
+      }
+      
+      .contact-info__card {
+        padding: 1.25rem;
+      }
+      
+      .form-checkbox {
+        padding: 0.875rem;
+      }
+      
+      .footer__nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- Star Canvas Background -->
-  <canvas id="starCanvas"></canvas>
+  <!-- Stars Background -->
+  <div class="stars-container" id="starsContainer"></div>
 
   <!-- Header -->
-  <header class="header">
+  <header class="header" id="header">
     <div class="container">
       <div class="header__inner">
         <a href="index.html" class="header__logo">
           <div class="header__logo-icon">🌙</div>
           <span class="header__logo-text">ねこさん占い</span>
         </a>
-        
         <nav class="header__nav">
-          <ul class="header__menu">
-            <li><a href="index.html">ホーム</a></li>
-            <li><a href="about.html">ねこさんについて</a></li>
-            <li><a href="menu.html">占いメニュー</a></li>
-            <li><a href="voices.html">お客様の声</a></li>
-          </ul>
-          <a href="contact.html" class="header__cta active">ご予約はこちら</a>
+          <a href="index.html" class="header__nav-link">ホーム</a>
+          <a href="menu-detail.html" class="header__nav-link">占いメニュー</a>
+          <a href="faq.html" class="header__nav-link">よくある質問</a>
+          <a href="contact.html" class="header__nav-link">お問い合わせ</a>
+          <a href="index.html#reserve" class="header__cta">ご予約はこちら</a>
         </nav>
-
-        <button class="header__hamburger" aria-label="メニュー">
+        <button class="hamburger" id="hamburger" aria-label="メニュー">
           <span></span>
           <span></span>
           <span></span>
@@ -1235,453 +884,228 @@
   </header>
 
   <!-- Mobile Navigation -->
-  <nav class="mobile-nav">
-    <button class="mobile-nav__close" aria-label="閉じる">×</button>
-    <ul class="mobile-nav__list">
-      <li><a href="index.html">ホーム</a></li>
-      <li><a href="about.html">ねこさんについて</a></li>
-      <li><a href="menu.html">占いメニュー</a></li>
-      <li><a href="voices.html">お客様の声</a></li>
-      <li><a href="contact.html" class="active">ご予約</a></li>
-    </ul>
+  <nav class="mobile-nav" id="mobileNav">
+    <div class="mobile-nav__inner">
+      <a href="index.html" class="mobile-nav__link">ホーム</a>
+      <a href="menu-detail.html" class="mobile-nav__link">占いメニュー</a>
+      <a href="faq.html" class="mobile-nav__link">よくある質問</a>
+      <a href="contact.html" class="mobile-nav__link">お問い合わせ</a>
+      <a href="index.html#reserve" class="mobile-nav__cta">ご予約はこちら</a>
+    </div>
   </nav>
 
-  <main>
-    <!-- Page Header -->
-    <section class="page-header">
-      <div class="container">
-        <p class="page-header__subtitle fade-in">Reservation & Contact</p>
-        <h1 class="page-header__title fade-in">CONTACT</h1>
-        <div class="page-header__line fade-in">
-          <span></span>
-          <span class="page-header__line-icon">✦</span>
-          <span></span>
-        </div>
-        <p class="page-header__description fade-in">
-          ご予約・お問い合わせ<br>
-          LINEまたはフォームからお気軽にご連絡ください
-        </p>
-      </div>
-    </section>
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <span class="page-header__label">Contact</span>
+      <h1 class="page-header__title">お問い合わせ</h1>
+      <nav class="breadcrumb">
+        <a href="index.html">ホーム</a>
+        <span class="breadcrumb__separator">›</span>
+        <span class="breadcrumb__current">お問い合わせ</span>
+      </nav>
+    </div>
+  </section>
 
-    <!-- Contact Options -->
-    <section class="contact-options">
-      <div class="container container--narrow">
-        <div class="contact-options__grid stagger">
-          <div class="contact-option contact-option--line">
-            <div class="contact-option__icon">💬</div>
-            <span class="contact-option__badge">✨ おすすめ</span>
-            <h2 class="contact-option__title">LINEでご予約</h2>
-            <p class="contact-option__text">
-              24時間いつでもメッセージOK！<br>
-              気軽にご質問・ご相談いただけます。<br>
-              日程調整もスムーズです。
-            </p>
-            <a href="#" class="btn btn--line btn--lg">
-              <span>💬</span>
-              友だち追加する
-            </a>
-          </div>
-          <div class="contact-option">
-            <div class="contact-option__icon">✉️</div>
-            <span class="contact-option__badge">📝 じっくり相談</span>
-            <h2 class="contact-option__title">フォームでご予約</h2>
-            <p class="contact-option__text">
-              LINEをお持ちでない方や、<br>
-              詳しくご相談内容を書きたい方は<br>
-              下記フォームからどうぞ。
-            </p>
-            <a href="#form" class="btn btn--secondary btn--lg">
-              <span>↓</span>
-              フォームへ進む
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Form Section -->
-    <section class="form-section" id="form">
-      <div class="container container--narrow">
-        <div class="section-title fade-in">
-          <h2 class="section-title__en">RESERVATION FORM</h2>
-          <div class="section-title__line">
-            <span></span>
-            <span class="section-title__icon">✦</span>
-            <span></span>
-          </div>
-          <p class="section-title__jp">ご予約フォーム</p>
-        </div>
-
-        <div class="form-card fade-in">
-          <div class="form-intro">
-            <p class="form-intro__text">
-              下記フォームに必要事項をご入力の上、送信してください。<br>
-              通常2営業日以内にご返信いたします。
+  <!-- Contact Section -->
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-grid">
+        <!-- Contact Form -->
+        <div class="contact-form fade-in-up" id="contactForm">
+          <div class="contact-form__intro">
+            <div class="contact-form__intro-icon">✉️</div>
+            <h2 class="contact-form__intro-title">お問い合わせフォーム</h2>
+            <p class="contact-form__intro-text">
+              鑑定に関するご質問や、サービスについてのお問い合わせなど、<br>
+              お気軽にご連絡ください。
             </p>
           </div>
+          
+          <form id="contactFormElement">
+            <div class="form-group">
+              <label class="form-label">
+                お名前
+                <span class="form-label__required">必須</span>
+              </label>
+              <input type="text" class="form-input" name="name" placeholder="例：山田 花子" required>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">
+                メールアドレス
+                <span class="form-label__required">必須</span>
+              </label>
+              <input type="email" class="form-input" name="email" placeholder="例：example@email.com" required>
+              <p class="form-hint">※ 返信先となりますので、お間違いのないようご入力ください</p>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">
+                お問い合わせ種別
+                <span class="form-label__required">必須</span>
+              </label>
+              <select class="form-select" name="category" required>
+                <option value="">選択してください</option>
+                <option value="鑑定について">鑑定について</option>
+                <option value="お支払いについて">お支払いについて</option>
+                <option value="キャンセル・変更について">キャンセル・変更について</option>
+                <option value="ご予約について">ご予約について</option>
+                <option value="その他">その他</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">
+                お問い合わせ内容
+                <span class="form-label__required">必須</span>
+              </label>
+              <textarea class="form-textarea" name="message" placeholder="お問い合わせ内容をご記入ください" required></textarea>
+            </div>
+            
+            <div class="form-checkbox">
+              <input type="checkbox" id="privacy" name="privacy" required>
+              <label class="form-checkbox__label" for="privacy">
+                <a href="#" target="_blank">プライバシーポリシー</a>に同意の上、お問い合わせいただきます。
+                ご入力いただいた個人情報は、お問い合わせへの対応以外の目的には使用いたしません。
+              </label>
+            </div>
+            
+            <button type="submit" class="form-submit">
+              送信する
+            </button>
+            
+            <p class="form-note">
+              ※ 通常2〜3営業日以内にご返信いたします
+            </p>
+          </form>
+        </div>
+        
+        <!-- Thank You Message -->
+        <div class="thank-you" id="thankYou">
+          <div class="thank-you__icon">🌟</div>
+          <h2 class="thank-you__title">お問い合わせありがとうございます</h2>
+          <p class="thank-you__text">
+            メッセージを受け付けました。<br>
+            内容を確認の上、2〜3営業日以内にご連絡いたします。<br>
+            しばらくお待ちくださいませ。
+          </p>
+          <a href="index.html" class="thank-you__button">トップページに戻る</a>
+        </div>
 
-          <div class="form-wrapper">
-            <form class="form" id="reservationForm">
-              <div class="form__row">
-                <div class="form__group">
-                  <label class="form__label">
-                    お名前
-                    <span class="form__required">必須</span>
-                  </label>
-                  <input type="text" class="form__input" name="name" placeholder="山田 花子" required>
-                </div>
-                <div class="form__group">
-                  <label class="form__label">
-                    フリガナ
-                    <span class="form__required">必須</span>
-                  </label>
-                  <input type="text" class="form__input" name="furigana" placeholder="ヤマダ ハナコ" required>
-                </div>
-              </div>
-
-              <div class="form__group">
-                <label class="form__label">
-                  メールアドレス
-                  <span class="form__required">必須</span>
-                </label>
-                <input type="email" class="form__input" name="email" placeholder="example@email.com" required>
-                <p class="form__hint">※ 返信が届かない場合は迷惑メールフォルダもご確認ください</p>
-              </div>
-
-              <div class="form__group">
-                <label class="form__label">
-                  電話番号
-                  <span class="form__optional">任意</span>
-                </label>
-                <input type="tel" class="form__input" name="tel" placeholder="090-1234-5678">
-              </div>
-
-              <div class="form__group">
-                <label class="form__label">
-                  ご希望のメニュー
-                  <span class="form__required">必須</span>
-                </label>
-                <select class="form__select" name="menu" required>
-                  <option value="">選択してください</option>
-                  <option value="full">タロット＋オラクルカード フルリーディング（60分 / ¥5,000）</option>
-                  <option value="moon">月星座リーディング＋タロット（75分 / ¥6,000）</option>
-                  <option value="quick">ワンオラクル 今日のメッセージ（15分 / ¥1,500）</option>
-                  <option value="love">恋愛特化リーディング（45分 / ¥4,000）</option>
-                  <option value="other">その他・相談したい</option>
-                </select>
-              </div>
-
-              <div class="form__group">
-                <label class="form__label">
-                  ご希望の日時
-                  <span class="form__required">必須</span>
-                </label>
-                <div class="form__row">
-                  <input type="date" class="form__input" name="date1" required>
-                  <select class="form__select" name="time1" required>
-                    <option value="">時間帯を選択</option>
-                    <option value="10:00">10:00〜</option>
-                    <option value="11:00">11:00〜</option>
-                    <option value="13:00">13:00〜</option>
-                    <option value="14:00">14:00〜</option>
-                    <option value="15:00">15:00〜</option>
-                    <option value="16:00">16:00〜</option>
-                    <option value="19:00">19:00〜</option>
-                    <option value="20:00">20:00〜</option>
-                  </select>
-                </div>
-                <p class="form__hint">※ 第2希望があれば下記「その他」欄にご記入ください</p>
-              </div>
-
-              <div class="form__group">
-                <label class="form__label">
-                  鑑定形式
-                  <span class="form__required">必須</span>
-                </label>
-                <div class="form__radio-group">
-                  <label class="form__radio">
-                    <input type="radio" name="format" value="online" required>
-                    <span>オンライン（Zoom）</span>
-                  </label>
-                  <label class="form__radio">
-                    <input type="radio" name="format" value="line-call">
-                    <span>LINE通話</span>
-                  </label>
-                  <label class="form__radio">
-                    <input type="radio" name="format" value="chat">
-                    <span>チャット鑑定</span>
-                  </label>
-                </div>
-              </div>
-
-              <div class="form__group">
-                <label class="form__label">
-                  ご相談内容・ご質問
-                  <span class="form__optional">任意</span>
-                </label>
-                <textarea class="form__textarea" name="message" placeholder="ご相談したい内容や、事前にお伝えしたいことがあればご記入ください。&#10;&#10;例：恋愛について相談したいです。今の彼との関係や、今後の展開を見ていただきたいです。"></textarea>
-              </div>
-
-              <div class="form__group">
-                <label class="form__checkbox">
-                  <input type="checkbox" name="privacy" required>
-                  <span><a href="#" target="_blank">プライバシーポリシー</a>に同意します</span>
-                </label>
-              </div>
-
-              <div class="form__submit">
-                <button type="submit" class="btn btn--primary btn--lg">
-                  <span>✦</span>
-                  予約を送信する
-                </button>
-              </div>
-            </form>
-
-            <div class="form-success">
-              <div class="form-success__icon">✨</div>
-              <h3 class="form-success__title">送信完了しました</h3>
-              <p class="form-success__text">
-                ご予約リクエストありがとうございます。<br>
-                2営業日以内にメールにてご連絡いたします。<br><br>
-                しばらく経っても返信がない場合は、<br>
-                迷惑メールフォルダをご確認いただくか、<br>
-                LINEからお問い合わせください。
+        <!-- Contact Info Sidebar -->
+        <aside class="contact-info">
+          <div class="contact-info__card fade-in-up">
+            <div class="contact-info__header">
+              <div class="contact-info__icon">⏰</div>
+              <h3 class="contact-info__title">返信について</h3>
+            </div>
+            <div class="contact-info__content">
+              <p>
+                お問い合わせへの返信は、<br>
+                <strong>2〜3営業日以内</strong>を目安に<br>
+                ご対応させていただきます。
               </p>
-              <a href="index.html" class="btn btn--secondary">
-                トップページへ戻る
-              </a>
+              <span class="contact-info__highlight">土日祝は翌営業日対応</span>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Info Section -->
-    <section class="info-section">
-      <div class="container container--narrow">
-        <div class="info-grid stagger">
-          <div class="info-card">
-            <div class="info-card__icon">🕐</div>
-            <h3 class="info-card__title">営業時間</h3>
-            <p class="info-card__text">
-              10:00〜17:00<br>
-              19:00〜21:00<br>
-              （不定休）
+          
+          <div class="contact-info__card fade-in-up">
+            <div class="contact-info__header">
+              <div class="contact-info__icon">📧</div>
+              <h3 class="contact-info__title">メールでのお問い合わせ</h3>
+            </div>
+            <div class="contact-info__content">
+              <p>
+                フォームからのお問い合わせが<br>
+                難しい場合は、下記メールアドレスへ<br>
+                直接ご連絡ください。
+              </p>
+              <p style="margin-top: 0.75rem;">
+                <strong style="color: var(--color-pastel-blue);">info@nekosan-uranai.com</strong>
+              </p>
+            </div>
+          </div>
+          
+          <div class="contact-info__card fade-in-up">
+            <div class="contact-info__header">
+              <div class="contact-info__icon">💡</div>
+              <h3 class="contact-info__title">ご注意事項</h3>
+            </div>
+            <div class="contact-info__content">
+              <p>
+                ・迷惑メール設定をされている場合は<br>
+                　返信が届かないことがあります<br>
+                ・鑑定のご予約は<br>
+                　<a href="index.html#reserve" style="color: var(--color-pastel-blue); text-decoration: underline;">ご予約フォーム</a>よりお願いします<br>
+                ・個別の鑑定結果に関する<br>
+                　再質問は別途料金が発生します
+              </p>
+            </div>
+          </div>
+          
+          <a href="faq.html" class="faq-link-card fade-in-up">
+            <div class="faq-link-card__icon">❓</div>
+            <h3 class="faq-link-card__title">よくある質問</h3>
+            <p class="faq-link-card__text">
+              お問い合わせの前に、<br>
+              よくある質問もご確認ください
             </p>
-          </div>
-          <div class="info-card">
-            <div class="info-card__icon">📅</div>
-            <h3 class="info-card__title">ご予約について</h3>
-            <p class="info-card__text">
-              完全予約制です。<br>
-              前日までにご予約ください。<br>
-              当日予約は空きがあれば可能です。
-            </p>
-          </div>
-          <div class="info-card">
-            <div class="info-card__icon">💳</div>
-            <h3 class="info-card__title">お支払い方法</h3>
-            <p class="info-card__text">
-              銀行振込<br>
-              PayPay<br>
-              クレジットカード（Stripe）
-            </p>
-          </div>
-        </div>
+            <span class="faq-link-card__button">
+              FAQを見る
+              <span>→</span>
+            </span>
+          </a>
+        </aside>
       </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section id="faq" class="faq-section">
-      <div class="container container--narrow">
-        <div class="section-title fade-in">
-          <h2 class="section-title__en">FAQ</h2>
-          <div class="section-title__line">
-            <span></span>
-            <span class="section-title__icon">✦</span>
-            <span></span>
-          </div>
-          <p class="section-title__jp">よくある質問</p>
-        </div>
-
-        <div class="faq-list fade-in">
-          <div class="faq-item">
-            <button class="faq-item__question">
-              <span>キャンセル・日程変更はできますか？</span>
-              <span class="faq-item__icon">+</span>
-            </button>
-            <div class="faq-item__answer">
-              <div class="faq-item__answer-inner">
-                はい、可能です。前日までにご連絡いただければ、日程変更・キャンセルを承ります。当日キャンセルの場合は、キャンセル料（鑑定料の50%）が発生いたしますのでご了承ください。体調不良などやむを得ない事情がある場合はご相談ください。
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-item__question">
-              <span>予約後の流れを教えてください</span>
-              <span class="faq-item__icon">+</span>
-            </button>
-            <div class="faq-item__answer">
-              <div class="faq-item__answer-inner">
-                ①ご予約確定のメール/LINEをお送りします → ②お支払い方法のご案内 → ③ご入金確認後、Zoom URLまたはLINE通話の準備 → ④当日、時間になりましたら鑑定開始 → ⑤鑑定後、アフターフォローメッセージをお送りします
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-item__question">
-              <span>顔出しなしでも大丈夫ですか？</span>
-              <span class="faq-item__icon">+</span>
-            </button>
-            <div class="faq-item__answer">
-              <div class="faq-item__answer-inner">
-                はい、もちろん大丈夫です！音声のみでの鑑定も可能ですし、チャット鑑定もお選びいただけます。リラックスできる形式でお受けください。
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-item__question">
-              <span>どんな相談ができますか？</span>
-              <span class="faq-item__icon">+</span>
-            </button>
-            <div class="faq-item__answer">
-              <div class="faq-item__answer-inner">
-                恋愛・仕事・人間関係・人生の方向性・自己理解など、幅広くご相談いただけます。「こんなこと聞いていいのかな？」と思うような内容でも大丈夫です。ただし、医療・法律・投資などの専門分野に関するアドバイスはいたしかねます。
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-item__question">
-              <span>鑑定結果は録音・録画できますか？</span>
-              <span class="faq-item__icon">+</span>
-            </button>
-            <div class="faq-item__answer">
-              <div class="faq-item__answer-inner">
-                ご自身の振り返り用としての録音・録画はOKです。SNSへの投稿や第三者への共有はご遠慮ください。また、オプションで鑑定書（PDF）の作成も承っております。
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <div class="footer__grid">
-        <div class="footer__brand">
-          <div class="footer__logo">
-            <div class="footer__logo-icon">🌙</div>
-            <span class="footer__logo-text">ねこさん占い</span>
-          </div>
-          <p class="footer__description">
-            月と星が導くあなたの物語。<br>
-            タロットとオラクルカードで、<br>
-            心に寄り添う鑑定をお届けします。
-          </p>
-        </div>
-        
-        <div class="footer__nav">
-          <h4 class="footer__heading">MENU</h4>
-          <ul class="footer__list">
-            <li><a href="index.html">ホーム</a></li>
-            <li><a href="about.html">ねこさんについて</a></li>
-            <li><a href="menu.html">占いメニュー</a></li>
-            <li><a href="voices.html">お客様の声</a></li>
-          </ul>
-        </div>
-        
-        <div class="footer__nav">
-          <h4 class="footer__heading">INFO</h4>
-          <ul class="footer__list">
-            <li><a href="contact.html">ご予約・お問い合わせ</a></li>
-            <li><a href="#">よくある質問</a></li>
-            <li><a href="#">特定商取引法に基づく表記</a></li>
-            <li><a href="#">プライバシーポリシー</a></li>
-          </ul>
-        </div>
-        
-        <div class="footer__nav">
-          <h4 class="footer__heading">FOLLOW</h4>
-          <div class="footer__social">
-            <a href="#" aria-label="Instagram">📷</a>
-            <a href="#" aria-label="Twitter">🐦</a>
-            <a href="#" aria-label="LINE">💬</a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="footer__bottom">
-        <p class="footer__copyright">© 2024 ねこさん占い All Rights Reserved.</p>
-        <div class="footer__legal">
-          <a href="#">利用規約</a>
-          <a href="#">プライバシーポリシー</a>
-        </div>
+      <div class="footer__inner">
+        <a href="index.html" class="footer__logo">
+          <div class="footer__logo-icon">🌙</div>
+          <span class="footer__logo-text">ねこさん占い</span>
+        </a>
+        <nav class="footer__nav">
+          <a href="index.html" class="footer__nav-link">ホーム</a>
+          <a href="menu-detail.html" class="footer__nav-link">占いメニュー</a>
+          <a href="faq.html" class="footer__nav-link">よくある質問</a>
+          <a href="contact.html" class="footer__nav-link">お問い合わせ</a>
+          <a href="#" class="footer__nav-link">プライバシーポリシー</a>
+          <a href="#" class="footer__nav-link">特定商取引法に基づく表記</a>
+        </nav>
+        <p class="footer__copyright">© 2024 ねこさん占い. All Rights Reserved.</p>
       </div>
     </div>
   </footer>
 
-  <!-- Scroll to Top Button -->
-  <button class="scroll-top" aria-label="ページトップへ">↑</button>
-
   <script>
-    // ===== Star Canvas Animation =====
-    const canvas = document.getElementById('starCanvas');
-    const ctx = canvas.getContext('2d');
-    let stars = [];
-
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-
-    function createStars() {
-      stars = [];
-      const numStars = 100;
-      for (let i = 0; i < numStars; i++) {
-        stars.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          radius: Math.random() * 1.5 + 0.5,
-          opacity: Math.random() * 0.8 + 0.2,
-          twinkleSpeed: Math.random() * 0.02 + 0.01,
-          twinklePhase: Math.random() * Math.PI * 2
-        });
+    // Generate Stars
+    function generateStars() {
+      const container = document.getElementById('starsContainer');
+      const starCount = 100;
+      
+      for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.width = Math.random() * 2 + 1 + 'px';
+        star.style.height = star.style.width;
+        star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
+        star.style.setProperty('--delay', (Math.random() * 2) + 's');
+        star.style.setProperty('--opacity', Math.random() * 0.5 + 0.3);
+        container.appendChild(star);
       }
     }
-
-    function drawStars() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      stars.forEach(star => {
-        star.twinklePhase += star.twinkleSpeed;
-        const opacity = star.opacity * (0.5 + 0.5 * Math.sin(star.twinklePhase));
-        
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
-        ctx.fill();
-      });
-      
-      requestAnimationFrame(drawStars);
-    }
-
-    resizeCanvas();
-    createStars();
-    drawStars();
-
-    window.addEventListener('resize', () => {
-      resizeCanvas();
-      createStars();
-    });
-
-    // ===== Header Scroll Effect =====
-    const header = document.querySelector('.header');
+    
+    generateStars();
+    
+    // Header Scroll
+    const header = document.getElementById('header');
     window.addEventListener('scroll', () => {
       if (window.scrollY > 50) {
         header.classList.add('scrolled');
@@ -1689,28 +1113,65 @@
         header.classList.remove('scrolled');
       }
     });
-
-    // ===== Mobile Navigation =====
-    const hamburger = document.querySelector('.header__hamburger');
-    const mobileNav = document.querySelector('.mobile-nav');
-    const mobileNavClose = document.querySelector('.mobile-nav__close');
-
+    
+    // Mobile Menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    
     hamburger.addEventListener('click', () => {
-      mobileNav.classList.add('active');
-      document.body.style.overflow = 'hidden';
+      hamburger.classList.toggle('active');
+      mobileNav.classList.toggle('active');
+      document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
     });
-
-    mobileNavClose.addEventListener('click', () => {
-      mobileNav.classList.remove('active');
-      document.body.style.overflow = '';
+    
+    // Close mobile menu on link click
+    document.querySelectorAll('.mobile-nav__link, .mobile-nav__cta').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('active');
+        document.body.style.overflow = '';
+      });
     });
-
-    // ===== Scroll Animations =====
+    
+    // Form Submission
+    const contactFormElement = document.getElementById('contactFormElement');
+    const contactForm = document.getElementById('contactForm');
+    const thankYou = document.getElementById('thankYou');
+    
+    contactFormElement.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // Simple validation
+      const formData = new FormData(contactFormElement);
+      let isValid = true;
+      
+      formData.forEach((value, key) => {
+        if (!value && key !== 'privacy') {
+          isValid = false;
+        }
+      });
+      
+      if (!document.getElementById('privacy').checked) {
+        alert('プライバシーポリシーへの同意が必要です');
+        return;
+      }
+      
+      if (isValid) {
+        // Show thank you message
+        contactForm.style.display = 'none';
+        thankYou.classList.add('visible');
+        
+        // Scroll to top of section
+        document.querySelector('.contact-section').scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+    
+    // Scroll Animations
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
     };
-
+    
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -1718,59 +1179,9 @@
         }
       });
     }, observerOptions);
-
-    document.querySelectorAll('.fade-in, .stagger').forEach(el => {
-      observer.observe(el);
-    });
-
-    // ===== Scroll to Top Button =====
-    const scrollTopBtn = document.querySelector('.scroll-top');
     
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 300) {
-        scrollTopBtn.classList.add('visible');
-      } else {
-        scrollTopBtn.classList.remove('visible');
-      }
-    });
-
-    scrollTopBtn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    // ===== FAQ Accordion =====
-    const faqItems = document.querySelectorAll('.faq-item');
-    faqItems.forEach(item => {
-      const question = item.querySelector('.faq-item__question');
-      question.addEventListener('click', () => {
-        const isActive = item.classList.contains('active');
-        
-        // Close all
-        faqItems.forEach(i => i.classList.remove('active'));
-        
-        // Open clicked if wasn't active
-        if (!isActive) {
-          item.classList.add('active');
-        }
-      });
-    });
-
-    // ===== Form Submission =====
-    const form = document.getElementById('reservationForm');
-    const formWrapper = document.querySelector('.form-wrapper');
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      
-      // Simulate form submission
-      const submitBtn = form.querySelector('button[type="submit"]');
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = '<span>⏳</span> 送信中...';
-      
-      setTimeout(() => {
-        formWrapper.classList.add('submitted');
-        window.scrollTo({ top: formWrapper.offsetTop - 100, behavior: 'smooth' });
-      }, 1500);
+    document.querySelectorAll('.fade-in-up').forEach(el => {
+      observer.observe(el);
     });
   </script>
 </body>

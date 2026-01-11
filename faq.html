@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>よくある質問｜ねこさん占い</title>
+  <meta name="description" content="ねこさん占いのよくある質問（FAQ）ページです。鑑定の流れや支払い方法、キャンセルについてなど、お客様からよくいただくご質問にお答えします。">
+  
+  <!-- OGP -->
+  <meta property="og:title" content="よくある質問｜ねこさん占い">
+  <meta property="og:description" content="占い鑑定に関するよくある質問にお答えします。">
+  <meta property="og:type" content="website">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Noto+Sans+JP:wght@300;400;500;600&family=Noto+Serif+JP:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ═══════════════════════════════════════════════════════════════
+       CSS Variables & Reset
+       ═══════════════════════════════════════════════════════════════ */
+    :root {
+      --color-deep-navy: #1a1a2e;
+      --color-dark-blue: #16213e;
+      --color-midnight: #0f0f23;
+      --color-gold: #d4af37;
+      --color-gold-light: #e8c964;
+      --color-gold-dark: #b8942f;
+      --color-pastel-blue: #a8d8ea;
+      --color-pastel-blue-light: #c5e8f5;
+      --color-off-white: #f8f9fa;
+      --color-text-light: #ffffff;
+      --color-text-dark: #333333;
+      --color-text-muted: #888888;
+      --color-border-dark: #2a2a4a;
+      --color-star: rgba(255, 255, 255, 0.8);
+      
+      --font-display: 'Cormorant Garamond', serif;
+      --font-serif-jp: 'Noto Serif JP', serif;
+      --font-sans-jp: 'Noto Sans JP', sans-serif;
+      
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 2rem;
+      --space-lg: 4rem;
+      --space-xl: 6rem;
+      --space-2xl: 8rem;
+      
+      --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: var(--font-sans-jp);
+      font-weight: 400;
+      line-height: 1.8;
+      color: var(--color-text-light);
+      background: var(--color-deep-navy);
+      overflow-x: hidden;
+    }
+    
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       Star Background
+       ═══════════════════════════════════════════════════════════════ */
+    .stars-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    
+    .star {
+      position: absolute;
+      background: var(--color-star);
+      border-radius: 50%;
+      animation: twinkle var(--duration) ease-in-out infinite;
+      animation-delay: var(--delay);
+    }
+    
+    @keyframes twinkle {
+      0%, 100% { opacity: var(--opacity); transform: scale(1); }
+      50% { opacity: calc(var(--opacity) * 0.3); transform: scale(0.8); }
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       Header
+       ═══════════════════════════════════════════════════════════════ */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 1.5rem 0;
+      transition: all 0.4s var(--transition-smooth);
+      background: rgba(26, 26, 46, 0.95);
+      backdrop-filter: blur(10px);
+    }
+    
+    .header.scrolled {
+      padding: 1rem 0;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    }
+    
+    .header__inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .header__logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    
+    .header__logo-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+    }
+    
+    .header__logo-text {
+      font-family: var(--font-serif-jp);
+      font-size: 1.25rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+    }
+    
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+    }
+    
+    .nav__list {
+      display: flex;
+      gap: 2rem;
+    }
+    
+    .nav__link {
+      font-size: 0.875rem;
+      letter-spacing: 0.05em;
+      position: relative;
+      padding: 0.25rem 0;
+      transition: color 0.3s ease;
+    }
+    
+    .nav__link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--color-gold);
+      transition: width 0.3s ease;
+    }
+    
+    .nav__link:hover::after,
+    .nav__link.active::after {
+      width: 100%;
+    }
+    
+    .nav__link.active {
+      color: var(--color-gold);
+    }
+    
+    .nav__cta {
+      padding: 0.75rem 1.5rem;
+      background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+      color: var(--color-deep-navy);
+      font-size: 0.875rem;
+      font-weight: 500;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    }
+    
+    .nav__cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+      z-index: 1001;
+    }
+    
+    .hamburger span {
+      width: 24px;
+      height: 2px;
+      background: var(--color-text-light);
+      transition: all 0.3s ease;
+    }
+    
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       Page Header
+       ═══════════════════════════════════════════════════════════════ */
+    .page-header {
+      position: relative;
+      padding: 12rem 0 6rem;
+      background: linear-gradient(180deg, var(--color-midnight) 0%, var(--color-deep-navy) 100%);
+      text-align: center;
+      overflow: hidden;
+    }
+    
+    .page-header__bg {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    
+    .page-header__orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.2;
+    }
+    
+    .page-header__orb--1 {
+      width: 400px;
+      height: 400px;
+      background: var(--color-pastel-blue);
+      top: 0;
+      left: -100px;
+    }
+    
+    .page-header__orb--2 {
+      width: 300px;
+      height: 300px;
+      background: var(--color-gold);
+      bottom: -50px;
+      right: -50px;
+    }
+    
+    .page-header__content {
+      position: relative;
+      z-index: 10;
+    }
+    
+    .page-header__title-en {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 300;
+      font-style: italic;
+      letter-spacing: 0.15em;
+      color: var(--color-gold);
+      margin-bottom: 0.5rem;
+    }
+    
+    .page-header__title-jp {
+      font-family: var(--font-serif-jp);
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      margin-bottom: 1.5rem;
+    }
+    
+    .page-header__desc {
+      font-size: 0.9375rem;
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.9;
+    }
+    
+    .breadcrumb {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 2rem;
+      font-size: 0.8125rem;
+      color: rgba(255, 255, 255, 0.5);
+    }
+    
+    .breadcrumb a {
+      transition: color 0.3s ease;
+    }
+    
+    .breadcrumb a:hover {
+      color: var(--color-gold);
+    }
+    
+    .breadcrumb span {
+      color: var(--color-gold);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       FAQ Section
+       ═══════════════════════════════════════════════════════════════ */
+    .faq-section {
+      position: relative;
+      padding: var(--space-2xl) 0;
+      z-index: 1;
+    }
+    
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .faq-category {
+      margin-bottom: var(--space-xl);
+    }
+    
+    .faq-category__title {
+      font-family: var(--font-serif-jp);
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    
+    .faq-category__icon {
+      color: var(--color-gold);
+    }
+    
+    .faq-item {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .faq-item:hover {
+      border-color: rgba(212, 175, 55, 0.2);
+    }
+    
+    .faq-item.active {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(212, 175, 55, 0.3);
+    }
+    
+    .faq-question {
+      width: 100%;
+      padding: 1.5rem 2rem;
+      background: none;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      color: var(--color-text-light);
+      font-family: var(--font-sans-jp);
+      font-size: 1rem;
+      line-height: 1.6;
+      transition: color 0.3s ease;
+    }
+    
+    .faq-question:hover {
+      color: var(--color-gold);
+    }
+    
+    .faq-question__q {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+      color: var(--color-deep-navy);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+    
+    .faq-question__text {
+      flex: 1;
+    }
+    
+    .faq-question__icon {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+    
+    .faq-question__icon::before,
+    .faq-question__icon::after {
+      content: '';
+      position: absolute;
+      background: var(--color-gold);
+      transition: all 0.3s ease;
+    }
+    
+    .faq-question__icon::before {
+      width: 12px;
+      height: 2px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    
+    .faq-question__icon::after {
+      width: 2px;
+      height: 12px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    
+    .faq-item.active .faq-question__icon::after {
+      transform: translate(-50%, -50%) rotate(90deg);
+      opacity: 0;
+    }
+    
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+    }
+    
+    .faq-item.active .faq-answer {
+      max-height: 500px;
+    }
+    
+    .faq-answer__inner {
+      padding: 0 2rem 1.5rem;
+      padding-left: 4.5rem;
+    }
+    
+    .faq-answer__text {
+      font-size: 0.9375rem;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.9;
+    }
+    
+    .faq-answer__text a {
+      color: var(--color-gold);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    
+    .faq-answer__text a:hover {
+      color: var(--color-gold-light);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       Contact Note Section
+       ═══════════════════════════════════════════════════════════════ */
+    .contact-note {
+      position: relative;
+      z-index: 1;
+      padding: var(--space-lg) 0 var(--space-2xl);
+    }
+    
+    .contact-note__inner {
+      max-width: 700px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(168, 216, 234, 0.1) 100%);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 16px;
+      padding: 3rem;
+      text-align: center;
+    }
+    
+    .contact-note__title {
+      font-family: var(--font-serif-jp);
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+    
+    .contact-note__icon {
+      color: var(--color-gold);
+      font-size: 1.5rem;
+    }
+    
+    .contact-note__text {
+      font-size: 0.9375rem;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.9;
+      margin-bottom: 1.5rem;
+    }
+    
+    .contact-note__button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+      color: var(--color-deep-navy);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    }
+    
+    .contact-note__button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       Footer
+       ═══════════════════════════════════════════════════════════════ */
+    .footer {
+      position: relative;
+      z-index: 1;
+      background: var(--color-midnight);
+      padding: var(--space-lg) 0 var(--space-md);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .footer__inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    
+    .footer__logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    
+    .footer__logo-icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+    }
+    
+    .footer__logo-text {
+      font-family: var(--font-serif-jp);
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+    }
+    
+    .footer__nav {
+      display: flex;
+      gap: 2rem;
+    }
+    
+    .footer__nav-link {
+      font-size: 0.8125rem;
+      color: rgba(255, 255, 255, 0.6);
+      transition: color 0.3s ease;
+    }
+    
+    .footer__nav-link:hover {
+      color: var(--color-gold);
+    }
+    
+    .footer__copyright {
+      width: 100%;
+      text-align: center;
+      padding-top: 1.5rem;
+      margin-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       Animations
+       ═══════════════════════════════════════════════════════════════ */
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    
+    .fade-in-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       Mobile Navigation Overlay
+       ═══════════════════════════════════════════════════════════════ */
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: rgba(15, 15, 35, 0.98);
+      backdrop-filter: blur(20px);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s ease;
+    }
+    
+    .mobile-nav.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .mobile-nav__list {
+      text-align: center;
+    }
+    
+    .mobile-nav__item {
+      margin-bottom: 2rem;
+    }
+    
+    .mobile-nav__link {
+      font-family: var(--font-serif-jp);
+      font-size: 1.5rem;
+      letter-spacing: 0.1em;
+      transition: color 0.3s ease;
+    }
+    
+    .mobile-nav__link:hover {
+      color: var(--color-gold);
+    }
+    
+    .mobile-nav__cta {
+      margin-top: 2rem;
+      padding: 1rem 2.5rem;
+      background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+      color: var(--color-deep-navy);
+      font-size: 1rem;
+      font-weight: 500;
+      border-radius: 4px;
+      display: inline-block;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       Responsive
+       ═══════════════════════════════════════════════════════════════ */
+    @media (max-width: 768px) {
+      :root {
+        --space-xl: 4rem;
+        --space-2xl: 5rem;
+      }
+      
+      .nav__list, .nav__cta {
+        display: none;
+      }
+      
+      .hamburger {
+        display: flex;
+      }
+      
+      .page-header {
+        padding: 10rem 0 4rem;
+      }
+      
+      .faq-question {
+        padding: 1.25rem 1.5rem;
+      }
+      
+      .faq-answer__inner {
+        padding: 0 1.5rem 1.25rem;
+        padding-left: 1.5rem;
+      }
+      
+      .contact-note__inner {
+        padding: 2rem 1.5rem;
+      }
+      
+      .footer__inner {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .footer__nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Stars Background -->
+  <div class="stars-container" id="starsContainer"></div>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container">
+      <div class="header__inner">
+        <a href="index.html" class="header__logo">
+          <div class="header__logo-icon">🌙</div>
+          <span class="header__logo-text">ねこさん占い</span>
+        </a>
+        
+        <nav class="nav">
+          <ul class="nav__list">
+            <li><a href="index.html" class="nav__link">ホーム</a></li>
+            <li><a href="menu-detail.html" class="nav__link">占いメニュー</a></li>
+            <li><a href="index.html#about" class="nav__link">占い師紹介</a></li>
+            <li><a href="faq.html" class="nav__link active">よくある質問</a></li>
+            <li><a href="contact.html" class="nav__link">お問い合わせ</a></li>
+          </ul>
+          <a href="contact.html" class="nav__cta">無料相談する</a>
+        </nav>
+        
+        <button class="hamburger" id="hamburger" aria-label="メニュー">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation -->
+  <div class="mobile-nav" id="mobileNav">
+    <nav class="mobile-nav__list">
+      <div class="mobile-nav__item">
+        <a href="index.html" class="mobile-nav__link">ホーム</a>
+      </div>
+      <div class="mobile-nav__item">
+        <a href="menu-detail.html" class="mobile-nav__link">占いメニュー</a>
+      </div>
+      <div class="mobile-nav__item">
+        <a href="index.html#about" class="mobile-nav__link">占い師紹介</a>
+      </div>
+      <div class="mobile-nav__item">
+        <a href="faq.html" class="mobile-nav__link">よくある質問</a>
+      </div>
+      <div class="mobile-nav__item">
+        <a href="contact.html" class="mobile-nav__link">お問い合わせ</a>
+      </div>
+      <a href="contact.html" class="mobile-nav__cta">無料相談する</a>
+    </nav>
+  </div>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="page-header__bg">
+      <div class="page-header__orb page-header__orb--1"></div>
+      <div class="page-header__orb page-header__orb--2"></div>
+    </div>
+    <div class="container">
+      <div class="page-header__content">
+        <h1 class="page-header__title-en">FAQ</h1>
+        <p class="page-header__title-jp">よくある質問</p>
+        <p class="page-header__desc">
+          お客様からよくいただくご質問をまとめました。<br>
+          こちらで解決しない場合は、お気軽にお問い合わせください。
+        </p>
+        <nav class="breadcrumb">
+          <a href="index.html">ホーム</a>
+          <span>/</span>
+          <span>よくある質問</span>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section">
+    <div class="container">
+      <div class="faq-container">
+        
+        <!-- 鑑定について -->
+        <div class="faq-category fade-in-up">
+          <h2 class="faq-category__title">
+            <span class="faq-category__icon">🔮</span>
+            鑑定について
+          </h2>
+          
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span class="faq-question__q">Q</span>
+              <span class="faq-question__text">鑑定はどのような形式で行われますか？</span>
+              <span class="faq-question__icon"></span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer__inner">
+                <p class="faq-answer__text">
+                  LINEでのチャット鑑定となります。リアルタイムでやり取りするのではなく、お客様からいただいたご質問に対して、カードを展開し、メッセージとして鑑定結果をお送りする形式です。お時間を気にせず、ゆっくりとお読みいただけます。
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span class="faq-question__q">Q</span>
+              <span class="faq-question__text">鑑定結果はどのくらいで届きますか？</span>
+              <span class="faq-question__icon"></span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer__inner">
+                <p class="faq-answer__text">
+                  通常、お申し込みから3〜5日以内にお届けしております。混雑状況によっては多少前後する場合がございますが、その際は事前にご連絡いたします。お急ぎの場合は、お申し込み時にお知らせください。
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span class="faq-question__q">Q</span>
+              <span class="faq-question__text">どんな悩みでも相談できますか？</span>
+              <span class="faq-question__icon"></span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer__inner">
+                <p class="faq-answer__text">
+                  恋愛に関するお悩みを専門としております。片思い、復縁、相性、二人の未来など、恋愛に関することでしたらどんなことでもご相談いただけます。ただし、ギャンブル、投資、法律に関するご質問、人の生死に関わるご質問はお受けしておりません。
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span class="faq-question__q">Q</span>
+              <span class="faq-question__text">相手の生年月日がわからなくても大丈夫ですか？</span>
+              <span class="faq-question__icon"></span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer__inner">
+                <p class="faq-answer__text">
+                  はい、大丈夫です。タロットカードとオラクルカードを使った鑑定ですので、生年月日は必須ではありません。お相手のお名前（ニックネームでも可）と、お二人の関係性をお教えいただければ鑑定可能です。
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span class="faq-question__q">Q</span>
+              <span class="faq-question__text">鑑定後に追加で質問してもいいですか？</span>
+              <span class="faq-question__icon"></span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer__inner">
+                <p class="faq-answer__text">
+                  タロット×オラクルカードリーディング（¥5,000）には、鑑定後の質疑応答1回が含まれています。鑑定結果についてのご質問や、補足で知りたいことがあればお気軽にお聞きください。それ以上の追加質問は、別途ご相談ください。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- お支払いについて -->
+        <div class="faq-category fade-in-up">
+          <h2 class="faq-category__title">
+            <span class="faq-category__icon">💳</span>
+            お支払いについて
+          </h2>
+          
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span class="faq-question__q">Q</span>
+              <span class="faq-question__text">支払い方法は何がありますか？</span>
+              <span class="faq-question__icon"></span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer__inner">
+                <p class="faq-answer__text">
+                  PayPay、銀行振込（三菱UFJ銀行、楽天銀行）に対応しております。お申し込み時にご希望のお支払い方法をお知らせください。クレジットカード決済は現在準備中です。
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span class="faq-question__q">Q</span>
+              <span class="faq-question__text">支払いはいつ行えばいいですか？</span>
+              <span class="faq-question__icon"></span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer__inner">
+                <p class="faq-answer__text">
+                  お申し込み後、ご質問内容を確認させていただいてから、お支払いのご案内をお送りします。お支払いの確認ができ次第、鑑定を開始いたします。
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span class="faq-question__q">Q</span>
+              <span class="faq-question__text">領収書は発行できますか？</span>
+              <span class="faq-question__icon"></span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer__inner">
+                <p class="faq-answer__text">
+                  はい、ご希望の方には電子領収書（PDF形式）を発行しております。お申し込み時にお申し付けください。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- キャンセル・変更について -->
+        <div class="faq-category fade-in-up">
+          <h2 class="faq-category__title">
+            <span class="faq-category__icon">📝</span>
+            キャンセル・変更について
+          </h2>
+          
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span class="faq-question__q">Q</span>
+              <span class="faq-question__text">キャンセルはできますか？</span>
+              <span class="faq-question__icon"></span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer__inner">
+                <p class="faq-answer__text">
+                  お支払い前であれば、無料でキャンセルが可能です。お支払い後のキャンセルについては、鑑定開始前であれば手数料500円を差し引いた金額を返金いたします。鑑定開始後のキャンセル・返金は原則としてお受けしておりませんので、ご了承ください。
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span class="faq-question__q">Q</span>
+              <span class="faq-question__text">質問内容を変更したい場合は？</span>
+              <span class="faq-question__icon"></span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer__inner">
+                <p class="faq-answer__text">
+                  鑑定開始前であれば、質問内容の変更が可能です。LINEでお気軽にお知らせください。ただし、鑑定を開始した後の変更はお受けできませんので、ご質問は事前にしっかりご検討いただけますと幸いです。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- その他 -->
+        <div class="faq-category fade-in-up">
+          <h2 class="faq-category__title">
+            <span class="faq-category__icon">✨</span>
+            その他
+          </h2>
+          
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span class="faq-question__q">Q</span>
+              <span class="faq-question__text">プライバシーは守られますか？</span>
+              <span class="faq-question__icon"></span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer__inner">
+                <p class="faq-answer__text">
+                  お客様からいただいた個人情報やご相談内容は、厳重に管理し、鑑定以外の目的で使用することは一切ございません。第三者への開示も行いませんので、安心してご相談ください。詳しくは<a href="#">プライバシーポリシー</a>をご確認ください。
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span class="faq-question__q">Q</span>
+              <span class="faq-question__text">リピート割引はありますか？</span>
+              <span class="faq-question__icon"></span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer__inner">
+                <p class="faq-answer__text">
+                  はい、2回目以降のご利用のお客様には、500円オフのリピート割引がございます。また、不定期でLINE限定のクーポンを配信しておりますので、ぜひLINE登録をお願いいたします。
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span class="faq-question__q">Q</span>
+              <span class="faq-question__text">男性でも利用できますか？</span>
+              <span class="faq-question__icon"></span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer__inner">
+                <p class="faq-answer__text">
+                  もちろんです。性別を問わずご利用いただけます。恋愛のお悩みを抱えている方であれば、どなたでも歓迎しております。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Note -->
+  <section class="contact-note">
+    <div class="container">
+      <div class="contact-note__inner fade-in-up">
+        <h2 class="contact-note__title">
+          <span class="contact-note__icon">💬</span>
+          解決しない場合は
+        </h2>
+        <p class="contact-note__text">
+          こちらに記載のない質問やご不明点がございましたら、<br>
+          お気軽にお問い合わせください。
+        </p>
+        <a href="contact.html" class="contact-note__button">
+          お問い合わせはこちら
+          <span>→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <a href="index.html" class="footer__logo">
+          <div class="footer__logo-icon">🌙</div>
+          <span class="footer__logo-text">ねこさん占い</span>
+        </a>
+        <nav class="footer__nav">
+          <a href="index.html" class="footer__nav-link">ホーム</a>
+          <a href="menu-detail.html" class="footer__nav-link">占いメニュー</a>
+          <a href="faq.html" class="footer__nav-link">よくある質問</a>
+          <a href="contact.html" class="footer__nav-link">お問い合わせ</a>
+          <a href="#" class="footer__nav-link">プライバシーポリシー</a>
+          <a href="#" class="footer__nav-link">特定商取引法に基づく表記</a>
+        </nav>
+        <p class="footer__copyright">© 2024 ねこさん占い. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Generate Stars
+    function generateStars() {
+      const container = document.getElementById('starsContainer');
+      const starCount = 100;
+      
+      for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.width = Math.random() * 2 + 1 + 'px';
+        star.style.height = star.style.width;
+        star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
+        star.style.setProperty('--delay', (Math.random() * 2) + 's');
+        star.style.setProperty('--opacity', Math.random() * 0.5 + 0.3);
+        container.appendChild(star);
+      }
+    }
+    
+    generateStars();
+    
+    // Header Scroll
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+    
+    // Mobile Menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileNav.classList.toggle('active');
+      document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+    });
+    
+    // Close mobile menu on link click
+    document.querySelectorAll('.mobile-nav__link, .mobile-nav__cta').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+    
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(button => {
+      button.addEventListener('click', () => {
+        const faqItem = button.closest('.faq-item');
+        const isActive = faqItem.classList.contains('active');
+        
+        // Close all other items (optional - remove if you want multiple open)
+        // document.querySelectorAll('.faq-item').forEach(item => {
+        //   item.classList.remove('active');
+        // });
+        
+        // Toggle current item
+        faqItem.classList.toggle('active');
+      });
+    });
+    
+    // Scroll Animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+    
+    document.querySelectorAll('.fade-in-up').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>

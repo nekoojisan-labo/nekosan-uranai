@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>占いメニュー｜ねこさん占い</title>
+  <meta name="description" content="タロット×オラクルカードリーディング、オラクルカードリーディングなど、ねこさん占いの鑑定メニュー一覧です。">
+  
+  <!-- OGP -->
+  <meta property="og:title" content="占いメニュー｜ねこさん占い">
+  <meta property="og:description" content="あなたの心に寄り添う占い鑑定メニューをご紹介します。">
+  <meta property="og:type" content="website">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Noto+Sans+JP:wght@300;400;500;600&family=Noto+Serif+JP:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ═══════════════════════════════════════════════════════════════
+       CSS Variables & Reset
+       ═══════════════════════════════════════════════════════════════ */
+    :root {
+      --color-deep-navy: #1a1a2e;
+      --color-dark-blue: #16213e;
+      --color-midnight: #0f0f23;
+      --color-gold: #d4af37;
+      --color-gold-light: #e8c964;
+      --color-gold-dark: #b8942f;
+      --color-pastel-blue: #a8d8ea;
+      --color-pastel-blue-light: #c5e8f5;
+      --color-off-white: #f8f9fa;
+      --color-text-light: #ffffff;
+      --color-text-dark: #333333;
+      --color-text-muted: #888888;
+      --color-border-dark: #2a2a4a;
+      --color-star: rgba(255, 255, 255, 0.8);
+      
+      --font-display: 'Cormorant Garamond', serif;
+      --font-serif-jp: 'Noto Serif JP', serif;
+      --font-sans-jp: 'Noto Sans JP', sans-serif;
+      
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 2rem;
+      --space-lg: 4rem;
+      --space-xl: 6rem;
+      --space-2xl: 8rem;
+      
+      --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: var(--font-sans-jp);
+      font-weight: 400;
+      line-height: 1.8;
+      color: var(--color-text-light);
+      background: var(--color-deep-navy);
+      overflow-x: hidden;
+    }
+    
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       Star Background
+       ═══════════════════════════════════════════════════════════════ */
+    .stars-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    
+    .star {
+      position: absolute;
+      background: var(--color-star);
+      border-radius: 50%;
+      animation: twinkle var(--duration) ease-in-out infinite;
+      animation-delay: var(--delay);
+    }
+    
+    @keyframes twinkle {
+      0%, 100% { opacity: var(--opacity); transform: scale(1); }
+      50% { opacity: calc(var(--opacity) * 0.3); transform: scale(0.8); }
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       Header
+       ═══════════════════════════════════════════════════════════════ */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 1.5rem 0;
+      transition: all 0.4s var(--transition-smooth);
+      background: rgba(26, 26, 46, 0.95);
+      backdrop-filter: blur(10px);
+    }
+    
+    .header.scrolled {
+      padding: 1rem 0;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    }
+    
+    .header__inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .header__logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    
+    .header__logo-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+    }
+    
+    .header__logo-text {
+      font-family: var(--font-serif-jp);
+      font-size: 1.25rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+    }
+    
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+    }
+    
+    .nav__list {
+      display: flex;
+      gap: 2rem;
+    }
+    
+    .nav__link {
+      font-size: 0.875rem;
+      letter-spacing: 0.05em;
+      position: relative;
+      padding: 0.25rem 0;
+      transition: color 0.3s ease;
+    }
+    
+    .nav__link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--color-gold);
+      transition: width 0.3s ease;
+    }
+    
+    .nav__link:hover::after,
+    .nav__link.active::after {
+      width: 100%;
+    }
+    
+    .nav__link.active {
+      color: var(--color-gold);
+    }
+    
+    .nav__cta {
+      padding: 0.75rem 1.5rem;
+      background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+      color: var(--color-deep-navy);
+      font-size: 0.875rem;
+      font-weight: 500;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    }
+    
+    .nav__cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+      z-index: 1001;
+    }
+    
+    .hamburger span {
+      width: 24px;
+      height: 2px;
+      background: var(--color-text-light);
+      transition: all 0.3s ease;
+    }
+    
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       Page Header
+       ═══════════════════════════════════════════════════════════════ */
+    .page-header {
+      position: relative;
+      padding: 12rem 0 6rem;
+      background: linear-gradient(180deg, var(--color-midnight) 0%, var(--color-deep-navy) 100%);
+      text-align: center;
+      overflow: hidden;
+    }
+    
+    .page-header__bg {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    
+    .page-header__orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.2;
+    }
+    
+    .page-header__orb--1 {
+      width: 400px;
+      height: 400px;
+      background: var(--color-pastel-blue);
+      top: 0;
+      left: -100px;
+    }
+    
+    .page-header__orb--2 {
+      width: 300px;
+      height: 300px;
+      background: var(--color-gold);
+      bottom: -50px;
+      right: -50px;
+    }
+    
+    .page-header__content {
+      position: relative;
+      z-index: 10;
+    }
+    
+    .page-header__title-en {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 300;
+      font-style: italic;
+      letter-spacing: 0.15em;
+      color: var(--color-gold);
+      margin-bottom: 0.5rem;
+    }
+    
+    .page-header__title-jp {
+      font-family: var(--font-serif-jp);
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      margin-bottom: 1.5rem;
+    }
+    
+    .page-header__desc {
+      font-size: 0.9375rem;
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.9;
+    }
+    
+    .breadcrumb {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 2rem;
+      font-size: 0.8125rem;
+      color: rgba(255, 255, 255, 0.5);
+    }
+    
+    .breadcrumb a {
+      transition: color 0.3s ease;
+    }
+    
+    .breadcrumb a:hover {
+      color: var(--color-gold);
+    }
+    
+    .breadcrumb span {
+      color: var(--color-gold);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       Menu Section
+       ═══════════════════════════════════════════════════════════════ */
+    .menu-section {
+      position: relative;
+      padding: var(--space-2xl) 0;
+      z-index: 1;
+    }
+    
+    .menu-intro {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto var(--space-xl);
+    }
+    
+    .menu-intro__text {
+      font-size: 1rem;
+      line-height: 2;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    /* Menu Detail Card */
+    .menu-detail {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 3rem;
+      transition: all 0.4s ease;
+    }
+    
+    .menu-detail:hover {
+      border-color: rgba(212, 175, 55, 0.3);
+    }
+    
+    .menu-detail__header {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 0;
+    }
+    
+    .menu-detail__visual {
+      position: relative;
+      min-height: 350px;
+      background: linear-gradient(135deg, var(--color-dark-blue) 0%, var(--color-midnight) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    
+    .menu-detail__icon {
+      font-size: 8rem;
+      opacity: 0.4;
+      transition: all 0.5s ease;
+    }
+    
+    .menu-detail:hover .menu-detail__icon {
+      transform: scale(1.1) rotate(5deg);
+      opacity: 0.6;
+    }
+    
+    .menu-detail__visual-orb {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: var(--color-gold);
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.15;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    
+    .menu-detail__info {
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .menu-detail__badge {
+      display: inline-block;
+      padding: 0.375rem 1rem;
+      background: rgba(212, 175, 55, 0.15);
+      color: var(--color-gold);
+      font-size: 0.75rem;
+      border-radius: 50px;
+      margin-bottom: 1rem;
+      width: fit-content;
+    }
+    
+    .menu-detail__title {
+      font-family: var(--font-serif-jp);
+      font-size: 1.75rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+    
+    .menu-detail__subtitle {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--color-gold);
+      letter-spacing: 0.1em;
+      margin-bottom: 1.5rem;
+    }
+    
+    .menu-detail__desc {
+      font-size: 0.9375rem;
+      line-height: 1.9;
+      color: rgba(255, 255, 255, 0.75);
+      margin-bottom: 2rem;
+    }
+    
+    .menu-detail__meta {
+      display: flex;
+      gap: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    
+    .menu-detail__meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    
+    .menu-detail__meta-label {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.5);
+    }
+    
+    .menu-detail__meta-value {
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--color-gold);
+    }
+    
+    .menu-detail__body {
+      padding: 3rem;
+      background: rgba(0, 0, 0, 0.2);
+    }
+    
+    .menu-detail__section {
+      margin-bottom: 2.5rem;
+    }
+    
+    .menu-detail__section:last-child {
+      margin-bottom: 0;
+    }
+    
+    .menu-detail__section-title {
+      font-family: var(--font-serif-jp);
+      font-size: 1.125rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    
+    .menu-detail__section-icon {
+      color: var(--color-gold);
+    }
+    
+    .menu-detail__list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+    
+    .menu-detail__list-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.9375rem;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .menu-detail__list-item::before {
+      content: '✦';
+      color: var(--color-gold);
+      font-size: 0.75rem;
+      margin-top: 0.25rem;
+    }
+    
+    .menu-detail__flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+    
+    .menu-detail__flow-step {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 1.5rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+    }
+    
+    .menu-detail__flow-num {
+      width: 28px;
+      height: 28px;
+      background: var(--color-gold);
+      color: var(--color-deep-navy);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8125rem;
+      font-weight: 600;
+    }
+    
+    .menu-detail__flow-text {
+      font-size: 0.875rem;
+    }
+    
+    .menu-detail__flow-arrow {
+      color: var(--color-gold);
+      opacity: 0.5;
+    }
+    
+    .menu-detail__cta {
+      display: flex;
+      justify-content: center;
+      padding: 2rem 3rem 3rem;
+    }
+    
+    .menu-detail__button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1.25rem 3rem;
+      background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+      color: var(--color-deep-navy);
+      font-size: 1rem;
+      font-weight: 500;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 25px rgba(212, 175, 55, 0.3);
+    }
+    
+    .menu-detail__button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 35px rgba(212, 175, 55, 0.4);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       Notes Section
+       ═══════════════════════════════════════════════════════════════ */
+    .notes-section {
+      padding: var(--space-xl) 0 var(--space-2xl);
+    }
+    
+    .notes-card {
+      background: rgba(168, 216, 234, 0.05);
+      border: 1px solid rgba(168, 216, 234, 0.15);
+      border-radius: 16px;
+      padding: 2.5rem;
+    }
+    
+    .notes-card__title {
+      font-family: var(--font-serif-jp);
+      font-size: 1.125rem;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    
+    .notes-card__title-icon {
+      color: var(--color-pastel-blue);
+    }
+    
+    .notes-card__list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    
+    .notes-card__item {
+      font-size: 0.9375rem;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.75);
+      padding-left: 1.5rem;
+      position: relative;
+    }
+    
+    .notes-card__item::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--color-pastel-blue);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       CTA Section
+       ═══════════════════════════════════════════════════════════════ */
+    .cta-section {
+      padding: var(--space-xl) 0 var(--space-2xl);
+      text-align: center;
+    }
+    
+    .cta-section__inner {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(168, 216, 234, 0.05));
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 24px;
+      padding: 4rem 2rem;
+    }
+    
+    .cta-section__title {
+      font-family: var(--font-serif-jp);
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+    
+    .cta-section__text {
+      font-size: 0.9375rem;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 2rem;
+    }
+    
+    .cta-section__button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 2.5rem;
+      background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+      color: var(--color-deep-navy);
+      font-size: 1rem;
+      font-weight: 500;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 25px rgba(212, 175, 55, 0.3);
+    }
+    
+    .cta-section__button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 35px rgba(212, 175, 55, 0.4);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       Footer
+       ═══════════════════════════════════════════════════════════════ */
+    .footer {
+      background: var(--color-midnight);
+      padding: var(--space-lg) 0 var(--space-md);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .footer__inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    
+    .footer__logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    
+    .footer__logo-icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+    }
+    
+    .footer__logo-text {
+      font-family: var(--font-serif-jp);
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+    }
+    
+    .footer__nav {
+      display: flex;
+      gap: 2rem;
+    }
+    
+    .footer__nav-link {
+      font-size: 0.8125rem;
+      color: rgba(255, 255, 255, 0.6);
+      transition: color 0.3s ease;
+    }
+    
+    .footer__nav-link:hover {
+      color: var(--color-gold);
+    }
+    
+    .footer__copyright {
+      width: 100%;
+      text-align: center;
+      padding-top: 1.5rem;
+      margin-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       Animations
+       ═══════════════════════════════════════════════════════════════ */
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    
+    .fade-in-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       Mobile Navigation Overlay
+       ═══════════════════════════════════════════════════════════════ */
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: rgba(15, 15, 35, 0.98);
+      backdrop-filter: blur(20px);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s ease;
+    }
+    
+    .mobile-nav.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .mobile-nav__list {
+      text-align: center;
+    }
+    
+    .mobile-nav__item {
+      margin-bottom: 2rem;
+    }
+    
+    .mobile-nav__link {
+      font-family: var(--font-serif-jp);
+      font-size: 1.5rem;
+      letter-spacing: 0.1em;
+      transition: color 0.3s ease;
+    }
+    
+    .mobile-nav__link:hover {
+      color: var(--color-gold);
+    }
+    
+    .mobile-nav__cta {
+      margin-top: 2rem;
+      padding: 1rem 2.5rem;
+      background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+      color: var(--color-deep-navy);
+      font-size: 1rem;
+      font-weight: 500;
+      border-radius: 4px;
+      display: inline-block;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       Responsive
+       ═══════════════════════════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .menu-detail__header {
+        grid-template-columns: 1fr;
+      }
+      
+      .menu-detail__visual {
+        min-height: 250px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      :root {
+        --space-xl: 4rem;
+        --space-2xl: 5rem;
+      }
+      
+      .nav__list, .nav__cta {
+        display: none;
+      }
+      
+      .hamburger {
+        display: flex;
+      }
+      
+      .page-header {
+        padding: 10rem 0 4rem;
+      }
+      
+      .menu-detail__info {
+        padding: 2rem;
+      }
+      
+      .menu-detail__body {
+        padding: 2rem;
+      }
+      
+      .menu-detail__meta {
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+      
+      .menu-detail__flow {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      .menu-detail__flow-arrow {
+        display: none;
+      }
+      
+      .menu-detail__cta {
+        padding: 1.5rem 2rem 2rem;
+      }
+      
+      .footer__inner {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .footer__nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Stars Background -->
+  <div class="stars-container" id="starsContainer"></div>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container">
+      <div class="header__inner">
+        <a href="../index.html" class="header__logo">
+          <div class="header__logo-icon">🌙</div>
+          <span class="header__logo-text">ねこさん占い</span>
+        </a>
+        
+        <nav class="nav">
+          <ul class="nav__list">
+            <li><a href="../index.html" class="nav__link">ホーム</a></li>
+            <li><a href="menu-detail.html" class="nav__link active">占いメニュー</a></li>
+            <li><a href="index.html#about" class="nav__link">占い師紹介</a></li>
+            <li><a href="../faq.html" class="nav__link">よくある質問</a></li>
+            <li><a href="../contact.html" class="nav__link">お問い合わせ</a></li>
+          </ul>
+          <a href="../contact.html" class="nav__cta">無料相談する</a>
+        </nav>
+        
+        <button class="hamburger" id="hamburger" aria-label="メニュー">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation -->
+  <div class="mobile-nav" id="mobileNav">
+    <nav class="mobile-nav__list">
+      <div class="mobile-nav__item">
+        <a href="../index.html" class="mobile-nav__link">ホーム</a>
+      </div>
+      <div class="mobile-nav__item">
+        <a href="menu-detail.html" class="mobile-nav__link">占いメニュー</a>
+      </div>
+      <div class="mobile-nav__item">
+        <a href="index.html#about" class="mobile-nav__link">占い師紹介</a>
+      </div>
+      <div class="mobile-nav__item">
+        <a href="../faq.html" class="mobile-nav__link">よくある質問</a>
+      </div>
+      <div class="mobile-nav__item">
+        <a href="../contact.html" class="mobile-nav__link">お問い合わせ</a>
+      </div>
+      <a href="../contact.html" class="mobile-nav__cta">無料相談する</a>
+    </nav>
+  </div>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="page-header__bg">
+      <div class="page-header__orb page-header__orb--1"></div>
+      <div class="page-header__orb page-header__orb--2"></div>
+    </div>
+    <div class="container">
+      <div class="page-header__content">
+        <h1 class="page-header__title-en">Menu</h1>
+        <p class="page-header__title-jp">占いメニュー</p>
+        <p class="page-header__desc">
+          タロットとオラクルカードを使った鑑定メニューをご用意しています。<br>
+          あなたの状況やお悩みに合わせてお選びください。
+        </p>
+        <nav class="breadcrumb">
+          <a href="../index.html">ホーム</a>
+          <span>/</span>
+          <span>占いメニュー</span>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu Section -->
+  <section class="menu-section">
+    <div class="container">
+      <div class="menu-intro fade-in-up">
+        <p class="menu-intro__text">
+          すべてのメニューは、LINEでのチャット鑑定となります。<br>
+          お時間を気にせず、ゆっくりとメッセージをお読みいただけます。
+        </p>
+      </div>
+
+      <!-- Menu 1: タロット×オラクル -->
+      <article class="menu-detail fade-in-up">
+        <div class="menu-detail__header">
+          <div class="menu-detail__visual">
+            <div class="menu-detail__visual-orb"></div>
+            <span class="menu-detail__icon">🃏</span>
+          </div>
+          <div class="menu-detail__info">
+            <span class="menu-detail__badge">一番人気</span>
+            <h2 class="menu-detail__title">タロット×オラクルカード リーディング</h2>
+            <p class="menu-detail__subtitle">Tarot & Oracle Reading</p>
+            <p class="menu-detail__desc">
+              タロットカードで現状と未来の流れを読み解き、オラクルカードで天からのメッセージをお伝えします。恋愛のお悩みに特化した、じっくり深掘りする鑑定です。
+            </p>
+            <div class="menu-detail__meta">
+              <div class="menu-detail__meta-item">
+                <span class="menu-detail__meta-label">鑑定料金</span>
+                <span class="menu-detail__meta-value">¥5,000</span>
+              </div>
+              <div class="menu-detail__meta-item">
+                <span class="menu-detail__meta-label">質問数</span>
+                <span class="menu-detail__meta-value">3つまで</span>
+              </div>
+              <div class="menu-detail__meta-item">
+                <span class="menu-detail__meta-label">納品目安</span>
+                <span class="menu-detail__meta-value">3〜5日</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="menu-detail__body">
+          <div class="menu-detail__section">
+            <h3 class="menu-detail__section-title">
+              <span class="menu-detail__section-icon">✨</span>
+              こんな方におすすめ
+            </h3>
+            <ul class="menu-detail__list">
+              <li class="menu-detail__list-item">彼の気持ちが知りたい</li>
+              <li class="menu-detail__list-item">復縁の可能性を知りたい</li>
+              <li class="menu-detail__list-item">この恋の行方が気になる</li>
+              <li class="menu-detail__list-item">どうアプローチすればいいかわからない</li>
+              <li class="menu-detail__list-item">二人の相性を詳しく知りたい</li>
+              <li class="menu-detail__list-item">現状を打破するヒントが欲しい</li>
+            </ul>
+          </div>
+          <div class="menu-detail__section">
+            <h3 class="menu-detail__section-title">
+              <span class="menu-detail__section-icon">📋</span>
+              鑑定の流れ
+            </h3>
+            <div class="menu-detail__flow">
+              <div class="menu-detail__flow-step">
+                <span class="menu-detail__flow-num">1</span>
+                <span class="menu-detail__flow-text">LINEでお申し込み</span>
+              </div>
+              <span class="menu-detail__flow-arrow">→</span>
+              <div class="menu-detail__flow-step">
+                <span class="menu-detail__flow-num">2</span>
+                <span class="menu-detail__flow-text">質問内容をお送りください</span>
+              </div>
+              <span class="menu-detail__flow-arrow">→</span>
+              <div class="menu-detail__flow-step">
+                <span class="menu-detail__flow-num">3</span>
+                <span class="menu-detail__flow-text">鑑定結果をお届け</span>
+              </div>
+              <span class="menu-detail__flow-arrow">→</span>
+              <div class="menu-detail__flow-step">
+                <span class="menu-detail__flow-num">4</span>
+                <span class="menu-detail__flow-text">質疑応答（1回無料）</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="menu-detail__cta">
+          <a href="../contact.html" class="menu-detail__button">
+            このメニューで相談する
+            <span>→</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Menu 2: オラクルカード -->
+      <article class="menu-detail fade-in-up">
+        <div class="menu-detail__header">
+          <div class="menu-detail__visual">
+            <div class="menu-detail__visual-orb"></div>
+            <span class="menu-detail__icon">🔮</span>
+          </div>
+          <div class="menu-detail__info">
+            <span class="menu-detail__badge">お試しに最適</span>
+            <h2 class="menu-detail__title">オラクルカード リーディング</h2>
+            <p class="menu-detail__subtitle">Oracle Card Reading</p>
+            <p class="menu-detail__desc">
+              天使や女神からのメッセージをお届けするオラクルカードリーディング。今のあなたに必要なメッセージを、やさしくわかりやすくお伝えします。初めての方にもおすすめです。
+            </p>
+            <div class="menu-detail__meta">
+              <div class="menu-detail__meta-item">
+                <span class="menu-detail__meta-label">鑑定料金</span>
+                <span class="menu-detail__meta-value">¥3,000</span>
+              </div>
+              <div class="menu-detail__meta-item">
+                <span class="menu-detail__meta-label">質問数</span>
+                <span class="menu-detail__meta-value">1つ</span>
+              </div>
+              <div class="menu-detail__meta-item">
+                <span class="menu-detail__meta-label">納品目安</span>
+                <span class="menu-detail__meta-value">2〜3日</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="menu-detail__body">
+          <div class="menu-detail__section">
+            <h3 class="menu-detail__section-title">
+              <span class="menu-detail__section-icon">✨</span>
+              こんな方におすすめ
+            </h3>
+            <ul class="menu-detail__list">
+              <li class="menu-detail__list-item">占いが初めての方</li>
+              <li class="menu-detail__list-item">今の自分へのメッセージが欲しい</li>
+              <li class="menu-detail__list-item">背中を押してほしい</li>
+              <li class="menu-detail__list-item">気軽に占いを体験してみたい</li>
+              <li class="menu-detail__list-item">癒しのメッセージが欲しい</li>
+              <li class="menu-detail__list-item">シンプルな質問がある</li>
+            </ul>
+          </div>
+          <div class="menu-detail__section">
+            <h3 class="menu-detail__section-title">
+              <span class="menu-detail__section-icon">📋</span>
+              鑑定の流れ
+            </h3>
+            <div class="menu-detail__flow">
+              <div class="menu-detail__flow-step">
+                <span class="menu-detail__flow-num">1</span>
+                <span class="menu-detail__flow-text">LINEでお申し込み</span>
+              </div>
+              <span class="menu-detail__flow-arrow">→</span>
+              <div class="menu-detail__flow-step">
+                <span class="menu-detail__flow-num">2</span>
+                <span class="menu-detail__flow-text">質問内容をお送りください</span>
+              </div>
+              <span class="menu-detail__flow-arrow">→</span>
+              <div class="menu-detail__flow-step">
+                <span class="menu-detail__flow-num">3</span>
+                <span class="menu-detail__flow-text">鑑定結果をお届け</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="menu-detail__cta">
+          <a href="../contact.html" class="menu-detail__button">
+            このメニューで相談する
+            <span>→</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Notes -->
+      <div class="notes-section">
+        <div class="notes-card fade-in-up">
+          <h3 class="notes-card__title">
+            <span class="notes-card__title-icon">ℹ️</span>
+            ご利用にあたって
+          </h3>
+          <ul class="notes-card__list">
+            <li class="notes-card__item">鑑定はすべてLINEでのチャット形式となります。</li>
+            <li class="notes-card__item">お支払いはPayPayまたは銀行振込に対応しています。</li>
+            <li class="notes-card__item">鑑定結果は文章とカードの写真でお届けします。</li>
+            <li class="notes-card__item">混雑状況により、納品までお時間をいただく場合がございます。</li>
+            <li class="notes-card__item">ご質問の内容によっては、お答えできない場合がございます。</li>
+            <li class="notes-card__item">鑑定結果は参考としてお受け取りください。最終的なご判断はご自身でお願いいたします。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-section__inner fade-in-up">
+        <h2 class="cta-section__title">まずは無料でご相談ください</h2>
+        <p class="cta-section__text">
+          どのメニューがいいかわからない方も、お気軽にLINEでご相談いただけます。
+        </p>
+        <a href="../contact.html" class="cta-section__button">
+          無料相談する
+          <span>→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <a href="../index.html" class="footer__logo">
+          <div class="footer__logo-icon">🌙</div>
+          <span class="footer__logo-text">ねこさん占い</span>
+        </a>
+        <nav class="footer__nav">
+          <a href="../index.html" class="footer__nav-link">ホーム</a>
+          <a href="menu-detail.html" class="footer__nav-link">占いメニュー</a>
+          <a href="../faq.html" class="footer__nav-link">よくある質問</a>
+          <a href="../contact.html" class="footer__nav-link">お問い合わせ</a>
+          <a href="#" class="footer__nav-link">プライバシーポリシー</a>
+          <a href="#" class="footer__nav-link">特定商取引法に基づく表記</a>
+        </nav>
+        <p class="footer__copyright">© 2024 ねこさん占い. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Generate Stars
+    function generateStars() {
+      const container = document.getElementById('starsContainer');
+      const starCount = 100;
+      
+      for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.width = Math.random() * 2 + 1 + 'px';
+        star.style.height = star.style.width;
+        star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
+        star.style.setProperty('--delay', (Math.random() * 2) + 's');
+        star.style.setProperty('--opacity', Math.random() * 0.5 + 0.3);
+        container.appendChild(star);
+      }
+    }
+    
+    generateStars();
+    
+    // Header Scroll
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+    
+    // Mobile Menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileNav.classList.toggle('active');
+      document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+    });
+    
+    // Close mobile menu on link click
+    document.querySelectorAll('.mobile-nav__link, .mobile-nav__cta').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+    
+    // Scroll Animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+    
+    document.querySelectorAll('.fade-in-up').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
