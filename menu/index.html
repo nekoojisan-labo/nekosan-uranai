@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>占いメニュー | ねこさん占い</title>
   <meta name="description" content="タロット、オラクルカード、月星座リーディングなど、あなたに合った鑑定メニューをお選びください。">
-  
+
   <!-- OGP -->
   <meta property="og:title" content="占いメニュー | ねこさん占い">
   <meta property="og:description" content="タロット、オラクルカード、月星座リーディングなど、あなたに合った鑑定メニューをお選びください。">
   <meta property="og:type" content="website">
-  
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Cinzel:wght@400;500;600&family=Noto+Sans+JP:wght@300;400;500;600&family=Noto+Serif+JP:wght@400;500;600&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Cinzel:wght@400;500;600&family=Noto+Sans+JP:wght@300;400;500;600&family=Noto+Serif+JP:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
   <style>
     /* ═══════════════════════════════════════════════════════════
        CSS Variables & Reset
@@ -37,13 +40,13 @@
       --color-text-muted: #a8a6a0;
       --color-glass: rgba(255, 255, 255, 0.05);
       --color-glass-border: rgba(255, 255, 255, 0.1);
-      
+
       /* Typography */
       --font-display: 'Cormorant Garamond', 'Noto Serif JP', serif;
       --font-heading: 'Cinzel', 'Noto Serif JP', serif;
       --font-body: 'Noto Sans JP', sans-serif;
       --font-serif-jp: 'Noto Serif JP', serif;
-      
+
       /* Spacing */
       --space-xs: 0.5rem;
       --space-sm: 1rem;
@@ -51,30 +54,32 @@
       --space-lg: 4rem;
       --space-xl: 6rem;
       --space-2xl: 10rem;
-      
+
       /* Transitions */
       --transition-fast: 0.2s ease;
       --transition-normal: 0.4s ease;
       --transition-slow: 0.8s ease;
       --transition-slower: 1.2s ease;
-      
+
       /* Z-index */
       --z-stars: 1;
       --z-content: 10;
       --z-header: 100;
       --z-modal: 1000;
     }
-    
-    *, *::before, *::after {
+
+    *,
+    *::before,
+    *::after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    
+
     html {
       scroll-behavior: smooth;
     }
-    
+
     body {
       font-family: var(--font-body);
       font-weight: 400;
@@ -84,29 +89,30 @@
       overflow-x: hidden;
       letter-spacing: 0.02em;
     }
-    
+
     img {
       max-width: 100%;
       height: auto;
       display: block;
     }
-    
+
     a {
       color: inherit;
       text-decoration: none;
     }
-    
-    ul, ol {
+
+    ul,
+    ol {
       list-style: none;
     }
-    
+
     button {
       font-family: inherit;
       cursor: pointer;
       border: none;
       background: none;
     }
-    
+
     /* ═══════════════════════════════════════════════════════════
        Utility Classes
     ═══════════════════════════════════════════════════════════ */
@@ -116,7 +122,7 @@
       margin: 0 auto;
       padding: 0 var(--space-md);
     }
-    
+
     .sr-only {
       position: absolute;
       width: 1px;
@@ -127,7 +133,7 @@
       clip: rect(0, 0, 0, 0);
       border: 0;
     }
-    
+
     /* ═══════════════════════════════════════════════════════════
        Background & Particles
     ═══════════════════════════════════════════════════════════ */
@@ -139,13 +145,13 @@
       height: 100%;
       z-index: 0;
       pointer-events: none;
-      background: 
+      background:
         radial-gradient(ellipse at 20% 20%, rgba(75, 0, 130, 0.3) 0%, transparent 50%),
         radial-gradient(ellipse at 80% 80%, rgba(45, 0, 80, 0.4) 0%, transparent 50%),
         radial-gradient(ellipse at 50% 50%, rgba(30, 0, 60, 0.2) 0%, transparent 70%),
         linear-gradient(180deg, var(--color-deep-navy) 0%, #15152d 50%, #1a1a35 100%);
     }
-    
+
     /* Paper texture overlay */
     .page-background::after {
       content: '';
@@ -155,7 +161,7 @@
       opacity: 0.03;
       mix-blend-mode: overlay;
     }
-    
+
     #starCanvas {
       position: fixed;
       top: 0;
@@ -165,7 +171,7 @@
       z-index: var(--z-stars);
       pointer-events: none;
     }
-    
+
     /* ═══════════════════════════════════════════════════════════
        Header
     ═══════════════════════════════════════════════════════════ */
@@ -178,20 +184,20 @@
       padding: var(--space-md) 0;
       transition: background var(--transition-normal), padding var(--transition-normal);
     }
-    
+
     .header.is-scrolled {
       background: rgba(10, 10, 26, 0.95);
       backdrop-filter: blur(10px);
       padding: var(--space-sm) 0;
       border-bottom: 1px solid var(--color-glass-border);
     }
-    
+
     .header__inner {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    
+
     .header__logo {
       font-family: var(--font-display);
       font-size: 1.5rem;
@@ -202,15 +208,15 @@
       align-items: center;
       gap: 0.5rem;
     }
-    
+
     .header__logo-icon {
       font-size: 1.2rem;
     }
-    
+
     .header__nav {
       display: none;
     }
-    
+
     @media (min-width: 1024px) {
       .header__nav {
         display: flex;
@@ -218,12 +224,12 @@
         gap: var(--space-lg);
       }
     }
-    
+
     .header__nav-list {
       display: flex;
       gap: var(--space-md);
     }
-    
+
     .header__nav-link {
       font-size: 0.85rem;
       font-weight: 400;
@@ -233,7 +239,7 @@
       padding: 0.5rem 0;
       transition: color var(--transition-fast);
     }
-    
+
     .header__nav-link::after {
       content: '';
       position: absolute;
@@ -244,27 +250,27 @@
       background: var(--color-gold);
       transition: width var(--transition-normal);
     }
-    
+
     .header__nav-link:hover,
     .header__nav-link.is-active {
       color: var(--color-gold);
     }
-    
+
     .header__nav-link:hover::after,
     .header__nav-link.is-active::after {
       width: 100%;
     }
-    
+
     .header__cta {
       display: none;
     }
-    
+
     @media (min-width: 1024px) {
       .header__cta {
         display: block;
       }
     }
-    
+
     /* Hamburger Menu */
     .hamburger {
       display: flex;
@@ -273,32 +279,32 @@
       padding: 10px;
       z-index: calc(var(--z-header) + 10);
     }
-    
+
     @media (min-width: 1024px) {
       .hamburger {
         display: none;
       }
     }
-    
+
     .hamburger__line {
       width: 24px;
       height: 1px;
       background: var(--color-gold);
       transition: transform var(--transition-normal), opacity var(--transition-normal);
     }
-    
+
     .hamburger.is-active .hamburger__line:nth-child(1) {
       transform: rotate(45deg) translate(5px, 5px);
     }
-    
+
     .hamburger.is-active .hamburger__line:nth-child(2) {
       opacity: 0;
     }
-    
+
     .hamburger.is-active .hamburger__line:nth-child(3) {
       transform: rotate(-45deg) translate(5px, -5px);
     }
-    
+
     /* Mobile Navigation */
     .mobile-nav-overlay {
       position: fixed;
@@ -309,12 +315,12 @@
       transition: all var(--transition-normal);
       z-index: calc(var(--z-header) - 1);
     }
-    
+
     .mobile-nav-overlay.is-visible {
       opacity: 1;
       visibility: visible;
     }
-    
+
     .mobile-nav {
       position: fixed;
       top: 0;
@@ -331,33 +337,33 @@
       flex-direction: column;
       justify-content: center;
     }
-    
+
     .mobile-nav.is-open {
       transform: translateX(0);
     }
-    
+
     .mobile-nav__list {
       display: flex;
       flex-direction: column;
       gap: var(--space-md);
     }
-    
+
     .mobile-nav__link {
       font-size: 1.1rem;
       color: var(--color-text);
       letter-spacing: 0.1em;
       transition: color var(--transition-fast);
     }
-    
+
     .mobile-nav__link:hover,
     .mobile-nav__link.is-active {
       color: var(--color-gold);
     }
-    
+
     .mobile-nav__cta {
       margin-top: var(--space-lg);
     }
-    
+
     /* ═══════════════════════════════════════════════════════════
        Buttons
     ═══════════════════════════════════════════════════════════ */
@@ -376,13 +382,13 @@
       position: relative;
       overflow: hidden;
     }
-    
+
     .btn--primary {
       background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
       color: var(--color-deep-navy);
       border: 1px solid var(--color-gold);
     }
-    
+
     .btn--primary::before {
       content: '';
       position: absolute;
@@ -393,50 +399,50 @@
       background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
       transition: left 0.6s ease;
     }
-    
+
     .btn--primary:hover {
       box-shadow: 0 0 30px rgba(201, 162, 39, 0.4), 0 0 60px rgba(201, 162, 39, 0.2);
       transform: translateY(-2px);
     }
-    
+
     .btn--primary:hover::before {
       left: 100%;
     }
-    
+
     .btn--secondary {
       background: transparent;
       color: var(--color-gold);
       border: 1px solid var(--color-gold);
     }
-    
+
     .btn--secondary:hover {
       background: rgba(201, 162, 39, 0.1);
       box-shadow: 0 0 20px rgba(201, 162, 39, 0.2);
     }
-    
+
     .btn--ghost {
       background: var(--color-glass);
       color: var(--color-text);
       border: 1px solid var(--color-glass-border);
       backdrop-filter: blur(10px);
     }
-    
+
     .btn--ghost:hover {
       background: rgba(255, 255, 255, 0.1);
       border-color: var(--color-gold-muted);
     }
-    
+
     .btn--line {
       background: #06C755;
       color: white;
       border: none;
     }
-    
+
     .btn--line:hover {
       background: #05a847;
       box-shadow: 0 0 30px rgba(6, 199, 85, 0.3);
     }
-    
+
     /* ═══════════════════════════════════════════════════════════
        Page Header
     ═══════════════════════════════════════════════════════════ */
@@ -446,7 +452,7 @@
       text-align: center;
       z-index: var(--z-content);
     }
-    
+
     .page-header__decoration {
       font-family: var(--font-display);
       font-size: 8rem;
@@ -458,7 +464,7 @@
       pointer-events: none;
       font-style: italic;
     }
-    
+
     .page-header__en {
       font-family: var(--font-heading);
       font-size: clamp(2.5rem, 6vw, 4rem);
@@ -471,7 +477,7 @@
       justify-content: center;
       gap: 1rem;
     }
-    
+
     .page-header__en::before,
     .page-header__en::after {
       content: '';
@@ -479,14 +485,14 @@
       height: 1px;
       background: linear-gradient(90deg, transparent, var(--color-gold-muted), transparent);
     }
-    
+
     .page-header__jp {
       font-family: var(--font-serif-jp);
       font-size: 1rem;
       color: var(--color-text-muted);
       letter-spacing: 0.2em;
     }
-    
+
     /* ═══════════════════════════════════════════════════════════
        Menu Introduction
     ═══════════════════════════════════════════════════════════ */
@@ -495,7 +501,7 @@
       padding: 0 0 var(--space-xl);
       z-index: var(--z-content);
     }
-    
+
     .menu-intro__text {
       max-width: 700px;
       margin: 0 auto;
@@ -504,7 +510,7 @@
       color: var(--color-text-muted);
       line-height: 2;
     }
-    
+
     /* ═══════════════════════════════════════════════════════════
        Menu Grid
     ═══════════════════════════════════════════════════════════ */
@@ -513,7 +519,7 @@
       padding: var(--space-xl) 0;
       z-index: var(--z-content);
     }
-    
+
     .menu-section__title {
       font-family: var(--font-heading);
       font-size: 1.5rem;
@@ -527,20 +533,20 @@
       justify-content: center;
       gap: 1rem;
     }
-    
+
     .menu-section__title::before,
     .menu-section__title::after {
       content: '<img src="images/icon_sparkle.svg" class="icon" alt="Sparkle">';
       font-size: 0.8rem;
       color: var(--color-gold-muted);
     }
-    
+
     .menu-grid {
       display: grid;
       grid-template-columns: 1fr;
       gap: var(--space-lg);
     }
-    
+
     /* ═══════════════════════════════════════════════════════════
        Menu Detail Card
     ═══════════════════════════════════════════════════════════ */
@@ -552,50 +558,50 @@
       overflow: hidden;
       transition: all var(--transition-normal);
     }
-    
+
     .menu-detail-card:hover {
       border-color: var(--color-gold-muted);
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     }
-    
+
     @media (min-width: 768px) {
       .menu-detail-card {
         display: grid;
         grid-template-columns: 300px 1fr;
       }
-      
+
       .menu-detail-card:nth-child(even) {
         grid-template-columns: 1fr 300px;
       }
-      
+
       .menu-detail-card:nth-child(even) .menu-detail-card__image {
         order: 2;
       }
     }
-    
+
     @media (min-width: 1024px) {
       .menu-detail-card {
         grid-template-columns: 350px 1fr;
       }
-      
+
       .menu-detail-card:nth-child(even) {
         grid-template-columns: 1fr 350px;
       }
     }
-    
+
     .menu-detail-card__image {
       position: relative;
       height: 250px;
       overflow: hidden;
     }
-    
+
     @media (min-width: 768px) {
       .menu-detail-card__image {
         height: 100%;
         min-height: 400px;
       }
     }
-    
+
     .menu-detail-card__image img {
       width: 100%;
       height: 100%;
@@ -603,12 +609,12 @@
       filter: sepia(30%) saturate(80%) hue-rotate(200deg);
       transition: transform var(--transition-slow), filter var(--transition-normal);
     }
-    
+
     .menu-detail-card:hover .menu-detail-card__image img {
       transform: scale(1.05);
       filter: sepia(20%) saturate(100%) hue-rotate(200deg);
     }
-    
+
     .menu-detail-card__badge {
       position: absolute;
       top: var(--space-md);
@@ -621,14 +627,14 @@
       padding: 0.5rem 1rem;
       border-radius: 20px;
     }
-    
+
     .menu-detail-card__content {
       padding: var(--space-lg);
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
-    
+
     .menu-detail-card__tag {
       display: inline-flex;
       align-items: center;
@@ -638,12 +644,12 @@
       letter-spacing: 0.15em;
       margin-bottom: var(--space-sm);
     }
-    
+
     .menu-detail-card__tag::before {
       content: '☾';
       font-size: 1rem;
     }
-    
+
     .menu-detail-card__title {
       font-family: var(--font-serif-jp);
       font-size: 1.75rem;
@@ -652,7 +658,7 @@
       margin-bottom: var(--space-sm);
       line-height: 1.4;
     }
-    
+
     .menu-detail-card__catch {
       font-family: var(--font-display);
       font-size: 1rem;
@@ -660,21 +666,21 @@
       color: var(--color-gold-muted);
       margin-bottom: var(--space-md);
     }
-    
+
     .menu-detail-card__description {
       font-size: 0.95rem;
       color: var(--color-text-muted);
       line-height: 2;
       margin-bottom: var(--space-md);
     }
-    
+
     .menu-detail-card__features {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
       margin-bottom: var(--space-md);
     }
-    
+
     .menu-detail-card__feature {
       font-size: 0.8rem;
       color: var(--color-text);
@@ -683,7 +689,7 @@
       padding: 0.375rem 0.75rem;
       border-radius: 20px;
     }
-    
+
     .menu-detail-card__meta {
       display: flex;
       flex-wrap: wrap;
@@ -692,30 +698,30 @@
       border-top: 1px solid var(--color-glass-border);
       margin-bottom: var(--space-md);
     }
-    
+
     .menu-detail-card__meta-item {
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
-    
+
     .menu-detail-card__meta-label {
       font-size: 0.75rem;
       color: var(--color-text-muted);
     }
-    
+
     .menu-detail-card__meta-value {
       font-family: var(--font-display);
       font-size: 1.25rem;
       color: var(--color-gold);
     }
-    
+
     .menu-detail-card__cta {
       display: flex;
       flex-wrap: wrap;
       gap: var(--space-sm);
     }
-    
+
     /* ═══════════════════════════════════════════════════════════
        Options Section
     ═══════════════════════════════════════════════════════════ */
@@ -724,25 +730,25 @@
       padding: var(--space-xl) 0;
       z-index: var(--z-content);
     }
-    
+
     .options-grid {
       display: grid;
       grid-template-columns: 1fr;
       gap: var(--space-md);
     }
-    
+
     @media (min-width: 640px) {
       .options-grid {
         grid-template-columns: repeat(2, 1fr);
       }
     }
-    
+
     @media (min-width: 1024px) {
       .options-grid {
         grid-template-columns: repeat(3, 1fr);
       }
     }
-    
+
     .option-card {
       background: var(--color-glass);
       backdrop-filter: blur(10px);
@@ -752,17 +758,17 @@
       text-align: center;
       transition: all var(--transition-normal);
     }
-    
+
     .option-card:hover {
       border-color: var(--color-gold-muted);
       transform: translateY(-5px);
     }
-    
+
     .option-card__icon {
       font-size: 2.5rem;
       margin-bottom: var(--space-sm);
     }
-    
+
     .option-card__title {
       font-family: var(--font-serif-jp);
       font-size: 1.1rem;
@@ -770,20 +776,20 @@
       color: var(--color-white);
       margin-bottom: var(--space-xs);
     }
-    
+
     .option-card__description {
       font-size: 0.85rem;
       color: var(--color-text-muted);
       line-height: 1.7;
       margin-bottom: var(--space-sm);
     }
-    
+
     .option-card__price {
       font-family: var(--font-display);
       font-size: 1.25rem;
       color: var(--color-gold);
     }
-    
+
     /* ═══════════════════════════════════════════════════════════
        Flow Section
     ═══════════════════════════════════════════════════════════ */
@@ -792,12 +798,12 @@
       padding: var(--space-xl) 0;
       z-index: var(--z-content);
     }
-    
+
     .section-title {
       text-align: center;
       margin-bottom: var(--space-lg);
     }
-    
+
     .section-title__en {
       font-family: var(--font-heading);
       font-size: clamp(2rem, 5vw, 3rem);
@@ -810,25 +816,25 @@
       gap: 1rem;
       margin-bottom: 0.5rem;
     }
-    
+
     .section-title__star {
       font-size: 0.8em;
       color: var(--color-gold);
     }
-    
+
     .section-title__jp {
       font-family: var(--font-serif-jp);
       font-size: 0.9rem;
       color: var(--color-text-muted);
       letter-spacing: 0.15em;
     }
-    
+
     .flow-list {
       max-width: 800px;
       margin: 0 auto;
       position: relative;
     }
-    
+
     .flow-list::before {
       content: '';
       position: absolute;
@@ -838,36 +844,36 @@
       width: 1px;
       background: linear-gradient(to bottom, transparent, var(--color-gold-muted), transparent);
     }
-    
+
     @media (min-width: 768px) {
       .flow-list::before {
         left: 50%;
         transform: translateX(-50%);
       }
     }
-    
+
     .flow-item {
       display: flex;
       gap: var(--space-md);
       padding: var(--space-md) 0;
       position: relative;
     }
-    
+
     @media (min-width: 768px) {
       .flow-item {
         justify-content: center;
         text-align: center;
       }
-      
+
       .flow-item:nth-child(odd) .flow-item__content {
         margin-right: calc(50% + var(--space-lg));
       }
-      
+
       .flow-item:nth-child(even) .flow-item__content {
         margin-left: calc(50% + var(--space-lg));
       }
     }
-    
+
     .flow-item__number {
       flex-shrink: 0;
       width: 48px;
@@ -884,7 +890,7 @@
       position: relative;
       z-index: 2;
     }
-    
+
     @media (min-width: 768px) {
       .flow-item__number {
         position: absolute;
@@ -892,7 +898,7 @@
         transform: translateX(-50%);
       }
     }
-    
+
     .flow-item__content {
       flex: 1;
       background: var(--color-glass);
@@ -901,13 +907,13 @@
       border-radius: 12px;
       padding: var(--space-md);
     }
-    
+
     @media (min-width: 768px) {
       .flow-item__content {
         flex: 0 0 calc(50% - var(--space-xl));
       }
     }
-    
+
     .flow-item__title {
       font-family: var(--font-serif-jp);
       font-size: 1.1rem;
@@ -915,13 +921,13 @@
       color: var(--color-white);
       margin-bottom: var(--space-xs);
     }
-    
+
     .flow-item__description {
       font-size: 0.9rem;
       color: var(--color-text-muted);
       line-height: 1.8;
     }
-    
+
     /* ═══════════════════════════════════════════════════════════
        FAQ Section
     ═══════════════════════════════════════════════════════════ */
@@ -930,7 +936,7 @@
       padding: var(--space-xl) 0;
       z-index: var(--z-content);
     }
-    
+
     .faq-list {
       max-width: 800px;
       margin: 0 auto;
@@ -938,7 +944,7 @@
       flex-direction: column;
       gap: var(--space-sm);
     }
-    
+
     .faq-item {
       background: var(--color-glass);
       backdrop-filter: blur(10px);
@@ -947,11 +953,11 @@
       overflow: hidden;
       transition: all var(--transition-normal);
     }
-    
+
     .faq-item:hover {
       border-color: var(--color-gold-muted);
     }
-    
+
     .faq-item__question {
       display: flex;
       align-items: center;
@@ -963,7 +969,7 @@
       text-align: left;
       color: var(--color-white);
     }
-    
+
     .faq-item__question-text {
       font-family: var(--font-serif-jp);
       font-size: 1rem;
@@ -972,7 +978,7 @@
       align-items: flex-start;
       gap: 0.75rem;
     }
-    
+
     .faq-item__question-text::before {
       content: 'Q';
       font-family: var(--font-display);
@@ -980,7 +986,7 @@
       color: var(--color-gold);
       font-weight: 400;
     }
-    
+
     .faq-item__toggle {
       flex-shrink: 0;
       width: 24px;
@@ -988,7 +994,7 @@
       color: var(--color-gold);
       position: relative;
     }
-    
+
     .faq-item__toggle::before,
     .faq-item__toggle::after {
       content: '';
@@ -998,33 +1004,33 @@
       background: currentColor;
       transition: transform var(--transition-normal);
     }
-    
+
     .faq-item__toggle::before {
       width: 12px;
       height: 1px;
       transform: translate(-50%, -50%);
     }
-    
+
     .faq-item__toggle::after {
       width: 1px;
       height: 12px;
       transform: translate(-50%, -50%);
     }
-    
+
     .faq-item.is-open .faq-item__toggle::after {
       transform: translate(-50%, -50%) rotate(90deg);
     }
-    
+
     .faq-item__answer {
       max-height: 0;
       overflow: hidden;
       transition: max-height var(--transition-normal);
     }
-    
+
     .faq-item.is-open .faq-item__answer {
       max-height: 500px;
     }
-    
+
     .faq-item__answer-inner {
       padding: 0 var(--space-md) var(--space-md);
       padding-left: calc(var(--space-md) + 1.5rem);
@@ -1032,7 +1038,7 @@
       color: var(--color-text-muted);
       line-height: 1.9;
     }
-    
+
     .faq-item__answer-inner::before {
       content: 'A';
       font-family: var(--font-display);
@@ -1040,7 +1046,7 @@
       color: var(--color-gold-muted);
       margin-right: 0.75rem;
     }
-    
+
     /* ═══════════════════════════════════════════════════════════
        CTA Section
     ═══════════════════════════════════════════════════════════ */
@@ -1049,7 +1055,7 @@
       padding: var(--space-2xl) 0;
       z-index: var(--z-content);
     }
-    
+
     .cta-card {
       background: linear-gradient(135deg, rgba(75, 0, 130, 0.3) 0%, rgba(45, 0, 80, 0.3) 100%);
       backdrop-filter: blur(10px);
@@ -1060,7 +1066,7 @@
       position: relative;
       overflow: hidden;
     }
-    
+
     .cta-card::before {
       content: '☾';
       position: absolute;
@@ -1070,7 +1076,7 @@
       color: rgba(201, 162, 39, 0.05);
       pointer-events: none;
     }
-    
+
     .cta-card__title {
       font-family: var(--font-display);
       font-size: clamp(1.75rem, 4vw, 2.5rem);
@@ -1079,12 +1085,12 @@
       margin-bottom: var(--space-sm);
       line-height: 1.4;
     }
-    
+
     .cta-card__title span {
       color: var(--color-gold);
       font-style: italic;
     }
-    
+
     .cta-card__description {
       font-size: 1rem;
       color: var(--color-text-muted);
@@ -1094,7 +1100,7 @@
       margin-right: auto;
       line-height: 1.9;
     }
-    
+
     .cta-card__buttons {
       display: flex;
       flex-direction: column;
@@ -1102,13 +1108,13 @@
       justify-content: center;
       align-items: center;
     }
-    
+
     @media (min-width: 640px) {
       .cta-card__buttons {
         flex-direction: row;
       }
     }
-    
+
     /* ═══════════════════════════════════════════════════════════
        Footer
     ═══════════════════════════════════════════════════════════ */
@@ -1119,24 +1125,24 @@
       padding: var(--space-xl) 0 var(--space-md);
       z-index: var(--z-content);
     }
-    
+
     .footer__grid {
       display: grid;
       grid-template-columns: 1fr;
       gap: var(--space-lg);
       margin-bottom: var(--space-lg);
     }
-    
+
     @media (min-width: 768px) {
       .footer__grid {
         grid-template-columns: 2fr 1fr 1fr 1fr;
       }
     }
-    
+
     .footer__brand {
       max-width: 300px;
     }
-    
+
     .footer__logo {
       font-family: var(--font-display);
       font-size: 1.5rem;
@@ -1146,13 +1152,13 @@
       align-items: center;
       gap: 0.5rem;
     }
-    
+
     .footer__description {
       font-size: 0.875rem;
       color: var(--color-text-muted);
       line-height: 1.8;
     }
-    
+
     .footer__heading {
       font-family: var(--font-heading);
       font-size: 0.85rem;
@@ -1160,28 +1166,28 @@
       letter-spacing: 0.15em;
       margin-bottom: var(--space-sm);
     }
-    
+
     .footer__list {
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
     }
-    
+
     .footer__link {
       font-size: 0.875rem;
       color: var(--color-text-muted);
       transition: color var(--transition-fast);
     }
-    
+
     .footer__link:hover {
       color: var(--color-gold);
     }
-    
+
     .footer__social {
       display: flex;
       gap: var(--space-sm);
     }
-    
+
     .footer__social-link {
       width: 40px;
       height: 40px;
@@ -1193,24 +1199,24 @@
       font-size: 1rem;
       transition: all var(--transition-fast);
     }
-    
+
     .footer__social-link:hover {
       border-color: var(--color-gold);
       color: var(--color-gold);
     }
-    
+
     .footer__bottom {
       text-align: center;
       padding-top: var(--space-md);
       border-top: 1px solid var(--color-glass-border);
     }
-    
+
     .footer__copyright {
       font-size: 0.75rem;
       color: var(--color-text-muted);
       letter-spacing: 0.1em;
     }
-    
+
     /* ═══════════════════════════════════════════════════════════
        Animations
     ═══════════════════════════════════════════════════════════ */
@@ -1219,34 +1225,34 @@
       transform: translateY(30px);
       transition: opacity 0.8s ease, transform 0.8s ease;
     }
-    
+
     .fade-in.is-visible {
       opacity: 1;
       transform: translateY(0);
     }
-    
+
     .fade-in-left {
       opacity: 0;
       transform: translateX(-30px);
       transition: opacity 0.8s ease, transform 0.8s ease;
     }
-    
+
     .fade-in-left.is-visible {
       opacity: 1;
       transform: translateX(0);
     }
-    
+
     .fade-in-right {
       opacity: 0;
       transform: translateX(30px);
       transition: opacity 0.8s ease, transform 0.8s ease;
     }
-    
+
     .fade-in-right.is-visible {
       opacity: 1;
       transform: translateX(0);
     }
-    
+
     /* ═══════════════════════════════════════════════════════════
        Scroll to Top
     ═══════════════════════════════════════════════════════════ */
@@ -1270,12 +1276,12 @@
       transition: all var(--transition-normal);
       z-index: var(--z-content);
     }
-    
+
     .scroll-top.is-visible {
       opacity: 1;
       visibility: visible;
     }
-    
+
     .scroll-top:hover {
       background: rgba(201, 162, 39, 0.1);
       border-color: var(--color-gold);
@@ -1283,11 +1289,12 @@
     }
   </style>
 </head>
+
 <body>
   <!-- Background -->
   <div class="page-background"></div>
   <canvas id="starCanvas"></canvas>
-  
+
   <!-- Header -->
   <header class="header" id="header">
     <div class="container">
@@ -1296,20 +1303,20 @@
           <span class="header__logo-icon">☾</span>
           ねこさん占い
         </a>
-        
+
         <nav class="header__nav">
           <ul class="header__nav-list">
             <li><a href="../index.html" class="header__nav-link">ホーム</a></li>
-            <li><a href="/menu.html" class="header__nav-link is-active">占いメニュー</a></li>
+            <li><a href="index.html" class="header__nav-link is-active">占いメニュー</a></li>
             <li><a href="../about.html" class="header__nav-link">About</a></li>
             <li><a href="../voice.html" class="header__nav-link">お客様の声</a></li>
-            <li><a href="contact.html#faq" class="header__nav-link">FAQ</a></li>
+            <li><a href="../faq.html" class="header__nav-link">FAQ</a></li>
             <li><a href="#" class="header__nav-link">ブログ</a></li>
           </ul>
         </nav>
-        
+
         <a href="../contact.html" class="header__cta btn btn--primary">鑑定を予約する</a>
-        
+
         <button class="hamburger" id="hamburger" aria-label="メニューを開く">
           <span class="hamburger__line"></span>
           <span class="hamburger__line"></span>
@@ -1318,23 +1325,19 @@
       </div>
     </div>
   </header>
-  
+
   <!-- Mobile Navigation -->
   <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
   <nav class="mobile-nav" id="mobileNav">
-    <ul class="mobile-nav__list">
-      <li><a href="../index.html" class="mobile-nav__link">ホーム</a></li>
-      <li><a href="/menu.html" class="mobile-nav__link is-active">占いメニュー</a></li>
-      <li><a href="../about.html" class="mobile-nav__link">About</a></li>
-      <li><a href="../voice.html" class="mobile-nav__link">お客様の声</a></li>
-      <li><a href="contact.html#faq" class="mobile-nav__link">FAQ</a></li>
-      <li><a href="#" class="mobile-nav__link">ブログ</a></li>
-    </ul>
-    <div class="mobile-nav__cta">
-      <a href="../contact.html" class="btn btn--primary">鑑定を予約する</a>
-    </div>
+    <a href="../index.html" class="mobile-nav__link">ホーム</a>
+    <a href="index.html" class="mobile-nav__link">占いメニュー</a>
+    <a href="../about.html" class="mobile-nav__link">About</a>
+    <a href="../voice.html" class="mobile-nav__link">お客様の声</a>
+    <a href="../faq.html" class="mobile-nav__link">FAQ</a>
+    <a href="#" class="mobile-nav__link">ブログ</a>
+    <a href="../contact.html" class="mobile-nav__cta btn btn--primary">鑑定を予約する</a>
   </nav>
-  
+
   <main>
     <!-- Page Header -->
     <section class="page-header">
@@ -1344,7 +1347,7 @@
         <p class="page-header__jp">占いメニュー</p>
       </div>
     </section>
-    
+
     <!-- Menu Introduction -->
     <section class="menu-intro">
       <div class="container">
@@ -1355,12 +1358,12 @@
         </p>
       </div>
     </section>
-    
+
     <!-- Main Menu Section -->
     <section class="menu-section">
       <div class="container">
         <h2 class="menu-section__title">人気メニュー</h2>
-        
+
         <div class="menu-grid">
           <!-- Menu Item 1 -->
           <article class="menu-detail-card fade-in">
@@ -1377,7 +1380,8 @@
               </p>
               <div class="menu-detail-card__features">
                 <span class="menu-detail-card__feature">💜 恋愛相談</span>
-                <span class="menu-detail-card__feature"><img src="images/icon_sparkle.svg" class="icon" alt="Sparkle"> 仕事運</span>
+                <span class="menu-detail-card__feature"><img src="images/icon_sparkle.svg" class="icon" alt="Sparkle">
+                  仕事運</span>
                 <span class="menu-detail-card__feature">🌙 人生の方向性</span>
               </div>
               <div class="menu-detail-card__meta">
@@ -1395,7 +1399,7 @@
               </div>
             </div>
           </article>
-          
+
           <!-- Menu Item 2 -->
           <article class="menu-detail-card fade-in">
             <div class="menu-detail-card__image">
@@ -1429,7 +1433,7 @@
               </div>
             </div>
           </article>
-          
+
           <!-- Menu Item 3 -->
           <article class="menu-detail-card fade-in">
             <div class="menu-detail-card__image">
@@ -1443,7 +1447,8 @@
                 1枚のオラクルカードから、今のあなたに必要なメッセージをお届けする、お手軽なメニューです。「今日の運勢が知りたい」「背中を押してほしい」「ちょっとした迷いを解消したい」という方におすすめ。初めての方にもぴったりです。
               </p>
               <div class="menu-detail-card__features">
-                <span class="menu-detail-card__feature"><img src="images/icon_sparkle.svg" class="icon" alt="Sparkle"> 初めての方に</span>
+                <span class="menu-detail-card__feature"><img src="images/icon_sparkle.svg" class="icon" alt="Sparkle">
+                  初めての方に</span>
                 <span class="menu-detail-card__feature">⏰ 短時間OK</span>
                 <span class="menu-detail-card__feature">💝 お試し</span>
               </div>
@@ -1462,7 +1467,7 @@
               </div>
             </div>
           </article>
-          
+
           <!-- Menu Item 4 -->
           <article class="menu-detail-card fade-in">
             <div class="menu-detail-card__image">
@@ -1498,7 +1503,7 @@
         </div>
       </div>
     </section>
-    
+
     <!-- Options Section -->
     <section class="options-section">
       <div class="container">
@@ -1510,7 +1515,7 @@
           </h2>
           <p class="section-title__jp">オプションメニュー</p>
         </div>
-        
+
         <div class="options-grid">
           <article class="option-card fade-in">
             <span class="option-card__icon">📝</span>
@@ -1520,7 +1525,7 @@
             </p>
             <span class="option-card__price">+¥1,000</span>
           </article>
-          
+
           <article class="option-card fade-in">
             <span class="option-card__icon">⏰</span>
             <h3 class="option-card__title">延長（15分）</h3>
@@ -1529,7 +1534,7 @@
             </p>
             <span class="option-card__price">+¥1,500</span>
           </article>
-          
+
           <article class="option-card fade-in">
             <span class="option-card__icon">🎁</span>
             <h3 class="option-card__title">ギフト鑑定</h3>
@@ -1541,7 +1546,7 @@
         </div>
       </div>
     </section>
-    
+
     <!-- Flow Section -->
     <section class="flow-section">
       <div class="container">
@@ -1553,7 +1558,7 @@
           </h2>
           <p class="section-title__jp">ご予約の流れ</p>
         </div>
-        
+
         <div class="flow-list">
           <div class="flow-item fade-in">
             <span class="flow-item__number">1</span>
@@ -1564,7 +1569,7 @@
               </p>
             </div>
           </div>
-          
+
           <div class="flow-item fade-in">
             <span class="flow-item__number">2</span>
             <div class="flow-item__content">
@@ -1574,7 +1579,7 @@
               </p>
             </div>
           </div>
-          
+
           <div class="flow-item fade-in">
             <span class="flow-item__number">3</span>
             <div class="flow-item__content">
@@ -1584,7 +1589,7 @@
               </p>
             </div>
           </div>
-          
+
           <div class="flow-item fade-in">
             <span class="flow-item__number">4</span>
             <div class="flow-item__content">
@@ -1594,7 +1599,7 @@
               </p>
             </div>
           </div>
-          
+
           <div class="flow-item fade-in">
             <span class="flow-item__number">5</span>
             <div class="flow-item__content">
@@ -1607,7 +1612,7 @@
         </div>
       </div>
     </section>
-    
+
     <!-- FAQ Section -->
     <section class="faq-section">
       <div class="container">
@@ -1619,7 +1624,7 @@
           </h2>
           <p class="section-title__jp">メニューについてのご質問</p>
         </div>
-        
+
         <div class="faq-list">
           <div class="faq-item fade-in">
             <button class="faq-item__question">
@@ -1632,7 +1637,7 @@
               </p>
             </div>
           </div>
-          
+
           <div class="faq-item fade-in">
             <button class="faq-item__question">
               <span class="faq-item__question-text">複数の質問をしてもいいですか？</span>
@@ -1644,7 +1649,7 @@
               </p>
             </div>
           </div>
-          
+
           <div class="faq-item fade-in">
             <button class="faq-item__question">
               <span class="faq-item__question-text">予約のキャンセルは可能ですか？</span>
@@ -1656,7 +1661,7 @@
               </p>
             </div>
           </div>
-          
+
           <div class="faq-item fade-in">
             <button class="faq-item__question">
               <span class="faq-item__question-text">支払い方法は何がありますか？</span>
@@ -1671,7 +1676,7 @@
         </div>
       </div>
     </section>
-    
+
     <!-- CTA Section -->
     <section class="cta-section">
       <div class="container">
@@ -1693,7 +1698,7 @@
       </div>
     </section>
   </main>
-  
+
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
@@ -1706,7 +1711,7 @@
             タロットとオラクルカードで、恋愛のお悩みに寄り添います。あなたの心の声に耳を傾け、未来への一歩を照らすお手伝いをいたします。
           </p>
         </div>
-        
+
         <div class="footer__menu">
           <h3 class="footer__heading">MENU</h3>
           <ul class="footer__list">
@@ -1716,7 +1721,7 @@
             <li><a href="contact.html#faq" class="footer__link">FAQ</a></li>
           </ul>
         </div>
-        
+
         <div class="footer__info">
           <h3 class="footer__heading">INFO</h3>
           <ul class="footer__list">
@@ -1725,26 +1730,29 @@
             <li><a href="/tokushoho.html" class="footer__link">特定商取引法に基づく表記</a></li>
           </ul>
         </div>
-        
+
         <div class="footer__social-area">
           <h3 class="footer__heading">FOLLOW</h3>
           <div class="footer__social">
-            <a href="https://instagram.com/" class="footer__social-link" target="_blank" rel="noopener" aria-label="Instagram">📷</a>
-            <a href="https://twitter.com/" class="footer__social-link" target="_blank" rel="noopener" aria-label="Twitter">🐦</a>
-            <a href="https://line.me/" class="footer__social-link" target="_blank" rel="noopener" aria-label="LINE">💬</a>
+            <a href="https://instagram.com/" class="footer__social-link" target="_blank" rel="noopener"
+              aria-label="Instagram">📷</a>
+            <a href="https://twitter.com/" class="footer__social-link" target="_blank" rel="noopener"
+              aria-label="Twitter">🐦</a>
+            <a href="https://line.me/" class="footer__social-link" target="_blank" rel="noopener"
+              aria-label="LINE">💬</a>
           </div>
         </div>
       </div>
-      
+
       <div class="footer__bottom">
         <p class="footer__copyright">© 2024 ねこさん占い All Rights Reserved.</p>
       </div>
     </div>
   </footer>
-  
+
   <!-- Scroll to Top -->
   <button class="scroll-top" id="scrollTop" aria-label="ページトップへ戻る">↑</button>
-  
+
   <script>
     // ═══════════════════════════════════════════════════════════
     // Star Canvas Animation
@@ -1752,16 +1760,16 @@
     const canvas = document.getElementById('starCanvas');
     const ctx = canvas.getContext('2d');
     let stars = [];
-    
+
     function resizeCanvas() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     }
-    
+
     function createStars() {
       stars = [];
       const numStars = Math.floor((canvas.width * canvas.height) / 15000);
-      
+
       for (let i = 0; i < numStars; i++) {
         stars.push({
           x: Math.random() * canvas.width,
@@ -1773,45 +1781,45 @@
         });
       }
     }
-    
+
     function drawStars() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
+
       const time = Date.now() * 0.001;
-      
+
       stars.forEach(star => {
         const twinkle = Math.sin(time * star.twinkleSpeed * 10 + star.twinkleOffset) * 0.3 + 0.7;
         const alpha = star.opacity * twinkle;
-        
+
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
         ctx.fill();
-        
+
         // Glow effect
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.size * 2, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(201, 162, 39, ${alpha * 0.2})`;
         ctx.fill();
       });
-      
+
       requestAnimationFrame(drawStars);
     }
-    
+
     resizeCanvas();
     createStars();
     drawStars();
-    
+
     window.addEventListener('resize', () => {
       resizeCanvas();
       createStars();
     });
-    
+
     // ═══════════════════════════════════════════════════════════
     // Header Scroll Effect
     // ═══════════════════════════════════════════════════════════
     const header = document.getElementById('header');
-    
+
     window.addEventListener('scroll', () => {
       if (window.scrollY > 50) {
         header.classList.add('is-scrolled');
@@ -1819,24 +1827,24 @@
         header.classList.remove('is-scrolled');
       }
     });
-    
+
     // ═══════════════════════════════════════════════════════════
     // Mobile Navigation
     // ═══════════════════════════════════════════════════════════
     const hamburger = document.getElementById('hamburger');
     const mobileNav = document.getElementById('mobileNav');
     const mobileNavOverlay = document.getElementById('mobileNavOverlay');
-    
+
     function toggleMobileNav() {
       hamburger.classList.toggle('is-active');
       mobileNav.classList.toggle('is-open');
       mobileNavOverlay.classList.toggle('is-visible');
       document.body.style.overflow = mobileNav.classList.contains('is-open') ? 'hidden' : '';
     }
-    
+
     hamburger.addEventListener('click', toggleMobileNav);
     mobileNavOverlay.addEventListener('click', toggleMobileNav);
-    
+
     // ═══════════════════════════════════════════════════════════
     // Scroll Animations
     // ═══════════════════════════════════════════════════════════
@@ -1844,7 +1852,7 @@
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
     };
-    
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -1852,11 +1860,11 @@
         }
       });
     }, observerOptions);
-    
+
     document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right').forEach(el => {
       observer.observe(el);
     });
-    
+
     // ═══════════════════════════════════════════════════════════
     // FAQ Accordion
     // ═══════════════════════════════════════════════════════════
@@ -1864,24 +1872,24 @@
       button.addEventListener('click', () => {
         const faqItem = button.parentElement;
         const isOpen = faqItem.classList.contains('is-open');
-        
+
         // Close all other items
         document.querySelectorAll('.faq-item.is-open').forEach(item => {
           item.classList.remove('is-open');
         });
-        
+
         // Toggle current item
         if (!isOpen) {
           faqItem.classList.add('is-open');
         }
       });
     });
-    
+
     // ═══════════════════════════════════════════════════════════
     // Scroll to Top
     // ═══════════════════════════════════════════════════════════
     const scrollTopBtn = document.getElementById('scrollTop');
-    
+
     window.addEventListener('scroll', () => {
       if (window.scrollY > 500) {
         scrollTopBtn.classList.add('is-visible');
@@ -1889,10 +1897,11 @@
         scrollTopBtn.classList.remove('is-visible');
       }
     });
-    
+
     scrollTopBtn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   </script>
 </body>
+
 </html>

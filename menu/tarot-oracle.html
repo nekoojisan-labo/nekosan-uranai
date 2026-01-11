@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>占いメニュー｜ねこさん占い</title>
   <meta name="description" content="タロット×オラクルカードリーディング、オラクルカードリーディングなど、ねこさん占いの鑑定メニュー一覧です。">
-  
+
   <!-- OGP -->
   <meta property="og:title" content="占いメニュー｜ねこさん占い">
   <meta property="og:description" content="あなたの心に寄り添う占い鑑定メニューをご紹介します。">
   <meta property="og:type" content="website">
-  
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Noto+Sans+JP:wght@300;400;500;600&family=Noto+Serif+JP:wght@400;500;600&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Noto+Sans+JP:wght@300;400;500;600&family=Noto+Serif+JP:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
   <style>
     /* ═══════════════════════════════════════════════════════════════
        CSS Variables & Reset
@@ -35,29 +38,33 @@
       --color-text-muted: #888888;
       --color-border-dark: #2a2a4a;
       --color-star: rgba(255, 255, 255, 0.8);
-      
+
       --font-display: 'Cormorant Garamond', serif;
       --font-serif-jp: 'Noto Serif JP', serif;
       --font-sans-jp: 'Noto Sans JP', sans-serif;
-      
+
       --space-xs: 0.5rem;
       --space-sm: 1rem;
       --space-md: 2rem;
       --space-lg: 4rem;
       --space-xl: 6rem;
       --space-2xl: 8rem;
-      
+
       --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
     }
-    
-    *, *::before, *::after {
+
+    *,
+    *::before,
+    *::after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    
-    html { scroll-behavior: smooth; }
-    
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: var(--font-sans-jp);
       font-weight: 400;
@@ -66,11 +73,22 @@
       background: var(--color-deep-navy);
       overflow-x: hidden;
     }
-    
-    img { max-width: 100%; height: auto; display: block; }
-    a { color: inherit; text-decoration: none; }
-    ul { list-style: none; }
-    
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ul {
+      list-style: none;
+    }
+
     .container {
       width: 100%;
       max-width: 1200px;
@@ -91,7 +109,7 @@
       z-index: 0;
       overflow: hidden;
     }
-    
+
     .star {
       position: absolute;
       background: var(--color-star);
@@ -99,10 +117,19 @@
       animation: twinkle var(--duration) ease-in-out infinite;
       animation-delay: var(--delay);
     }
-    
+
     @keyframes twinkle {
-      0%, 100% { opacity: var(--opacity); transform: scale(1); }
-      50% { opacity: calc(var(--opacity) * 0.3); transform: scale(0.8); }
+
+      0%,
+      100% {
+        opacity: var(--opacity);
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: calc(var(--opacity) * 0.3);
+        transform: scale(0.8);
+      }
     }
 
     /* ═══════════════════════════════════════════════════════════════
@@ -119,24 +146,24 @@
       background: rgba(26, 26, 46, 0.95);
       backdrop-filter: blur(10px);
     }
-    
+
     .header.scrolled {
       padding: 1rem 0;
       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
     }
-    
+
     .header__inner {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    
+
     .header__logo {
       display: flex;
       align-items: center;
       gap: 0.75rem;
     }
-    
+
     .header__logo-icon {
       width: 40px;
       height: 40px;
@@ -147,25 +174,25 @@
       justify-content: center;
       font-size: 1.25rem;
     }
-    
+
     .header__logo-text {
       font-family: var(--font-serif-jp);
       font-size: 1.25rem;
       font-weight: 500;
       letter-spacing: 0.1em;
     }
-    
+
     .nav {
       display: flex;
       align-items: center;
       gap: 2.5rem;
     }
-    
+
     .nav__list {
       display: flex;
       gap: 2rem;
     }
-    
+
     .nav__link {
       font-size: 0.875rem;
       letter-spacing: 0.05em;
@@ -173,7 +200,7 @@
       padding: 0.25rem 0;
       transition: color 0.3s ease;
     }
-    
+
     .nav__link::after {
       content: '';
       position: absolute;
@@ -184,16 +211,16 @@
       background: var(--color-gold);
       transition: width 0.3s ease;
     }
-    
+
     .nav__link:hover::after,
     .nav__link.active::after {
       width: 100%;
     }
-    
+
     .nav__link.active {
       color: var(--color-gold);
     }
-    
+
     .nav__cta {
       padding: 0.75rem 1.5rem;
       background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
@@ -204,7 +231,7 @@
       transition: all 0.3s ease;
       box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
     }
-    
+
     .nav__cta:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
@@ -220,22 +247,22 @@
       padding: 10px;
       z-index: 1001;
     }
-    
+
     .hamburger span {
       width: 24px;
       height: 2px;
       background: var(--color-text-light);
       transition: all 0.3s ease;
     }
-    
+
     .hamburger.active span:nth-child(1) {
       transform: rotate(45deg) translate(5px, 5px);
     }
-    
+
     .hamburger.active span:nth-child(2) {
       opacity: 0;
     }
-    
+
     .hamburger.active span:nth-child(3) {
       transform: rotate(-45deg) translate(5px, -5px);
     }
@@ -250,20 +277,20 @@
       text-align: center;
       overflow: hidden;
     }
-    
+
     .page-header__bg {
       position: absolute;
       inset: 0;
       overflow: hidden;
     }
-    
+
     .page-header__orb {
       position: absolute;
       border-radius: 50%;
       filter: blur(80px);
       opacity: 0.2;
     }
-    
+
     .page-header__orb--1 {
       width: 400px;
       height: 400px;
@@ -271,7 +298,7 @@
       top: 0;
       left: -100px;
     }
-    
+
     .page-header__orb--2 {
       width: 300px;
       height: 300px;
@@ -279,12 +306,12 @@
       bottom: -50px;
       right: -50px;
     }
-    
+
     .page-header__content {
       position: relative;
       z-index: 10;
     }
-    
+
     .page-header__title-en {
       font-family: var(--font-display);
       font-size: clamp(2.5rem, 6vw, 4rem);
@@ -294,7 +321,7 @@
       color: var(--color-gold);
       margin-bottom: 0.5rem;
     }
-    
+
     .page-header__title-jp {
       font-family: var(--font-serif-jp);
       font-size: clamp(1rem, 2vw, 1.25rem);
@@ -302,7 +329,7 @@
       letter-spacing: 0.2em;
       margin-bottom: 1.5rem;
     }
-    
+
     .page-header__desc {
       font-size: 0.9375rem;
       color: rgba(255, 255, 255, 0.7);
@@ -310,7 +337,7 @@
       margin: 0 auto;
       line-height: 1.9;
     }
-    
+
     .breadcrumb {
       display: flex;
       justify-content: center;
@@ -319,15 +346,15 @@
       font-size: 0.8125rem;
       color: rgba(255, 255, 255, 0.5);
     }
-    
+
     .breadcrumb a {
       transition: color 0.3s ease;
     }
-    
+
     .breadcrumb a:hover {
       color: var(--color-gold);
     }
-    
+
     .breadcrumb span {
       color: var(--color-gold);
     }
@@ -340,13 +367,13 @@
       padding: var(--space-2xl) 0;
       z-index: 1;
     }
-    
+
     .menu-intro {
       text-align: center;
       max-width: 700px;
       margin: 0 auto var(--space-xl);
     }
-    
+
     .menu-intro__text {
       font-size: 1rem;
       line-height: 2;
@@ -362,17 +389,17 @@
       margin-bottom: 3rem;
       transition: all 0.4s ease;
     }
-    
+
     .menu-detail:hover {
       border-color: rgba(212, 175, 55, 0.3);
     }
-    
+
     .menu-detail__header {
       display: grid;
       grid-template-columns: 1fr 1.5fr;
       gap: 0;
     }
-    
+
     .menu-detail__visual {
       position: relative;
       min-height: 350px;
@@ -382,18 +409,18 @@
       justify-content: center;
       overflow: hidden;
     }
-    
+
     .menu-detail__icon {
       font-size: 8rem;
       opacity: 0.4;
       transition: all 0.5s ease;
     }
-    
+
     .menu-detail:hover .menu-detail__icon {
       transform: scale(1.1) rotate(5deg);
       opacity: 0.6;
     }
-    
+
     .menu-detail__visual-orb {
       position: absolute;
       width: 200px;
@@ -406,14 +433,14 @@
       left: 50%;
       transform: translate(-50%, -50%);
     }
-    
+
     .menu-detail__info {
       padding: 3rem;
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
-    
+
     .menu-detail__badge {
       display: inline-block;
       padding: 0.375rem 1rem;
@@ -424,14 +451,14 @@
       margin-bottom: 1rem;
       width: fit-content;
     }
-    
+
     .menu-detail__title {
       font-family: var(--font-serif-jp);
       font-size: 1.75rem;
       font-weight: 500;
       margin-bottom: 0.5rem;
     }
-    
+
     .menu-detail__subtitle {
       font-family: var(--font-display);
       font-size: 1rem;
@@ -440,51 +467,51 @@
       letter-spacing: 0.1em;
       margin-bottom: 1.5rem;
     }
-    
+
     .menu-detail__desc {
       font-size: 0.9375rem;
       line-height: 1.9;
       color: rgba(255, 255, 255, 0.75);
       margin-bottom: 2rem;
     }
-    
+
     .menu-detail__meta {
       display: flex;
       gap: 2rem;
       padding-top: 1.5rem;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
     }
-    
+
     .menu-detail__meta-item {
       display: flex;
       flex-direction: column;
       gap: 0.25rem;
     }
-    
+
     .menu-detail__meta-label {
       font-size: 0.75rem;
       color: rgba(255, 255, 255, 0.5);
     }
-    
+
     .menu-detail__meta-value {
       font-size: 1.25rem;
       font-weight: 500;
       color: var(--color-gold);
     }
-    
+
     .menu-detail__body {
       padding: 3rem;
       background: rgba(0, 0, 0, 0.2);
     }
-    
+
     .menu-detail__section {
       margin-bottom: 2.5rem;
     }
-    
+
     .menu-detail__section:last-child {
       margin-bottom: 0;
     }
-    
+
     .menu-detail__section-title {
       font-family: var(--font-serif-jp);
       font-size: 1.125rem;
@@ -496,17 +523,17 @@
       align-items: center;
       gap: 0.75rem;
     }
-    
+
     .menu-detail__section-icon {
       color: var(--color-gold);
     }
-    
+
     .menu-detail__list {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1rem;
     }
-    
+
     .menu-detail__list-item {
       display: flex;
       align-items: flex-start;
@@ -515,21 +542,21 @@
       line-height: 1.7;
       color: rgba(255, 255, 255, 0.8);
     }
-    
+
     .menu-detail__list-item::before {
       content: '<img src="images/icon_sparkle.svg" class="icon" alt="Sparkle">';
       color: var(--color-gold);
       font-size: 0.75rem;
       margin-top: 0.25rem;
     }
-    
+
     .menu-detail__flow {
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;
       align-items: center;
     }
-    
+
     .menu-detail__flow-step {
       display: flex;
       align-items: center;
@@ -539,7 +566,7 @@
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 8px;
     }
-    
+
     .menu-detail__flow-num {
       width: 28px;
       height: 28px;
@@ -552,22 +579,22 @@
       font-size: 0.8125rem;
       font-weight: 600;
     }
-    
+
     .menu-detail__flow-text {
       font-size: 0.875rem;
     }
-    
+
     .menu-detail__flow-arrow {
       color: var(--color-gold);
       opacity: 0.5;
     }
-    
+
     .menu-detail__cta {
       display: flex;
       justify-content: center;
       padding: 2rem 3rem 3rem;
     }
-    
+
     .menu-detail__button {
       display: inline-flex;
       align-items: center;
@@ -581,7 +608,7 @@
       transition: all 0.3s ease;
       box-shadow: 0 4px 25px rgba(212, 175, 55, 0.3);
     }
-    
+
     .menu-detail__button:hover {
       transform: translateY(-3px);
       box-shadow: 0 8px 35px rgba(212, 175, 55, 0.4);
@@ -593,14 +620,14 @@
     .notes-section {
       padding: var(--space-xl) 0 var(--space-2xl);
     }
-    
+
     .notes-card {
       background: rgba(168, 216, 234, 0.05);
       border: 1px solid rgba(168, 216, 234, 0.15);
       border-radius: 16px;
       padding: 2.5rem;
     }
-    
+
     .notes-card__title {
       font-family: var(--font-serif-jp);
       font-size: 1.125rem;
@@ -610,17 +637,17 @@
       align-items: center;
       gap: 0.75rem;
     }
-    
+
     .notes-card__title-icon {
       color: var(--color-pastel-blue);
     }
-    
+
     .notes-card__list {
       display: flex;
       flex-direction: column;
       gap: 0.75rem;
     }
-    
+
     .notes-card__item {
       font-size: 0.9375rem;
       line-height: 1.8;
@@ -628,7 +655,7 @@
       padding-left: 1.5rem;
       position: relative;
     }
-    
+
     .notes-card__item::before {
       content: '•';
       position: absolute;
@@ -643,27 +670,27 @@
       padding: var(--space-xl) 0 var(--space-2xl);
       text-align: center;
     }
-    
+
     .cta-section__inner {
       background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(168, 216, 234, 0.05));
       border: 1px solid rgba(212, 175, 55, 0.2);
       border-radius: 24px;
       padding: 4rem 2rem;
     }
-    
+
     .cta-section__title {
       font-family: var(--font-serif-jp);
       font-size: 1.5rem;
       font-weight: 500;
       margin-bottom: 1rem;
     }
-    
+
     .cta-section__text {
       font-size: 0.9375rem;
       color: rgba(255, 255, 255, 0.7);
       margin-bottom: 2rem;
     }
-    
+
     .cta-section__button {
       display: inline-flex;
       align-items: center;
@@ -677,7 +704,7 @@
       transition: all 0.3s ease;
       box-shadow: 0 4px 25px rgba(212, 175, 55, 0.3);
     }
-    
+
     .cta-section__button:hover {
       transform: translateY(-3px);
       box-shadow: 0 8px 35px rgba(212, 175, 55, 0.4);
@@ -691,7 +718,7 @@
       padding: var(--space-lg) 0 var(--space-md);
       border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
-    
+
     .footer__inner {
       display: flex;
       justify-content: space-between;
@@ -699,13 +726,13 @@
       flex-wrap: wrap;
       gap: 1.5rem;
     }
-    
+
     .footer__logo {
       display: flex;
       align-items: center;
       gap: 0.75rem;
     }
-    
+
     .footer__logo-icon {
       width: 36px;
       height: 36px;
@@ -716,29 +743,29 @@
       justify-content: center;
       font-size: 1rem;
     }
-    
+
     .footer__logo-text {
       font-family: var(--font-serif-jp);
       font-size: 1rem;
       font-weight: 500;
       letter-spacing: 0.1em;
     }
-    
+
     .footer__nav {
       display: flex;
       gap: 2rem;
     }
-    
+
     .footer__nav-link {
       font-size: 0.8125rem;
       color: rgba(255, 255, 255, 0.6);
       transition: color 0.3s ease;
     }
-    
+
     .footer__nav-link:hover {
       color: var(--color-gold);
     }
-    
+
     .footer__copyright {
       width: 100%;
       text-align: center;
@@ -757,7 +784,7 @@
       transform: translateY(40px);
       transition: opacity 0.8s ease, transform 0.8s ease;
     }
-    
+
     .fade-in-up.visible {
       opacity: 1;
       transform: translateY(0);
@@ -782,31 +809,31 @@
       visibility: hidden;
       transition: all 0.4s ease;
     }
-    
+
     .mobile-nav.active {
       opacity: 1;
       visibility: visible;
     }
-    
+
     .mobile-nav__list {
       text-align: center;
     }
-    
+
     .mobile-nav__item {
       margin-bottom: 2rem;
     }
-    
+
     .mobile-nav__link {
       font-family: var(--font-serif-jp);
       font-size: 1.5rem;
       letter-spacing: 0.1em;
       transition: color 0.3s ease;
     }
-    
+
     .mobile-nav__link:hover {
       color: var(--color-gold);
     }
-    
+
     .mobile-nav__cta {
       margin-top: 2rem;
       padding: 1rem 2.5rem;
@@ -825,61 +852,62 @@
       .menu-detail__header {
         grid-template-columns: 1fr;
       }
-      
+
       .menu-detail__visual {
         min-height: 250px;
       }
     }
-    
+
     @media (max-width: 768px) {
       :root {
         --space-xl: 4rem;
         --space-2xl: 5rem;
       }
-      
-      .nav__list, .nav__cta {
+
+      .nav__list,
+      .nav__cta {
         display: none;
       }
-      
+
       .hamburger {
         display: flex;
       }
-      
+
       .page-header {
         padding: 10rem 0 4rem;
       }
-      
+
       .menu-detail__info {
         padding: 2rem;
       }
-      
+
       .menu-detail__body {
         padding: 2rem;
       }
-      
+
       .menu-detail__meta {
         flex-wrap: wrap;
         gap: 1.5rem;
       }
-      
+
       .menu-detail__flow {
         flex-direction: column;
         align-items: stretch;
       }
-      
+
       .menu-detail__flow-arrow {
         display: none;
       }
-      
+
       .menu-detail__cta {
         padding: 1.5rem 2rem 2rem;
       }
-      
+
       .footer__inner {
         flex-direction: column;
         text-align: center;
       }
-      
+
       .footer__nav {
         flex-wrap: wrap;
         justify-content: center;
@@ -888,6 +916,7 @@
     }
   </style>
 </head>
+
 <body>
   <!-- Stars Background -->
   <div class="stars-container" id="starsContainer"></div>
@@ -900,48 +929,38 @@
           <div class="header__logo-icon">🌙</div>
           <span class="header__logo-text">ねこさん占い</span>
         </a>
-        
-        <nav class="nav">
-          <ul class="nav__list">
-            <li><a href="../index.html" class="nav__link">ホーム</a></li>
-            <li><a href="menu-detail.html" class="nav__link active">占いメニュー</a></li>
-            <li><a href="index.html#about" class="nav__link">占い師紹介</a></li>
-            <li><a href="../faq.html" class="nav__link">よくある質問</a></li>
-            <li><a href="../contact.html" class="nav__link">お問い合わせ</a></li>
+
+        <nav class="header__nav">
+          <ul class="header__nav-list">
+            <li><a href="../index.html" class="header__nav-link">ホーム</a></li>
+            <li><a href="index.html" class="header__nav-link is-active">占いメニュー</a></li>
+            <li><a href="../about.html" class="header__nav-link">About</a></li>
+            <li><a href="../voice.html" class="header__nav-link">お客様の声</a></li>
+            <li><a href="../faq.html" class="header__nav-link">FAQ</a></li>
+            <li><a href="#" class="header__nav-link">ブログ</a></li>
           </ul>
-          <a href="../contact.html" class="nav__cta">無料相談する</a>
+          <a href="../contact.html" class="header__cta btn btn--primary">鑑定を予約する</a>
         </nav>
-        
+
         <button class="hamburger" id="hamburger" aria-label="メニュー">
-          <span></span>
-          <span></span>
-          <span></span>
+          <span class="hamburger__line"></span>
+          <span class="hamburger__line"></span>
+          <span class="hamburger__line"></span>
         </button>
       </div>
     </div>
   </header>
 
   <!-- Mobile Navigation -->
-  <div class="mobile-nav" id="mobileNav">
-    <nav class="mobile-nav__list">
-      <div class="mobile-nav__item">
-        <a href="../index.html" class="mobile-nav__link">ホーム</a>
-      </div>
-      <div class="mobile-nav__item">
-        <a href="menu-detail.html" class="mobile-nav__link">占いメニュー</a>
-      </div>
-      <div class="mobile-nav__item">
-        <a href="index.html#about" class="mobile-nav__link">占い師紹介</a>
-      </div>
-      <div class="mobile-nav__item">
-        <a href="../faq.html" class="mobile-nav__link">よくある質問</a>
-      </div>
-      <div class="mobile-nav__item">
-        <a href="../contact.html" class="mobile-nav__link">お問い合わせ</a>
-      </div>
-      <a href="../contact.html" class="mobile-nav__cta">無料相談する</a>
-    </nav>
-  </div>
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="../index.html" class="mobile-nav__link">ホーム</a>
+    <a href="index.html" class="mobile-nav__link">占いメニュー</a>
+    <a href="../about.html" class="mobile-nav__link">About</a>
+    <a href="../voice.html" class="mobile-nav__link">お客様の声</a>
+    <a href="../faq.html" class="mobile-nav__link">FAQ</a>
+    <a href="#" class="mobile-nav__link">ブログ</a>
+    <a href="../contact.html" class="mobile-nav__cta btn btn--primary">鑑定を予約する</a>
+  </nav>
 
   <!-- Page Header -->
   <section class="page-header">
@@ -1009,7 +1028,8 @@
         <div class="menu-detail__body">
           <div class="menu-detail__section">
             <h3 class="menu-detail__section-title">
-              <span class="menu-detail__section-icon"><img src="images/icon_sparkle.svg" class="icon" alt="Sparkle"></span>
+              <span class="menu-detail__section-icon"><img src="images/icon_sparkle.svg" class="icon"
+                  alt="Sparkle"></span>
               こんな方におすすめ
             </h3>
             <ul class="menu-detail__list">
@@ -1090,7 +1110,8 @@
         <div class="menu-detail__body">
           <div class="menu-detail__section">
             <h3 class="menu-detail__section-title">
-              <span class="menu-detail__section-icon"><img src="images/icon_sparkle.svg" class="icon" alt="Sparkle"></span>
+              <span class="menu-detail__section-icon"><img src="images/icon_sparkle.svg" class="icon"
+                  alt="Sparkle"></span>
               こんな方におすすめ
             </h3>
             <ul class="menu-detail__list">
@@ -1179,7 +1200,7 @@
         </a>
         <nav class="footer__nav">
           <a href="../index.html" class="footer__nav-link">ホーム</a>
-          <a href="menu-detail.html" class="footer__nav-link">占いメニュー</a>
+          <a href="index.html" class="footer__nav-link">占いメニュー</a>
           <a href="../faq.html" class="footer__nav-link">よくある質問</a>
           <a href="../contact.html" class="footer__nav-link">お問い合わせ</a>
           <a href="#" class="footer__nav-link">プライバシーポリシー</a>
@@ -1195,7 +1216,7 @@
     function generateStars() {
       const container = document.getElementById('starsContainer');
       const starCount = 100;
-      
+
       for (let i = 0; i < starCount; i++) {
         const star = document.createElement('div');
         star.className = 'star';
@@ -1209,9 +1230,9 @@
         container.appendChild(star);
       }
     }
-    
+
     generateStars();
-    
+
     // Header Scroll
     const header = document.getElementById('header');
     window.addEventListener('scroll', () => {
@@ -1221,17 +1242,17 @@
         header.classList.remove('scrolled');
       }
     });
-    
+
     // Mobile Menu
     const hamburger = document.getElementById('hamburger');
     const mobileNav = document.getElementById('mobileNav');
-    
+
     hamburger.addEventListener('click', () => {
       hamburger.classList.toggle('active');
       mobileNav.classList.toggle('active');
       document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
     });
-    
+
     // Close mobile menu on link click
     document.querySelectorAll('.mobile-nav__link, .mobile-nav__cta').forEach(link => {
       link.addEventListener('click', () => {
@@ -1240,13 +1261,13 @@
         document.body.style.overflow = '';
       });
     });
-    
+
     // Scroll Animations
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
     };
-    
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -1254,10 +1275,11 @@
         }
       });
     }, observerOptions);
-    
+
     document.querySelectorAll('.fade-in-up').forEach(el => {
       observer.observe(el);
     });
   </script>
 </body>
+
 </html>
